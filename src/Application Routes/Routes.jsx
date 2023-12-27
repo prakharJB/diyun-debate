@@ -6,6 +6,9 @@ import DebateAdd from "../Screens/Debateadd";
 import SingleDebate from "../Screens/SingleDebate";
 import Tags from "../Screens/Tags";
 import UserDashboard from "../Screens/UserDashboard";
+import Tour from "../Screens/Tour";
+import ContactForm from "../Screens/ContactForm";
+
 
 function AppRoutes() {
   return (
@@ -20,9 +23,10 @@ function AppRoutes() {
           <Route path="/explore" element={<Home />}></Route>
           <Route path="/explore/tags" element={<Tags />}></Route>
           <Route path="/explore/tags/:category" element={<Home />}></Route>
-          <Route path="/tour" element={<Home />}></Route>
+          <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Home />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
+          <Route path="/contactform" element={<ContactForm/>} ></Route>
          
           
         </Routes>
