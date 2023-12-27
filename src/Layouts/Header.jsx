@@ -8,6 +8,8 @@ import Signup from "../Component/SignupComponent";
 import Login from "../Component/LoginComponent";
 import CreateDebate from "../Component/CreateDebate";
 import logo from "../Assets/LOGO (2).png";
+import { fetchData } from "../Component/SunBurst";
+import HomePortal from "../Component/HomePortal";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);

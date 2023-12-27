@@ -4,6 +4,8 @@ import { Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import ForgetPassword from "./ForgetPasswordComponent";
 import {useNavigate} from"react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -32,13 +34,28 @@ const Login = (props) => {
     props.onHide();
   };
 
-  const handleChange = (e) => {
+  const handleChange =  (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-
+    await axios
+    .post("https://backlaravel.mpvoter.com/api/login_route", formData, {
+      headers: { "content-type": "application/json" },
+    })
+    .then((response) => {
+      if (response.data.error == "Check Your Email and Password") {
+        toast.error("Check Your Email and Password");
+      } else {
+        const user = {
+          username: response?.data?.name,
+          email: response?.data?.email,
+        };
+        localStorage.setItem("user", JSON.stringify(user));
+        // navigate("/voting-form", { state: user });
+      }
+    });
     setFormData({
       email: "",
       password: "",
