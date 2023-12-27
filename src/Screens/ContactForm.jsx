@@ -37,7 +37,7 @@ function ContactForm() {
                 <label for="fname">נושא</label>
                 <input type="subject" name="subject" id="id" />
                 <label for="fname">הוֹדָעָה</label>
-                <textarea name="Message" id="" cols="30" rows="10" />
+                <textarea name="Message" className="contact-txtar" id="" cols="30" rows="10" />
                 <label for="fname">קבצים מצורפים</label>
                 <input type="file" name="myfile" id="myfile" />
                 <button type="submit" >שלח</button>
