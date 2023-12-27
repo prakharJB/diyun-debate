@@ -19,25 +19,26 @@ import testrobot from "../Assets/test-robot.jpeg";
 import testgrass from "../Assets/test-grass.jpeg";
 import Counter from "../Layouts/DebateHeader";
 import { fetchData } from "./SunBurst";
+import CreateDebate from "./CreateDebate";
+import { useContext } from "react";
+import { MyContext } from "./SunBurst";
 
 function HomePortal() {
-  const [items, setItems] = useState();
-  // const fetchData = async () => {
-  //   try {
-  //     const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
-  //     const responseData = await axios.get(url);
-  //     console.log("API Response:", responseData.data);
-  //     // setItems(responseData.data.mainDebates);
-  //     return responseData.data.mainDebates;
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
+  const { text, setText } = useContext(MyContext);
+  const fetchData = async () => {
+    try {
+      const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
+      const responseData = await axios.get(url);
+      // console.log("API Response:", responseData.data);
+      setText(responseData.data.mainDebates);
+      return responseData.data.mainDebates;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    fetchData().then((res) => {
-      setItems(res);
-    });
+    fetchData();
   }, []);
 
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
@@ -431,35 +432,35 @@ function HomePortal() {
                     <Card.Text className="m-0">62.6ר</Card.Text>
                   </div>
                 </Card>
-                {items?.map((val, index) => (
-                  <Card>
-                    <a href={`/debate/${val.id}`} key={index}>
-                      <Card.Img variant="top" src={baseUrl + val.image} />
-                      <Card.Body>
-                        <Card.Title>{val.title}</Card.Title>
-                      </Card.Body>
-                    </a>
-                    <hr />
-                    <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
-                      <TbMessage2 />
-                      <Card.Text className="m-0">749</Card.Text>
-                      <FaPen />
-                      <Card.Text className="m-0">10.9ר</Card.Text>
-                      <FaVoteYea />
-                      <Card.Text className="m-0">6.2ר</Card.Text>
-                      <TbUsersGroup />
-                      <Card.Text className="m-0">1ר</Card.Text>
-                      <FaEye />
-                      <Card.Text className="m-0">62.6ר</Card.Text>
-                    </div>
-                  </Card>
-                ))}
+                {text &&
+                  text?.map((val, index) => (
+                    <Card>
+                      <a href={`/debate/${val.id}`} key={index}>
+                        <Card.Img variant="top" src={baseUrl + val.image} />
+                        <Card.Body>
+                          <Card.Title>{val.title}</Card.Title>
+                        </Card.Body>
+                      </a>
+                      <hr />
+                      <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
+                        <TbMessage2 />
+                        <Card.Text className="m-0">749</Card.Text>
+                        <FaPen />
+                        <Card.Text className="m-0">10.9ר</Card.Text>
+                        <FaVoteYea />
+                        <Card.Text className="m-0">6.2ר</Card.Text>
+                        <TbUsersGroup />
+                        <Card.Text className="m-0">1ר</Card.Text>
+                        <FaEye />
+                        <Card.Text className="m-0">62.6ר</Card.Text>
+                      </div>
+                    </Card>
+                  ))}
               </div>
             </Col>
           </Row>
         </Container>
       </section>
-      <Counter />
     </>
   );
 }
