@@ -18,11 +18,7 @@ const Signup = (props) => {
     username: "",
   });
   const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("email_verified_at")) {
-      navigate("/my");
-    }
-  }, []);
+
 
   const handleClose = () => {
     setFormData({

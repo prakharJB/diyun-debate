@@ -7,7 +7,7 @@ function About() {
         <>
             <Header />
             <div className="about-pg" dir="rtl" >
-                <div className="section-about"  >
+                <section className="section-about"  >
                     <Container>
                         <h1 class="text-primary">לורם איפסום</h1>
                         <div className="row row-abt" >
@@ -16,8 +16,7 @@ function About() {
                                 <p>לורם איפסום הוא טקסט חסר הקשר וחסר משמעות בכוונה - וזאת כדי שעין הקורא לא "תצוד" בזמן הרפרוף עליו, מילה שתסיח את דעתו. לורם איפסום תוכנן בקפידה כך שיחקה במרקם ובקצב שלו טקסט אמיתי בעברית. אתר lorem-ipsum.co.il מציע לראשונה בישראל טקסט לורם איפסום בעברית לטובת כל מעצבי האתרים, המעצבים הגרפיים, הגרפיקאים, עורכים גרפיים, ובעצם כל אחד</p>
                                 <p>אז למה לא להכניס לסקיצה ג'יבריש?</p>
                                 <p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו</p>
-                                <p><a href="#" class="link-primary text-decoration-underline">יתרונות לורם איפסום באתר lorem-ipsum.co.il:<br/> אורך מילים, משפטים ופסקאות מגוון ואמיתי</a></p>
-
+                                <p><a href="#" class="link-primary text-decoration-underline">יתרונות לורם איפסום באתר lorem-ipsum.co.il:<br /> אורך מילים, משפטים ופסקאות מגוון ואמיתי</a></p>
 
                             </div>
                             <div className="colm-abt2 col-md-6" >
@@ -27,9 +26,9 @@ function About() {
                             </div>
                         </div>
                     </Container>
-                </div>
+                </section>
             </div>
-
+            <Footer />
         </>
     )
 }

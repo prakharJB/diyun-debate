@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import { Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import ForgetPassword from "./ForgetPasswordComponent";
-import {useNavigate} from"react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -34,30 +34,32 @@ const Login = (props) => {
     props.onHide();
   };
 
-  const handleChange =  (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    await axios
-    .post("https://backlaravel.mpvoter.com/api/login_route", formData, {
-      headers: { "content-type": "application/json" },
-    })
-    .then((response) => {
-      if (response.data.error == "Check Your Email and Password") {
-        toast.error("Check Your Email and Password");
-        console.log(response)
-      } else {
-        const user = {
-          username: response?.data?.name,
-          email: response?.data?.email,
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/login`,
+        formData
+      );
+      console.log("Signup successful!", response);
+      if (response?.data?.status === "success") {
+        toast.success(response?.data?.message);
+        const token = {
+          token: response?.data?.token,
         };
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", JSON.stringify(token));
         navigate("/my");
-        console.log(response)
+      } else {
+        toast.error(response?.data?.message);
       }
-    });
+    } catch (error) {
+      // console.error("Signup failed!", error.response.data);
+      toast.error(error.response.data.message);
+    }
     setFormData({
       email: "",
       password: "",
