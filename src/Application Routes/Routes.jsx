@@ -8,6 +8,7 @@ import Tags from "../Screens/Tags";
 import UserDashboard from "../Screens/UserDashboard";
 import Tour from "../Screens/Tour";
 import ContactForm from "../Screens/ContactForm";
+import Search from "../Screens/Search";
 
 
 function AppRoutes() {
@@ -24,9 +25,9 @@ function AppRoutes() {
           <Route path="/explore/tags" element={<Tags />}></Route>
           <Route path="/explore/tags/:category" element={<Home />}></Route>
           <Route path="/tour" element={<Tour />}></Route>
-          <Route path="/search" element={<Home />}></Route>
+          <Route path="/search" element={<Search />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
-          <Route path="/contactform" element={<ContactForm/>} ></Route>
+          <Route path="/contactus" element={<ContactForm/>} ></Route>
          
           
         </Routes>

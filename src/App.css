@@ -1,4 +1,15 @@
+.footer-logo {
+    width:150px;
+}
+.footer-sec {
+    background:#0662ab
+}
+.footer-sec li a{
+    color:#fff !important;
+}
+
 /* tour page css start */
+
 section.tour-banner h1{
     font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 45px;
@@ -110,6 +121,7 @@ section.seehow-section h3{
 .active {
     text-decoration: underline;
     text-underline-offset: 0.3em;
+
 }
 
 button.navbar-toggler {
@@ -155,7 +167,10 @@ div#responsive-navbar-nav {
     color: #000;
     font-weight: 600;
 }
-
+.nav-link:active{
+    font-weight: 700;
+    text-decoration: underline;
+}
 .nav-link:hover {
     text-decoration: underline;
     text-underline-offset: 0.3em;
@@ -545,6 +560,9 @@ img.card-img-top {
 
     .modal-dialog {
         margin: unset;
+    }
+    .footer-links{
+        display:block !important;
     }
 }
 
