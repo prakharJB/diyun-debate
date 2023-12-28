@@ -1,3 +1,105 @@
+/* tour page css start */
+section.tour-banner h1{
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 56px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #fff;
+}
+.textwithButton h1{
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #fff;
+}
+.explore-btn{
+    padding: 15px 30px;
+    color: #fff;
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-weight: 700;
+}
+section.tour-banner p{
+    color:#fff;
+    font-size:20px;
+    font-weight:400;
+    line-height: 1.2;  
+}
+.tour-banner .container {
+    max-width: 50%;
+}
+.textwithButton{
+    padding: 64px 0;
+    background-color: #0662AB;
+}
+
+    .tour-banner {
+        padding: 64px 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #0662AB;
+        background-image: url('./Assets/explore_desktop.jpeg');
+    }
+    
+
+section.video-section {
+    padding:65px 0px;
+}
+section.how-works,.blue-head{
+    padding:65px 0px;
+}
+.how-works h2 {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 60px;
+    text-align: center;
+    color:#000
+    ;
+}
+.how-works .container .row h3,.blue-head .container .row h3
+{
+    color: #0069e0;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 37px;
+}
+.how-works .container .row p,.blue-head .container .row p{
+    color: #2c343d;
+    font-size:18px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+section.seehow-section h3{
+    color:#0069e0;
+    color: #0069e0;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 37px;
+}
+.seehow-section p{
+    color: #2c343d;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+     margin-bottom: 37px;
+}
+
+/* tour page css end */
+
 .navbar {
     padding: 10px 0;
 }
@@ -429,7 +531,9 @@ img.card-img-top {
 
 @media(max-width:575.9px) {
 
-
+    .tour-banner .container {
+        max-width: 100%;
+    }
     .modal-content {
         height: 100%;
         border-radius: unset;

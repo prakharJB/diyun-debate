@@ -5,7 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import coverImg from "../Assets/demo-portal-cover.jpeg";
 
-
 function Explore() {
   const [items, setItems] = useState();
   // useEffect(() => {
