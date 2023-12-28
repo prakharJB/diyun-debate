@@ -554,6 +554,28 @@ margin-left: 6%;
 .colm-abt2 h2{font-size: 16px;}
 /* mobile screen */
 
+/* ----------privacy----- */
+.privacy-dv {
+    padding: 80px 0px;
+}
+.privacy-pg h2{
+    font-size: 18px; 
+    font-weight: 400;
+    margin: 34px 0px 24px 0px;
+}
+.privacy-pg h1{
+    font-size: 33px;
+    font-weight: 400;
+}
+.privacy-pg p{
+    color: #2c343d;
+    margin-bottom: 16px;
+    font-size: 17px;
+}
+.privacy-list{
+    list-style: unset;
+}
+
 @media(max-width:575.9px) {
 
     .tour-banner .container {
