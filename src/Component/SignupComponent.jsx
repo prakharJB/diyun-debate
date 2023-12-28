@@ -1,9 +1,10 @@
 import tHn from "../locales/he.json";
 import Modal from "react-bootstrap/Modal";
 import { Form, Button } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./LoginComponent";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 // import { Formik , Form, Field } from "formik";
 import * as Yup from "yup";
@@ -16,6 +17,8 @@ const Signup = (props) => {
     password_confirmation: "",
     username: "",
   });
+  const navigate = useNavigate();
+
 
   const handleClose = () => {
     setFormData({
@@ -42,9 +45,16 @@ const Signup = (props) => {
           `${process.env.REACT_APP_BASE_URL}/api/register`,
           formData
         );
-        // console.log("Signup successful!", response);
-        if (response.data.message == "Registration Successful") {
-          toast.success("You are Registered.Please verify your Email ID");
+        console.log("Signup successful!", response);
+        if (response?.data?.status === "success") {
+          toast.success(response?.data?.message);
+          const token = {
+            token:response?.data?.token
+          };
+          localStorage.setItem("token", JSON.stringify(token));
+          navigate("/my")
+        } else {
+          toast.error(response?.data?.message);
         }
       } catch (error) {
         // console.error("Signup failed!", error.response.data);
@@ -135,7 +145,7 @@ const Signup = (props) => {
             <Form.Group className="mt-4" controlId="formConfirmationPassword">
               <Form.Control
                 type="password"
-                placeholder="סיסמה"
+                placeholder="אימות סיסמה"
                 name="password_confirmation"
                 onChange={handleChange}
                 required

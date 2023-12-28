@@ -10,13 +10,24 @@ import CreateDebate from "../Component/CreateDebate";
 import logo from "../Assets/LOGO (2).png";
 import { fetchData } from "../Component/SunBurst";
 import HomePortal from "../Component/HomePortal";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [LoginmodalShow, setLoginModalShow] = useState(false);
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
-
+  const [logInUser, setLogInUser] = useState();
+  const getLoggedUser = () => {
+    const user = JSON.parse(localStorage?.getItem("token"));
+    setLogInUser(user?.token);
+  };
+  useEffect(() => {
+    getLoggedUser();
+  }, []);
+  const logOut = () => {
+    localStorage.removeItem("token");
+  };
   useEffect(() => {
     const handleScroll = () => {
       const scroll = window.scrollY;
@@ -57,25 +68,59 @@ function Header() {
       >
         <Navbar.Brand href="/">{tHn.Diyun}</Navbar.Brand>
         <Nav className="me-auto mobile-btn-bottom">
-          <Nav.Link href="/explore">{tHn.explore}</Nav.Link>
-          <Nav.Link href="/tour">{tHn.tour}</Nav.Link>
-          <Nav.Link onClick={() => setCreateDebateModal(true)}>
-            +{tHn.new}
-          </Nav.Link>
+          {logInUser ? (
+            <Nav.Link href="/my">My Diyun</Nav.Link>
+          ) : (
+            <Nav.Link href="/explore">{tHn.explore}</Nav.Link>
+          )}
+          {logInUser ? (
+            <Nav.Link href="/explore">{tHn.explore}</Nav.Link>
+          ) : (
+            <Nav.Link href="/tour">{tHn.tour}</Nav.Link>
+          )}
+          {logInUser ? null : (
+            <Nav.Link onClick={() => setLoginModalShow(true)}>
+              +{tHn.new}
+            </Nav.Link>
+          )}
+
           <Nav.Link href="/search">
             <HiMagnifyingGlass />
           </Nav.Link>
         </Nav>
         <Nav className="mx-2">
-          <Nav.Link
-            className="login-btn"
-            onClick={() => setLoginModalShow(true)}
-          >
-            {tHn.log_in}
-          </Nav.Link>
-          <Nav.Link className="signup-btn" onClick={() => setModalShow(true)}>
-            {tHn.sign_up}
-          </Nav.Link>
+          {logInUser ? (
+            <Nav.Link onClick={() => setCreateDebateModal(true)}>
+              +{tHn.new}
+            </Nav.Link>
+          ) : (
+            <Nav.Link
+              className="login-btn"
+              onClick={() => setLoginModalShow(true)}
+            >
+              {tHn.log_in}
+            </Nav.Link>
+          )}
+          {logInUser ? (
+            <NavDropdown title="Profile" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">
+                Contact Support
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                User Settings
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">My Diyun</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4">My Profile</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.5">My Teams</NavDropdown.Item>
+              <NavDropdown.Item onClick={logOut} href="/">
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <Nav.Link className="signup-btn" onClick={() => setModalShow(true)}>
+              {tHn.sign_up}
+            </Nav.Link>
+          )}
         </Nav>
       </Navbar>
       <CreateDebate
