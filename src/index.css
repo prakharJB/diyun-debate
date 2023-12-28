@@ -62,16 +62,16 @@ form.example {
   max-width: 80%;
 }
 
-input#myfile {
+.frm-cnt input#myfile {
   border:none;
 }
-form button{
+.frm-cnt form button{
   height: 30px;
   width: 80px;
   align-items: center;
   border: none;
 }
-button {
+.frm-cnt button {
   background-color: #0069E0;
 color: white;
 padding: 8px 30px 35px 15px;
@@ -108,7 +108,7 @@ cursor: pointer;
 }
 
 @media screen and (max-width: 680px) {
-  .input-dat input#id , .contact-txtar {
+  .frm-cnt .input-dat input#id , .frm-cnt .contact-txtar {
     max-width: 100%;  
   }
   .cont-details , .cont-details form.input-dat{
@@ -117,7 +117,7 @@ cursor: pointer;
   }
 
 @media screen and (max-width: 480px) {
-  form.input-dat {
+ .frm-cnt form.input-dat {
     padding: 0px!important;
   }
 }
