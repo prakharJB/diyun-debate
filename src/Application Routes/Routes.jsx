@@ -10,6 +10,7 @@ import Tour from "../Screens/Tour";
 import ContactUs from "../Screens/Contactus";
 import Search from "../Screens/Search";
 // import About from "../Screens/About";
+import About from "../Screens/About";
 
 
 function AppRoutes() {
