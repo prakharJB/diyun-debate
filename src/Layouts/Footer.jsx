@@ -1,78 +1,93 @@
 import { Container, Row, Col } from "react-bootstrap";
+import footerLogo from "../Assets/LOGO.png";
 
 function Footer() {
   return (
     <>
-      <section className="pt-4" dir="rtl" >
+      <section className="pt-5 py-5 border-top footer-sec" dir="rtl">
         <Container>
           <Row>
             <Col>
-              <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-                <div className="col mb-3">
-                  <a
-                    href="/"
-                    className="d-flex align-items-center mb-3 link-dark text-decoration-none"
-                  >
-                    <svg className="bi me-2" width="40" height="32">
-                      <use href="#bootstrap"></use>
-                    </svg>
-                  </a>
-                  <p className="text-muted">© 2023</p>
-                </div>
+            <footer className="">
+            <Row>
+              <Col className="mb-3 text-center">
+                <img
+                  src={footerLogo}
+                  alt="footer Logo Image"
+                  className="img-fluid footer-logo"
+                />
+              </Col>
+            </Row>
 
-                <div className="col mb-3"></div>
-
-                <div className="col mb-3">
-                  <h5>סָעִיף</h5>
+            <Row> 
+              <Col className="d-flex footer-links">
+                <div className="col mb-3 text-center">
                   <ul className="nav flex-column p-0">
                     <li className="nav-item mb-2">
-                      <a href="/" className="nav-link p-0 text-muted">
-                        בית
+                      <a href="/explore" className="nav-link p-0 text-muted">
+                      לַחקוֹר
                       </a>
                     </li>
                     <li className="nav-item mb-2">
-                      <a href="/" className="nav-link p-0 text-muted">
-                        בית
+                      <a href="/search" className="nav-link p-0 text-muted">
+                      לחפש
                       </a>
                     </li>
-                    
+                    <li className="nav-item mb-2">
+                      <a href="/tour" className="nav-link p-0 text-muted">
+                      סיור
+                      </a>
+                    </li>
+                    <li className="nav-item mb-2">
+                      <a href="/about" className="nav-link p-0 text-muted">
+                      על אודות
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
-                <div className="col mb-3">
-                  <h5>סָעִיף</h5>
+                <div className="col mb-3 text-center">
                   <ul className="nav flex-column p-0">
                     <li className="nav-item mb-2">
                       <a href="/" className="nav-link p-0 text-muted">
-                        בית
+                      מה חדש
                       </a>
                     </li>
                     <li className="nav-item mb-2">
                       <a href="/" className="nav-link p-0 text-muted">
-                        בית
+                      מדיניות הפרטיות
                       </a>
                     </li>
-                    
+                    <li className="nav-item mb-2">
+                      <a href="/" className="nav-link p-0 text-muted">
+                      תנאי השירות
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
-                <div className="col mb-3">
-                  <h5>סָעִיף</h5>
+                <div className="col mb-3 text-center">
                   <ul className="nav flex-column p-0">
                     <li className="nav-item mb-2">
                       <a href="/" className="nav-link p-0 text-muted">
-                        בית
+                      מרכז עזרה
                       </a>
                     </li>
                     <li className="nav-item mb-2">
-                      <a href="/" className="nav-link p-0 text-muted">
-                        בית
+                      <a href="/contactus" className="nav-link p-0 text-muted">
+                      צור קשר
                       </a>
                     </li>
-                    
+                    <li className="nav-item mb-2">
+                      <a href="/status" className="nav-link p-0 text-muted">
+                      סטָטוּס
+                      </a>
+                    </li>
                   </ul>
                 </div>
-              </footer>
+              </Col>
+            </Row>
+          </footer>
             </Col>
           </Row>
         </Container>

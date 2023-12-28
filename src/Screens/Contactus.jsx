@@ -63,10 +63,10 @@ function Contactus() {
 
                     <div className="nav-engl ftr-nav" >
 
-                        <a class="navbar-brand" href="#">English</a>
+                        <a class="navbar-brand text-primary" href="#">English</a>
                     </div>
                     <div className="nav-cnt ftr-nav">
-                        <a class="navbar-brand" href="#">Contact us</a>
+                        <a class="navbar-brand text-primary" href="#">Contact us</a>
                     </div>
                     <div className="ftr-nav">
                         <button type="button" class="btn btn-primary ftr-nav">לך לקיאלו</button>

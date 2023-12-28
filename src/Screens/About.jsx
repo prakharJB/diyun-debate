@@ -28,7 +28,7 @@ function About() {
                     </Container>
                 </section>
             </div>
-<Footer />
+            <Footer />
         </>
     )
 }
