@@ -20,9 +20,7 @@ code {
   border-left: 2px solid #000;
   padding-left: 15px;
 }
-.img-fluid{
-  max-width: 200px;
-}
+
 /* ----------Search------------ */
 form.example {
   background-color: transparent;
@@ -41,20 +39,20 @@ form.input-dat{
   display: block;
   background-color: #fff;
   margin: 40px;
-  max-width: 600px;
   max-height: 700px;
   padding: 25px 40px;
-
 }
 form input, textarea{
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 10px auto;
   padding: 8px;
   font-family: "poppins";
   border-radius: 3px;
   border:1px solid #69727d;
+}
+.input-dat input#id , .contact-txtar {
+  max-width: 80%;
 }
 
 input#myfile {

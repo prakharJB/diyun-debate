@@ -35,11 +35,31 @@ function ContactForm() {
       </nav>
       {/* ---------------Search------------ */}
 
-      <form class="example" action="/action_page.php">
-        <input type="search" placeholder="Search.." name="search" />
+      <form action="" class="input-dat" dir="rtl">
+        <h1> איש קשר</h1>
+        <p>
+          נשמח לשמוע ממך! אם יש לך שאלות או משוב לתת, אל תהסס להשתמש בטופס למטה.
+        </p>
+        <label for="fname">השם שלך</label>
+        <input type="text" name="name" id="id" />
+        <label for="fname">האימייל שלך</label>
+        <input type="email" name="email" id="id" />
+        <label for="fname">נושא</label>
+        <input type="subject" name="subject" id="id" />
+        <label for="fname">הוֹדָעָה</label>
+        <textarea
+          name="Message"
+          className="contact-txtar"
+          id=""
+          cols="30"
+          rows="10"
+        />
+        <label for="fname">קבצים מצורפים</label>
+        <input type="file" name="myfile" id="myfile" />
+        <button type="submit">שלח</button>
       </form>
 
-      <form action="" class="input-dat" dir="rtl">
+      {/* <form action="" class="input-dat" dir="rtl">
         <h1> איש קשר</h1>
         <p>
           נשמח לשמוע ממך! אם יש לך שאלות או משוב לתת, אל תהסס להשתמש בטופס למטה.
@@ -55,7 +75,7 @@ function ContactForm() {
         <label for="fname">קבצים מצורפים</label>
         <input type="file" name="myfile" id="myfile" />
         <button type="submit">שלח</button>
-      </form>
+      </form> */}
 
       <br />
       <br />
