@@ -6,6 +6,8 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { IoMdCheckmark } from "react-icons/io";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { MyContext } from "./SunBurst";
 
 const CreateDebate = (props) => {
   const navigate = useNavigate();
@@ -39,6 +41,18 @@ const CreateDebate = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const { text, setText } = useContext(MyContext);
+  const fetchData = async () => {
+    try {
+      const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
+      const responseData = await axios.get(url);
+      // console.log("API Response:", responseData.data);
+      setText(responseData.data.mainDebates);
+      return responseData.data.mainDebates;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.backgroundinfo === "" || formData.tags === "") {
@@ -76,7 +90,9 @@ const CreateDebate = (props) => {
             "Content-Type": "multipart/form-data",
           },
         }
+        
       );
+      await fetchData()
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
@@ -90,6 +106,7 @@ const CreateDebate = (props) => {
       isDebatePublic: "",
       isType: "",
     });
+    handleClose();
   };
   const [errors, setErrors] = useState(false);
 

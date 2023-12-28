@@ -33,7 +33,6 @@ const Signup = (props) => {
   };
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     if (formData.password !== formData.password_confirmation) {
       setPasswordError(true);
     } else {
@@ -43,14 +42,12 @@ const Signup = (props) => {
           `${process.env.REACT_APP_BASE_URL}/api/register`,
           formData
         );
-        console.log("Signup successful!", response);
-        if (response.data.message == "Registeration Successful") {
-          toast.success("please check your mail");
+        // console.log("Signup successful!", response);
+        if (response.data.message == "Registration Successful") {
+          toast.success("You are Registered.Please verify your Email ID");
         }
-        // You can handle the successful signup here, e.g., redirect the user or show a success message.
       } catch (error) {
-        console.error("Signup failed!", error.response.data);
-
+        // console.error("Signup failed!", error.response.data);
         toast.error(error.response.data.message);
       }
 
@@ -62,7 +59,6 @@ const Signup = (props) => {
         username: "",
       });
       // Add your form submission logic here
-      console.log("Form submitted:", formData);
       handleClose();
     }
   };
@@ -102,7 +98,7 @@ const Signup = (props) => {
             <Form.Group className="mt-4" controlId="formname">
               <Form.Control
                 type="text"
-                placeholder="הכנס שם משתמש"
+                placeholder={tHn.Name}
                 name="name"
                 onChange={handleChange}
                 required
