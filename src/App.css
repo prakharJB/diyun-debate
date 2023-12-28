@@ -8,6 +8,92 @@
     color:#fff !important;
 }
 
+/* search page css strt */
+.more-discussion-btn.row button,.more-claims-btn button{
+    background: #fff;
+    border: 1px solid #0069e0;
+    color: #0069e0;
+    height: 48px;
+    padding: 0 16px;
+    width: 15%;
+    font-weight: 500;
+    margin:50px 0px;
+}
+.show-navigation.col select{
+    border: 1px solid;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 0 16px;
+    position: relative;
+    transition: color .2s,background-color .2s;
+    height: 32px;
+    width: 205px;
+}
+.more-discussion-btn button:hover,.more-claims-btn button:hover{
+    background:#0069e0;
+    color:#fff;
+}
+.select-languages.col select{
+    border: 1px solid;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 0 16px;
+    position: relative;
+    transition: color .2s,background-color .2s;
+    height: 50px;
+    width: 205px;
+}
+.searchbar.col form input{
+    height: 50px;
+}
+.show-navigation.col,.select-languages.col{
+    display: contents;
+}
+.searchbar_discussion_header.col h2,.searchbar_claims_header.col h2{
+    font-size:18px !important;
+    font-weight:600;
+    color:#656f7b;
+}
+section.searchbar-section h1 {
+    margin: 30px 0px;
+}
+.claims-cards .img-left {
+    display:grid;
+    grid-template-columns:auto auto;
+}
+.claims-cards .card-body{
+    padding:unset !important;
+}
+.claims-cards .text-above{
+    color:#000;
+    padding:15px;
+    margin-bottom:40px;
+}
+.claims-cards .card{
+    height:248px !important;
+}
+.img-left{
+    background-color: #f2f4f5;
+}
+.claims-cards .d-flex.align-items-center.card-title.h5 {
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin: 0 32px 0 16px;
+}
+/* search page css end */
+
 /* tour page css start */
 
 section.tour-banner h1{
@@ -554,8 +640,42 @@ margin-left: 6%;
 .colm-abt2 h2{font-size: 16px;}
 /* mobile screen */
 
-@media(max-width:575.9px) {
+/* ----------privacy----- */
+.privacy-dv {
+    padding: 80px 0px;
+}
+.privacy-pg h2{
+    font-size: 18px; 
+    font-weight: 400;
+    margin: 34px 0px 24px 0px;
+}
+.privacy-pg h1{
+    font-size: 33px;
+    font-weight: 400;
+}
+.privacy-pg p{
+    color: #2c343d;
+    margin-bottom: 16px;
+    font-size: 17px;
+}
+.privacy-list{
+    list-style: unset;
+}
 
+@media(max-width:575.9px) {
+    .my-5.serachbar-languages-row.row ,.discusiion-head.row{
+        display:block;
+    }
+    .select-languages.col select,.show-navigation.col select{
+        margin:auto;
+        margin-top:20px
+    }
+    .more-discussion-btn.row button, .more-claims-btn button{
+        width:60%;
+    }
+    .searchbar_discussion_header.col h2, .searchbar_claims_header.col h2{
+        text-align:center;
+    }
     .tour-banner .container {
         max-width: 100%;
     }
