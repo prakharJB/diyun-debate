@@ -58,7 +58,7 @@ function Tour() {
                   <div className="col-md-6">
                     <img
                       src={tourmapImage}
-                      alt="How works Image"
+                      alt="How works"
                       className="img-fluid"
                     />
                   </div>
@@ -93,7 +93,7 @@ function Tour() {
                   <div className="col-md-6">
                     <img
                       src={discussionImage}
-                      alt="Discussion Image"
+                      alt="Discussion"
                       className="img-fluid"
                     />
                   </div>
@@ -109,11 +109,7 @@ function Tour() {
               <div className="container">
                 <div className="row">
                   <div className="col-md-6">
-                    <img
-                      src={inviteImage}
-                      alt="Invite Image"
-                      className="img-fluid"
-                    />
+                    <img src={inviteImage} alt="Invite" className="img-fluid" />
                   </div>
                   <div className="col-md-6" dir="rtl">
                     <h3>להזמין אנשים</h3>
@@ -142,11 +138,7 @@ function Tour() {
                     </p>
                   </div>
                   <div className="col-md-6">
-                    <img
-                      src={rateImage}
-                      alt="Rate Image"
-                      className="img-fluid"
-                    />
+                    <img src={rateImage} alt="Rate" className="img-fluid" />
                   </div>
                 </div>
               </div>
@@ -166,7 +158,7 @@ function Tour() {
                 </p>
                 <img
                   src={persepectiveImage}
-                  alt="Invite Image"
+                  alt="Invite"
                   className="img-fluid"
                 />
               </Col>
@@ -180,11 +172,7 @@ function Tour() {
               <div className="container">
                 <div className="row">
                   <div className="col-md-6">
-                    <img
-                      src={linkImage}
-                      alt="Invite Image"
-                      className="img-fluid"
-                    />
+                    <img src={linkImage} alt="Invite " className="img-fluid" />
                   </div>
                   <div className="col-md-6" dir="rtl">
                     <h3>קישור ארגומנטים למספר מיקומים</h3>
@@ -216,7 +204,7 @@ function Tour() {
                   <div className="col-md-6">
                     <img
                       src={collaborateImage}
-                      alt="Collaborate Image"
+                      alt="Collaborate "
                       className="img-fluid"
                     />
                   </div>
@@ -232,11 +220,7 @@ function Tour() {
               <div className="container">
                 <div className="row">
                   <div className="col-md-6">
-                    <img
-                      src={reviewImage}
-                      alt="Invite Image"
-                      className="img-fluid"
-                    />
+                    <img src={reviewImage} alt="Invite" className="img-fluid" />
                   </div>
                   <div className="col-md-6" dir="rtl">
                     <h3>בדוק שינויים, התעדכן במהירות</h3>

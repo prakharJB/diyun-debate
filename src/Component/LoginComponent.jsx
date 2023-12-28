@@ -47,13 +47,15 @@ const Login = (props) => {
     .then((response) => {
       if (response.data.error == "Check Your Email and Password") {
         toast.error("Check Your Email and Password");
+        console.log(response)
       } else {
         const user = {
           username: response?.data?.name,
           email: response?.data?.email,
         };
         localStorage.setItem("user", JSON.stringify(user));
-        // navigate("/voting-form", { state: user });
+        navigate("/my");
+        console.log(response)
       }
     });
     setFormData({

@@ -43,7 +43,7 @@ const Signup = (props) => {
           formData
         );
         // console.log("Signup successful!", response);
-        if (response.data.message == "Registration Successful") {
+        if (response.data.message == "Registeration Successful") {
           toast.success("You are Registered.Please verify your Email ID");
         }
       } catch (error) {
@@ -135,7 +135,7 @@ const Signup = (props) => {
             <Form.Group className="mt-4" controlId="formConfirmationPassword">
               <Form.Control
                 type="password"
-                placeholder="סיסמה"
+                placeholder="אימות סיסמה"
                 name="password_confirmation"
                 onChange={handleChange}
                 required
