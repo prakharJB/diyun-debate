@@ -56,7 +56,7 @@ const Contactus = () => {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <button type="button" class="btn btn-primary">לך לדייון
+                        <button type="button" class="btn btn-primary">לורם איפסום
                         </button>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ const Contactus = () => {
                         <a class="navbar-brand text-primary" href="#">צור קשר</a>
                     </div>
                     <div className="ftr-nav">
-                        <button type="button" class="btn btn-primary ftr-nav">לך לקיאלו</button>
+                        <button type="button" class="btn btn-primary ftr-nav">לורם איפסום</button>
                     </div>
 
                 </div>
