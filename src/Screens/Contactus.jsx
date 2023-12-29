@@ -1,11 +1,48 @@
 import { } from "react-bootstrap";
 import kialologo from "../Assets/kialohelpcenterlogo.webp";
+import React, { useState } from "react";
+import axios from 'axios';
 
-function Contactus() {
+// Define your API endpoint here   /** API FOR LOGIN **/
+const API_ENDPOINT = 'https://laradebate.jmbliss.com/api/login';
+
+const Contactus = () => {
+    const [formData, setFormData] = useState({
+        fullname: "",
+        email: "",
+        subject: "",
+        message: "",
+        attachments: ""
+    });
+
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+
+        try {
+            // Use the API endpoint constant here
+            const response = await axios.post(API_ENDPOINT, formData);
+            console.log(response.data); // Handle success response
+        } catch (error) {
+            if (error.response) {
+                console.error('Error submitting form:', error.response.data);
+            } else {
+                console.error('Error submitting form:', error.message);
+            }
+        }
+    };
+
+
+    // function Contactus() {
 
     return (
         <>
-            <nav class="navbar navbar-expand-lg ">
+            <nav className="navbar navbar-expand-lg ">
                 <div class="container-fluid header-nav">
                     {/* <img src={kialologo}
                     class="img-fluid"
@@ -17,7 +54,7 @@ function Contactus() {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <button type="button" class="btn btn-primary">לך לדייון 
+                        <button type="button" class="btn btn-primary">לך לדייון
                         </button>
                     </div>
                 </div>
@@ -25,17 +62,17 @@ function Contactus() {
             {/* ---------------Search------------ */}
 
             <div className="frm-cnt" >
-                <form class="example contct-us" action="/action_page.php">
+                <form className="example contct-us" action="/action_page.php">
                     <input type="search" placeholder="Search.." name="search" class="cnt-frm" />
                 </form>
 
 
-                <form action="" class="input-dat cont-details my-5" dir='rtl'>
+                <form action="" className="input-dat cont-details my-5" dir='rtl'>
                     <h1> איש קשר</h1>
                     <p>נשמח לשמוע ממך! אם יש לך שאלות או משוב לתת, אל תהסס להשתמש בטופס למטה.</p>
                     <div className="type-txt" >
                         <label for="fname">השם שלך</label>
-                        <input type="text" name="name" id="id" class="cnt-frm" /></div>
+                        <input type="text" name="fullname" id="id" class="cnt-frm" /></div>
                     <div className="type-txt" >
                         <label for="fname">האימייל שלך</label>
                         <input type="email" name="email" id="id" class="cnt-frm" /></div>
@@ -48,13 +85,13 @@ function Contactus() {
                     <div className="type-txt" >
                         <label for="fname">קבצים מצורפים</label>
                         <input type="file" name="myfile" id="myfile" class="cnt-frm" /></div>
-                    <button type="submit" >שלח</button>
+                    <button type="submit" onClick={handleSubmit}>שלח</button>
                 </form>
             </div> <br />
             <hr></hr>
 
 
-            <nav class="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand-lg">
                 <div class="container-fluid footer-fl">
                     <div className="footer-n" >
                         <a class="navbar-brand" href="#">דייון</a>
@@ -77,7 +114,7 @@ function Contactus() {
             </nav>
 
         </>
-    )
-}
+    );
+};
 
 export default Contactus;

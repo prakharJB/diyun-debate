@@ -11,7 +11,8 @@ import ContactUs from "../Screens/Contactus";
 import Search from "../Screens/Search";
 // import About from "../Screens/About";
 import About from "../Screens/About";
-import Privacy from "../Screens/Privacy"
+import Privacy from "../Screens/Privacy";
+import Terms from "../Screens/Terms";
 
 
 function AppRoutes() {
@@ -33,6 +34,7 @@ function AppRoutes() {
           <Route path="/contact-us" element={<ContactUs />} ></Route>
           <Route path="/about" element={<About />} ></Route>
           <Route path="/privacy" element={<Privacy/>} ></Route>
+          <Route path="/terms" element={<Terms/>} ></Route>
         </Routes>
       </Router>
     </div>
