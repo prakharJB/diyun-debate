@@ -27,25 +27,26 @@ function Search() {
           <Container>
             <Row>
               <h1>Search</h1>
+              <Row className="my-5 serachbar-languages-row">
+                <Col className="searchbar">
+                  <Form inline>
+                    <FormControl
+                      type="text"
+                      placeholder="Search"
+                      className="mr-sm-2"
+                    />
+                  </Form>
+                </Col>
 
-              <Col className="searchbar">
-                <Form inline>
-                  <FormControl
-                    type="text"
-                    placeholder="Search"
-                    className="mr-sm-2"
-                  />
-                </Form>
-              </Col>
-
-              <Col className="select-languages">
-                <Form.Select aria-label="Default select example">
-                  <option>All Languages</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
-              </Col>
+                <Col className="select-languages">
+                  <Form.Select aria-label="Default select example">
+                    <option>All Languages</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </Form.Select>
+                </Col>
+              </Row>
             </Row>
           </Container>
         </section>
@@ -229,13 +230,13 @@ function Search() {
               </div>
             </Row>
 
-            <Row className="more-discussion-btn">
+            <Row className="more-discussion-btn d-flex justify-content-center">
               <Button variant="light">More Discussions</Button>{" "}
             </Row>
           </Container>
         </section>
 
-        <section className="search_content_results">
+        <section className="claims-cards">
           <Container>
             <Row>
               <Col className="searchbar_claims_header">
@@ -246,84 +247,127 @@ function Search() {
               <div className="mt-top">
                 <Card>
                   <a href="/">
-                  <Card.Img variant="top" src={testGpt} />
                     <Card.Body>
-                        <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
-                      
-                      
-                    </Card.Body>
-                  </a>
-                
-                  
-                </Card>
-
-                <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testnature} />
-                    <Card.Body>
-                      <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
-                      
-                    </Card.Body>
-                  </a>
-                
-                  
-                </Card>
-
-                <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testedu} />
-                    <Card.Body>
-                      <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
-                      
-                    </Card.Body>
-                  </a>
-                
-                 
-                </Card>
-
-                <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testcode} />
-                    <Card.Body>
-                      <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
-                      
-                    </Card.Body>
-                  </a>
-                 
-                  
-                </Card>
-
-                <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testDog} />
-                    <Card.Body>
-                      <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
-                      
-                    </Card.Body>
-                  </a>
-                
-                  
-                </Card>
-
-                <Card>
-                  <a href="/">
-                    <Row className="d-flex">
-                    <Col>
-                    <p>dcjdsbjhdbjhb</p>
-                    </Col>
+                      <Col className="text-above">
+                        <p>dcjsdbjdbjhbdhvbhdjvbjd</p>
+                      </Col>
+                      <div className="img-left">
                         <Col>
-                        <Card.Img variant="top" src={testrobot} />
-                      <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
+                          <Card.Img variant="top" src={testGpt} />
                         </Col>
-                      
-                    </Row>
-                    
-                      
-                    
+                        <Col className="d-flex">
+                          <Card.Title className="d-flex align-items-center">
+                            האם יש לאסור ניסויים בבעלי חיים?
+                          </Card.Title>
+                        </Col>
+                      </div>
+                    </Card.Body>
                   </a>
-                 
+                </Card>
+
+                <Card>
+                  <a href="/">
+                    <Card.Body>
+                      <Col className="text-above">
+                        <p>dcjsdbjdbjhbdhvbhdjvbjd</p>
+                      </Col>
+                      <div className="img-left">
+                        <Col>
+                          <Card.Img variant="top" src={testGpt} />
+                        </Col>
+                        <Col className="d-flex">
+                          <Card.Title className="d-flex align-items-center">
+                            האם יש לאסור ניסויים בבעלי חיים?
+                          </Card.Title>
+                        </Col>
+                      </div>
+                    </Card.Body>
+                  </a>
+                </Card>
+
+                <Card>
+                  <a href="/">
+                    <Card.Body>
+                      <Col className="text-above">
+                        <p>dcjsdbjdbjhbdhvbhdjvbjd</p>
+                      </Col>
+                      <div className="img-left">
+                        <Col>
+                          <Card.Img variant="top" src={testGpt} />
+                        </Col>
+                        <Col className="d-flex">
+                          <Card.Title className="d-flex align-items-center">
+                            האם יש לאסור ניסויים בבעלי חיים?
+                          </Card.Title>
+                        </Col>
+                      </div>
+                    </Card.Body>
+                  </a>
+                </Card>
+
+                <Card>
+                  <a href="/">
+                    <Card.Body>
+                      <Col className="text-above">
+                        <p>dcjsdbjdbjhbdhvbhdjvbjd</p>
+                      </Col>
+                      <div className="img-left">
+                        <Col>
+                          <Card.Img variant="top" src={testGpt} />
+                        </Col>
+                        <Col className="d-flex">
+                          <Card.Title className="d-flex align-items-center">
+                            האם יש לאסור ניסויים בבעלי חיים?
+                          </Card.Title>
+                        </Col>
+                      </div>
+                    </Card.Body>
+                  </a>
+                </Card>
+
+                <Card>
+                  <a href="/">
+                    <Card.Body>
+                      <Col className="text-above">
+                        <p>dcjsdbjdbjhbdhvbhdjvbjd</p>
+                      </Col>
+                      <div className="img-left">
+                        <Col>
+                          <Card.Img variant="top" src={testGpt} />
+                        </Col>
+                        <Col className="d-flex">
+                          <Card.Title className="d-flex align-items-center">
+                            האם יש לאסור ניסויים בבעלי חיים?
+                          </Card.Title>
+                        </Col>
+                      </div>
+                    </Card.Body>
+                  </a>
+                </Card>
+
+                <Card>
+                  <a href="/">
+                    <Card.Body>
+                      <Col className="text-above">
+                        <p>dcjsdbjdbjhbdhvbhdjvbjd</p>
+                      </Col>
+                      <div className="img-left">
+                        <Col>
+                          <Card.Img variant="top" src={testGpt} />
+                        </Col>
+                        <Col className="d-flex">
+                          <Card.Title className="d-flex align-items-center">
+                            האם יש לאסור ניסויים בבעלי חיים?
+                          </Card.Title>
+                        </Col>
+                      </div>
+                    </Card.Body>
+                  </a>
                 </Card>
               </div>
+            </Row>
+            <Row className="more-claims-btn d-flex justify-content-center">
+              <Button variant="light">More Claims</Button>{" "}
             </Row>
           </Container>
         </section>
