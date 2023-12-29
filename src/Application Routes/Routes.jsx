@@ -7,8 +7,10 @@ import SingleDebate from "../Screens/SingleDebate";
 import Tags from "../Screens/Tags";
 import UserDashboard from "../Screens/UserDashboard";
 import Tour from "../Screens/Tour";
-import ContactForm from "../Screens/ContactForm";
+import ContactUs from "../Screens/Contactus";
 import Search from "../Screens/Search";
+// import About from "../Screens/About";
+import About from "../Screens/About";
 
 
 function AppRoutes() {
@@ -27,9 +29,8 @@ function AppRoutes() {
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
-          <Route path="/contactus" element={<ContactForm/>} ></Route>
-         
-          
+          <Route path="/contact-us" element={<ContactUs />} ></Route>
+          <Route path="/about" element={<About />} ></Route>
         </Routes>
       </Router>
     </div>

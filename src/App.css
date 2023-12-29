@@ -628,6 +628,16 @@ img.card-img-top {
 .accordion-button::after {
     background-image: unset;
 }
+
+/* ---about-page------- */
+.about-pg{padding: 80px 0px;}
+.row-abt{margin-top: 36px;}
+.row-abt .colm-abt1{
+width: 64%;
+margin-left: 6%;
+}
+.colm-abt2 {width: 30%;}
+.colm-abt2 h2{font-size: 16px;}
 /* mobile screen */
 
 @media(max-width:575.9px) {
@@ -709,6 +719,13 @@ img.card-img-top {
 
     .darkHeader .login-btn {
         color: #000;
+    }
+    /* ----about */
+    .row.row-abt {
+        display:block;
+    }
+    .row-abt .colm-abt1 , .row-abt .colm-abt2{
+        width:100%;
     }
 }
 
