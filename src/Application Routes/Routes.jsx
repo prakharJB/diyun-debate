@@ -11,8 +11,8 @@ import ContactUs from "../Screens/Contactus";
 import Search from "../Screens/Search";
 // import About from "../Screens/About";
 import About from "../Screens/About";
-import Privacy from "../Screens/Privacy"
-
+import Privacy from "../Screens/Privacy";
+import PasswordForget from "../Screens/ForgetPassword";
 
 function AppRoutes() {
   return (
@@ -30,11 +30,14 @@ function AppRoutes() {
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
-          <Route path="/my/:token" element={<UserDashboard />}></Route>
-          <Route path="/contact-us" element={<ContactUs />} ></Route>
-          <Route path="/about" element={<About />} ></Route>
-          <Route path="/privacy" element={<Privacy/>} ></Route>
-          {/* <Route path="/forget-password/:token" element={</>} ></Route> */}
+          <Route path="/my/:verification_token" element={<UserDashboard />}></Route>
+          <Route path="/contact-us" element={<ContactUs />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/privacy" element={<Privacy />}></Route>
+          <Route
+            path="/forget-password/:token"
+            element={<PasswordForget />}
+          ></Route>
         </Routes>
       </Router>
     </div>
