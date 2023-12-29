@@ -10,14 +10,15 @@ function Contactus() {
                     {/* <img src={kialologo}
                     class="img-fluid"
                     alt="logo-image" />*/}
-                    <a class="navbar-brand" href="#">Diyun-Debate</a>
-                    <a class="navbar-brand" href="#">Help Center</a>
+                    <a class="navbar-brand" href="#">דייון</a>
+                    <a class="navbar-brand" href="#">מרכז עזרה</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <button type="button" class="btn btn-primary">לך לקיאלו</button>
+                        <button type="button" class="btn btn-primary">לך לדייון 
+                        </button>
                     </div>
                 </div>
             </nav>
@@ -56,17 +57,17 @@ function Contactus() {
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid footer-fl">
                     <div className="footer-n" >
-                        <a class="navbar-brand" href="#">Diyun-Debate</a>
-                        <a class="navbar-brand" href="#">Help Center</a>
+                        <a class="navbar-brand" href="#">דייון</a>
+                        <a class="navbar-brand" href="#">מרכז עזרה</a>
                     </div>
 
 
                     <div className="nav-engl ftr-nav" >
 
-                        <a class="navbar-brand text-primary" href="#">English</a>
+                        <a class="navbar-brand text-primary" href="#">אנגלית</a>
                     </div>
                     <div className="nav-cnt ftr-nav">
-                        <a class="navbar-brand text-primary" href="#">Contact us</a>
+                        <a class="navbar-brand text-primary" href="#">צור קשר</a>
                     </div>
                     <div className="ftr-nav">
                         <button type="button" class="btn btn-primary ftr-nav">לך לקיאלו</button>
