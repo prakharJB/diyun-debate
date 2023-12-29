@@ -34,12 +34,9 @@ function AppRoutes() {
           <Route path="/my/:token" element={<UserDashboard />}></Route>
           <Route path="/contact-us" element={<ContactUs />} ></Route>
           <Route path="/about" element={<About />} ></Route>
-          <Route path="/privacy" element={<Privacy/>} ></Route>
-<<<<<<< HEAD
-          <Route path="/terms" element={<Terms/>} ></Route>
-=======
+          <Route path="/privacy" element={<Privacy />} ></Route>
+          <Route path="/terms" element={<Terms />} ></Route>
           {/* <Route path="/forget-password/:token" element={</>} ></Route> */}
->>>>>>> cd7d44491137007d1395b40a3cbc45bc3ed85726
         </Routes>
       </Router>
     </div>

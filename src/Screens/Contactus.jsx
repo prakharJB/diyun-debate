@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 // Define your API endpoint here   /** API FOR LOGIN **/
-const API_ENDPOINT = 'https://laradebate.jmbliss.com/api/login';
+const API_ENDPOINT = 'https://laradebate.jmbliss.com/api/contact-form';
 
 const Contactus = () => {
     const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const Contactus = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(formData)
 
         try {
             // Use the API endpoint constant here
@@ -36,6 +36,8 @@ const Contactus = () => {
             }
         }
     };
+
+    
 
 
     // function Contactus() {
@@ -72,35 +74,32 @@ const Contactus = () => {
                     <p>נשמח לשמוע ממך! אם יש לך שאלות או משוב לתת, אל תהסס להשתמש בטופס למטה.</p>
                     <div className="type-txt" >
                         <label for="fname">השם שלך</label>
-                        <input type="text" name="fullname" id="id" class="cnt-frm" /></div>
+                        <input type="text" name="fullname" id="id" onChange={handleChange} class="cnt-frm" /></div>
                     <div className="type-txt" >
                         <label for="fname">האימייל שלך</label>
-                        <input type="email" name="email" id="id" class="cnt-frm" /></div>
+                        <input type="email" name="email" id="id" onChange={handleChange} class="cnt-frm" /></div>
                     <div className="type-txt" >
                         <label for="fname">נושא</label>
-                        <input type="subject" name="subject" id="id" class="cnt-frm" /></div>
+                        <input type="subject" name="subject" id="id" onChange={handleChange} class="cnt-frm" /></div>
                     <div className="type-txt" >
                         <label for="fname">הוֹדָעָה</label>
-                        <textarea name="Message" className="contact-txtar cnt-frm" id="" cols="30" rows="10" /></div>
+                        <textarea name="message" className="contact-txtar cnt-frm" id="" onChange={handleChange} cols="30" rows="10" /></div>
                     <div className="type-txt" >
                         <label for="fname">קבצים מצורפים</label>
-                        <input type="file" name="myfile" id="myfile" class="cnt-frm" /></div>
+                        <input type="file" name="myfile" id="myfile" onChange={handleChange} class="cnt-frm" /></div>
                     <button type="submit" onClick={handleSubmit}>שלח</button>
                 </form>
             </div> <br />
             <hr></hr>
 
-
+            {/* --------------------------Footer-------------------------------- */}
             <nav className="navbar navbar-expand-lg">
                 <div class="container-fluid footer-fl">
                     <div className="footer-n" >
                         <a class="navbar-brand" href="#">דייון</a>
                         <a class="navbar-brand" href="#">מרכז עזרה</a>
                     </div>
-
-
                     <div className="nav-engl ftr-nav" >
-
                         <a class="navbar-brand text-primary" href="#">אנגלית</a>
                     </div>
                     <div className="nav-cnt ftr-nav">
