@@ -16,8 +16,9 @@ const Contactus = () => {
     });
 
 
-    const handleChange = (e) => {
+    const handleChange = (e) => {   //e is a event object
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        
     };
 
     const handleSubmit = async (e) => {

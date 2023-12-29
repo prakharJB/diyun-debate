@@ -3,7 +3,6 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Header from "../Layouts/Header";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-<<<<<<< HEAD
 import userProfile from "../Assets/default_229_128x128.jpeg";
 import Nav from "react-bootstrap/Nav";
 import Overview from "../Component/Overview";
@@ -15,14 +14,11 @@ import Recent from "../Component/Recent";
 import Recommended from "../Component/Recommended";
 import Teams from "../Component/Teams";
 import Footer from "../Layouts/Footer";
-=======
 import toast from "react-hot-toast";
->>>>>>> 4904058e605ee7568ca7c4a6cbcf59ff568d1f4f
 
 function UserDashboard() {
   const { token } = useParams();
   const navigate = useNavigate();
-<<<<<<< HEAD
 
   const [selectedTab, setSelectedTab] = useState("Overview");
 
@@ -52,9 +48,7 @@ function UserDashboard() {
     }
   };
 
-=======
 
->>>>>>> 4904058e605ee7568ca7c4a6cbcf59ff568d1f4f
   useEffect(() => {
     if (token) {
       fetchPortfolio();
