@@ -58,7 +58,7 @@ const Login = (props) => {
       }
     } catch (error) {
       // console.error("Signup failed!", error.response.data);
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
     }
     setFormData({
       email: "",

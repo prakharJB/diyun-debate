@@ -18,10 +18,12 @@ function Header() {
   const [LoginmodalShow, setLoginModalShow] = useState(false);
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
   const [logInUser, setLogInUser] = useState();
+
   const getLoggedUser = () => {
     const user = JSON.parse(localStorage?.getItem("token"));
     setLogInUser(user?.token);
   };
+  
   useEffect(() => {
     getLoggedUser();
   }, []);
@@ -69,14 +71,14 @@ function Header() {
         <Navbar.Brand href="/">{tHn.Diyun}</Navbar.Brand>
         <Nav className="me-auto mobile-btn-bottom">
           {logInUser ? (
-            <Nav.Link href="/my">My Diyun</Nav.Link>
+            <Nav.Link href="/my" activeClassName="active">My Diyun</Nav.Link>
           ) : (
-            <Nav.Link href="/explore">{tHn.explore}</Nav.Link>
+            <Nav.Link href="/explore" activeClassName="active">{tHn.explore}</Nav.Link>
           )}
           {logInUser ? (
-            <Nav.Link href="/explore">{tHn.explore}</Nav.Link>
+            <Nav.Link href="/explore" activeClassName="active">{tHn.explore}</Nav.Link>
           ) : (
-            <Nav.Link href="/tour">{tHn.tour}</Nav.Link>
+            <Nav.Link href="/tour" activeClassName="active">{tHn.tour}</Nav.Link>
           )}
           {logInUser ? null : (
             <Nav.Link onClick={() => setLoginModalShow(true)}>

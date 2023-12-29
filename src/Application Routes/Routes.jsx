@@ -30,9 +30,11 @@ function AppRoutes() {
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
+          <Route path="/my/:token" element={<UserDashboard />}></Route>
           <Route path="/contact-us" element={<ContactUs />} ></Route>
           <Route path="/about" element={<About />} ></Route>
           <Route path="/privacy" element={<Privacy/>} ></Route>
+          {/* <Route path="/forget-password/:token" element={</>} ></Route> */}
         </Routes>
       </Router>
     </div>
