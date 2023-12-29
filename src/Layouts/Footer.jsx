@@ -74,7 +74,7 @@ function Footer() {
                       </a>
                     </li>
                     <li className="nav-item mb-2">
-                      <a href="/contactus" className="nav-link p-0 text-muted">
+                      <a href="/contact-us" className="nav-link p-0 text-muted">
                       צור קשר
                       </a>
                     </li>

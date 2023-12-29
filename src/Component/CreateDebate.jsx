@@ -6,7 +6,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { IoMdCheckmark } from "react-icons/io";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext } from "react";
 import { MyContext } from "./SunBurst";
 
 const CreateDebate = (props) => {
@@ -83,16 +83,15 @@ const CreateDebate = (props) => {
 
     try {
       const result = await axios.post(
-        "https://laradebate.jmbliss.com/api/createdebate",
+        `${process.env.REACT_APP_BASE_URL}/api/createdebate`,
         data,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
-        
       );
-      await fetchData()
+      await fetchData();
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
