@@ -1,4 +1,5 @@
 import {} from "react-bootstrap";
+import kialologo from "../Assets/kialohelpcenterlogo.webp";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -15,6 +16,7 @@ const Contactus = () => {
   });
 
   const handleChange = (e) => {
+    //e is a event object
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -70,7 +72,7 @@ const Contactus = () => {
       </nav>
       {/ ---------------Search------------ /}
       <div className="frm-cnt">
-        <form className="example contct-us">
+        <form className="example contct-us" action="/action_page.php">
           <input
             type="search"
             placeholder="Search.."

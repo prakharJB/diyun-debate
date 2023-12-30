@@ -18,7 +18,7 @@ const Signup = (props) => {
     username: "",
   });
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setFormData({
@@ -40,19 +40,21 @@ const Signup = (props) => {
       setPasswordError(true);
     } else {
       setPasswordError(false);
+      setLoading(true);
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/api/register`,
           formData
         );
         console.log("Signup successful!", response);
+        setLoading(false);
         if (response?.data?.status === "success") {
           toast.success(response?.data?.message);
           const token = {
-            token:response?.data?.token
+            token: response?.data?.token,
           };
           localStorage.setItem("token", JSON.stringify(token));
-          navigate("/my")
+          navigate("/my");
         } else {
           toast.error(response?.data?.message);
         }
@@ -155,6 +157,13 @@ const Signup = (props) => {
               <p className="text-danger">Password did not match!</p>
             ) : (
               ""
+            )}
+            {loading && (
+              <div className="d-flex align-items-center justify-content-center mt-4">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              </div>
             )}
             <div className="text-center">
               <Button className="my-4 px-4" variant="primary" type="submit">

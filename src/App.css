@@ -1,15 +1,168 @@
+/* Dashboard page css start */
+.team-model .modal-header .btn-close {
+    margin: unset;
+}
+
+.tab-based-content button {
+    height: 48px;
+    min-width: 64px;
+    padding: 0 16px;
+}
+
+.team-model .modal-body p:nth-child(3) {
+    color: red !important;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.team-model .modal-content p:nth-child() {
+    color: red !important;
+}
+
+.team-model .modal-body p a {
+    color: #2c343d !important;
+    text-decoration: underline;
+}
+
+.team-model .modal-body p:nth-child(3) {
+    color: red !important;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.team-model .modal-content p:nth-child() {
+    color: red !important;
+}
+
+.team-model .modal-body {
+    margin: unset !important;
+    width: unset !important;
+}
+
+.team-model .modal-content {
+    background: #fff !important;
+    padding: 40px 64px !important;
+    width: 700px !important;
+}
+
+.select-languages.col select:hover {
+    background: #656f7b;
+    border-color: #656f7b;
+    color: #fff;
+}
+
+.welcome-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
+.my-page-header__left-items h1 {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 33px;
+    font-weight: 700;
+    line-height: 1.2;
+    padding-left: 16px px;
+}
+
+.dashboard-page-main {
+    background: #fafcfd
+}
+
+.welcome-content h3,
+.recntly-viewed-col h3 {
+    color: #656f7b;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.tab-switch__tabs {
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.recntly-viewed-col h4,
+.welcome-content h4 {
+    color: #656f7b;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: end;
+}
+
+.welcome-content {
+    padding: unset;
+}
+
+.recntly-viewed-col.col ul {
+    padding-left: unset;
+}
+
+.col-md-2.my-page-header__left-items {
+    height: 48px;
+    width: 48px;
+    margin-right: 15px;
+
+}
+
+.col-md-2.my-page-header__left-items img {
+    border-radius: 50%;
+}
+
+.welcome-content a {
+    color: black !important;
+    text-decoration: underline !important;
+}
+
+.reviewed-card-box {
+    background: white;
+    border: 1px solid #f2f4f5 !important;
+}
+
+.cardd-div {
+    margin-right: 20px
+}
+
+.discussion-card-title__title--compact-line {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 9px 36px 7px 14px;
+}
+
+.welcome-content a:hover {
+    color: #0069e0 !important;
+    text-decoration: none !important;
+}
+
+.recentlyviewed-cardimage img {
+    height: 96px;
+    width: 80%;
+}
+
+/* Dashboard page css end */
+
 .footer-logo {
-    width:150px;
+    width: 150px;
 }
+
 .footer-sec {
-    background:#0662ab
+    background: #0662ab
 }
-.footer-sec li a{
-    color:#fff !important;
+
+.footer-sec li a {
+    color: #fff !important;
 }
 
 /* search page css strt */
-.more-discussion-btn.row button,.more-claims-btn button{
+.more-discussion-btn.row button,
+.more-claims-btn button {
     background: #fff;
     border: 1px solid #0069e0;
     color: #0069e0;
@@ -17,86 +170,103 @@
     padding: 0 16px;
     width: 15%;
     font-weight: 500;
-    margin:50px 0px;
+    margin: 50px 0px;
 }
-.show-navigation.col select{
+
+.show-navigation.col select {
     border: 1px solid;
     border-radius: 4px;
     box-sizing: border-box;
     cursor: pointer;
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
     padding: 0 16px;
     position: relative;
-    transition: color .2s,background-color .2s;
+    transition: color .2s, background-color .2s;
     height: 32px;
     width: 205px;
 }
-.more-discussion-btn button:hover,.more-claims-btn button:hover{
-    background:#0069e0;
-    color:#fff;
+
+.more-discussion-btn button:hover,
+.more-claims-btn button:hover {
+    background: #0069e0;
+    color: #fff;
 }
-.select-languages.col select{
+
+.select-languages.col select {
     border: 1px solid;
     border-radius: 4px;
     box-sizing: border-box;
     cursor: pointer;
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
     padding: 0 16px;
     position: relative;
-    transition: color .2s,background-color .2s;
+    transition: color .2s, background-color .2s;
     height: 50px;
     width: 205px;
 }
-.searchbar.col form input{
+
+.searchbar.col form input {
     height: 50px;
 }
-.show-navigation.col,.select-languages.col{
+
+.show-navigation.col,
+.select-languages.col {
     display: contents;
 }
-.searchbar_discussion_header.col h2,.searchbar_claims_header.col h2{
-    font-size:18px !important;
-    font-weight:600;
-    color:#656f7b;
+
+.searchbar_discussion_header.col h2,
+.searchbar_claims_header.col h2 {
+    font-size: 18px !important;
+    font-weight: 600;
+    color: #656f7b;
 }
+
 section.searchbar-section h1 {
     margin: 30px 0px;
 }
+
 .claims-cards .img-left {
-    display:grid;
-    grid-template-columns:auto auto;
+    display: grid;
+    grid-template-columns: auto auto;
 }
-.claims-cards .card-body{
-    padding:unset !important;
+
+.claims-cards .card-body {
+    padding: unset !important;
 }
-.claims-cards .text-above{
-    color:#000;
-    padding:15px;
-    margin-bottom:40px;
+
+.claims-cards .text-above {
+    color: #000;
+    padding: 15px;
+    margin-bottom: 40px;
 }
-.claims-cards .card{
-    height:248px !important;
+
+.claims-cards .card {
+    height: 248px !important;
 }
-.img-left{
+
+.img-left {
     background-color: #f2f4f5;
 }
+
 .claims-cards .d-flex.align-items-center.card-title.h5 {
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
     margin: 0 32px 0 16px;
 }
+
 /* search page css end */
 
 /* tour page css start */
 
-section.tour-banner h1{
+section.tour-banner h1 {
     font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 45px;
     font-weight: 700;
@@ -106,7 +276,8 @@ section.tour-banner h1{
     text-align: center;
     color: #fff;
 }
-.textwithButton h1{
+
+.textwithButton h1 {
     font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 45px;
     font-weight: 700;
@@ -116,7 +287,8 @@ section.tour-banner h1{
     text-align: center;
     color: #fff;
 }
-.explore-btn{
+
+.explore-btn {
     padding: 15px 30px;
     color: #fff;
     background: none;
@@ -124,35 +296,41 @@ section.tour-banner h1{
     border-radius: 5px;
     font-weight: 700;
 }
-section.tour-banner p{
-    color:#fff;
-    font-size:20px;
-    font-weight:400;
-    line-height: 1.2;  
+
+section.tour-banner p {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
 }
+
 .tour-banner .container {
     max-width: 50%;
 }
-.textwithButton{
+
+.textwithButton {
     padding: 64px 0;
     background-color: #0662AB;
 }
 
-    .tour-banner {
-        padding: 64px 0;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-color: #0662AB;
-        background-image: url('./Assets/explore_desktop.jpeg');
-    }
-    
+.tour-banner {
+    padding: 64px 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #0662AB;
+    background-image: url('./Assets/explore_desktop.jpeg');
+}
+
 
 section.video-section {
-    padding:65px 0px;
+    padding: 65px 0px;
 }
-section.how-works,.blue-head{
-    padding:65px 0px;
+
+section.how-works,
+.blue-head {
+    padding: 65px 0px;
 }
+
 .how-works h2 {
     font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 40px;
@@ -160,39 +338,43 @@ section.how-works,.blue-head{
     line-height: 1.2;
     margin-bottom: 60px;
     text-align: center;
-    color:#000
-    ;
+    color: #000;
 }
-.how-works .container .row h3,.blue-head .container .row h3
-{
+
+.how-works .container .row h3,
+.blue-head .container .row h3 {
     color: #0069e0;
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     font-size: 33px;
     font-weight: 300;
     line-height: 1.2;
     margin-bottom: 37px;
 }
-.how-works .container .row p,.blue-head .container .row p{
-    color: #2c343d;
-    font-size:18px;
-    font-weight: 400;
-    line-height: 1.5;
-}
-section.seehow-section h3{
-    color:#0069e0;
-    color: #0069e0;
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-    font-size: 33px;
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 37px;
-}
-.seehow-section p{
+
+.how-works .container .row p,
+.blue-head .container .row p {
     color: #2c343d;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.5;
-     margin-bottom: 37px;
+}
+
+section.seehow-section h3 {
+    color: #0069e0;
+    color: #0069e0;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 37px;
+}
+
+.seehow-section p {
+    color: #2c343d;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 37px;
 }
 
 /* tour page css end */
@@ -204,11 +386,11 @@ section.seehow-section h3{
 /* .bg-body-tertiary .login-btn:hover {
     border: 1px solid #fff;
 } */
-.active {
+/* .active {
     text-decoration: underline;
     text-underline-offset: 0.3em;
 
-}
+} */
 
 button.navbar-toggler {
     margin-left: var(--bs-navbar-brand-margin-end);
@@ -253,10 +435,12 @@ div#responsive-navbar-nav {
     color: #000;
     font-weight: 600;
 }
-.nav-link:active{
+
+.nav-link:active {
     font-weight: 700;
     text-decoration: underline;
 }
+
 .nav-link:hover {
     text-decoration: underline;
     text-underline-offset: 0.3em;
@@ -621,6 +805,7 @@ label.mt-4.form-label {
 .navbar-expand-lg .navbar-nav .nav-link:not(.login-btn, .signup-btn) {
     margin: 0 20px;
 }
+
 img.card-img-top {
     object-fit: cover;
 }
@@ -630,55 +815,82 @@ img.card-img-top {
 }
 
 /* ---about-page------- */
-.about-pg{padding: 80px 0px;}
-.row-abt{margin-top: 36px;}
-.row-abt .colm-abt1{
-width: 64%;
-margin-left: 6%;
+.about-pg {
+    padding: 80px 0px;
 }
-.colm-abt2 {width: 30%;}
-.colm-abt2 h2{font-size: 16px;}
+
+.row-abt {
+    margin-top: 36px;
+}
+
+.row-abt .colm-abt1 {
+    width: 64%;
+    margin-left: 6%;
+}
+
+.colm-abt2 {
+    width: 30%;
+}
+
+.colm-abt2 h2 {
+    font-size: 16px;
+}
+
 /* mobile screen */
 
 /* ----------privacy----- */
 .privacy-dv {
     padding: 80px 0px;
 }
-.privacy-pg h2{
-    font-size: 18px; 
+
+.privacy-pg h2 {
+    font-size: 18px;
     font-weight: 400;
     margin: 34px 0px 24px 0px;
 }
-.privacy-pg h1{
+
+.privacy-pg h1 {
     font-size: 33px;
     font-weight: 400;
 }
-.privacy-pg p{
+
+.privacy-pg p {
     color: #2c343d;
     margin-bottom: 16px;
     font-size: 17px;
 }
-.privacy-list{
+
+.privacy-list {
     list-style: unset;
 }
 
 @media(max-width:575.9px) {
-    .my-5.serachbar-languages-row.row ,.discusiion-head.row{
-        display:block;
+
+    .my-5.serachbar-languages-row.row,
+    .discusiion-head.row {
+        display: block;
     }
-    .select-languages.col select,.show-navigation.col select{
-        margin:auto;
-        margin-top:20px
+
+    .select-languages.col select,
+    .show-navigation.col select {
+        margin: auto;
+        margin-top: 20px
     }
-    .more-discussion-btn.row button, .more-claims-btn button{
-        width:60%;
+
+    .more-discussion-btn.row button,
+    .more-claims-btn button {
+        width: 60%;
     }
-    .searchbar_discussion_header.col h2, .searchbar_claims_header.col h2{
-        text-align:center;
+
+    .searchbar_discussion_header.col h2,
+    .searchbar_claims_header.col h2 {
+        text-align: center;
     }
+
     .tour-banner .container {
         max-width: 100%;
     }
+
     .modal-content {
         height: 100%;
         border-radius: unset;
@@ -691,8 +903,9 @@ margin-left: 6%;
     .modal-dialog {
         margin: unset;
     }
-    .footer-links{
-        display:block !important;
+
+    .footer-links {
+        display: block !important;
     }
 }
 
@@ -742,12 +955,15 @@ margin-left: 6%;
     .darkHeader .login-btn {
         color: #000;
     }
+
     /* ----about */
     .row.row-abt {
-        display:block;
+        display: block;
     }
-    .row-abt .colm-abt1 , .row-abt .colm-abt2{
-        width:100%;
+
+    .row-abt .colm-abt1,
+    .row-abt .colm-abt2 {
+        width: 100%;
     }
 }
 
@@ -768,4 +984,12 @@ margin-left: 6%;
         grid-template-columns: repeat(2, 1fr);
     }
 
+}
+
+
+
+
+.activeNav {
+    text-decoration: underline;
+    text-underline-offset: 0.3em
 }

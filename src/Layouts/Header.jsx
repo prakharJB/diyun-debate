@@ -11,6 +11,7 @@ import logo from "../Assets/LOGO (2).png";
 import { fetchData } from "../Component/SunBurst";
 import HomePortal from "../Component/HomePortal";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -18,12 +19,13 @@ function Header() {
   const [LoginmodalShow, setLoginModalShow] = useState(false);
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
   const [logInUser, setLogInUser] = useState();
+  const location = useLocation();
 
   const getLoggedUser = () => {
     const user = JSON.parse(localStorage?.getItem("token"));
     setLogInUser(user?.token);
   };
-  
+
   useEffect(() => {
     getLoggedUser();
   }, []);
@@ -71,14 +73,34 @@ function Header() {
         <Navbar.Brand href="/">{tHn.Diyun}</Navbar.Brand>
         <Nav className="me-auto mobile-btn-bottom">
           {logInUser ? (
-            <Nav.Link href="/my" activeClassName="active">My Diyun</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/my" ? "activeNav" : ""}
+              href="/my"
+            >
+              My Diyun
+            </Nav.Link>
           ) : (
-            <Nav.Link href="/explore" activeClassName="active">{tHn.explore}</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/explore" ? "activeNav" : ""}
+              href="/explore"
+            >
+              {tHn.explore}
+            </Nav.Link>
           )}
           {logInUser ? (
-            <Nav.Link href="/explore" activeClassName="active">{tHn.explore}</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/explore" ? "activeNav" : ""}
+              href="/explore"
+            >
+              {tHn.explore}
+            </Nav.Link>
           ) : (
-            <Nav.Link href="/tour" activeClassName="active">{tHn.tour}</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/tour" ? "activeNav" : ""}
+              href="/tour"
+            >
+              {tHn.tour}
+            </Nav.Link>
           )}
           {logInUser ? null : (
             <Nav.Link onClick={() => setLoginModalShow(true)}>
@@ -105,15 +127,15 @@ function Header() {
           )}
           {logInUser ? (
             <NavDropdown title="Profile" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
+              <NavDropdown.Item href="/contact-us">
                 Contact Support
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 User Settings
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">My Diyun</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">My Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">My Teams</NavDropdown.Item>
+              <NavDropdown.Item href="/my">My Diyun</NavDropdown.Item>
+              <NavDropdown.Item href="/Profile">My Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/teams">My Teams</NavDropdown.Item>
               <NavDropdown.Item onClick={logOut} href="/">
                 Logout
               </NavDropdown.Item>
