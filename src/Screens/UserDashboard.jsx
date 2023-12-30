@@ -48,6 +48,7 @@ function UserDashboard() {
   //   }
   // };
 
+
   useEffect(() => {
     if (verification_token) {
       fetchPortfolio();
@@ -57,7 +58,7 @@ function UserDashboard() {
   }, []);
 
   const fetchPortfolio = async () => {
-    debugger;
+     debugger;
     try {
       const url = `https://laradebate.jmbliss.com/api/verify-email/${verification_token}`;
       const response = await axios.get(url);
@@ -77,7 +78,8 @@ function UserDashboard() {
       console.log(err);
       navigate("/");
     }
-  };
+  }
+
   const handleTabSelect = (tab) => {
     setSelectedTab(tab);
   };
@@ -95,7 +97,7 @@ function UserDashboard() {
       case "Own":
         return <Own />;
       case "Recent":
-        return <Recent />;
+        return <Recent/>;
       case "Recommended":
         return <Recommended />;
       case "Teams":

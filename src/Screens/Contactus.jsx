@@ -23,6 +23,10 @@ const Contactus = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    const handleChange = (e) => {   //e is a event object
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        
+    };
 
     try {
       // Use the API endpoint constant here
