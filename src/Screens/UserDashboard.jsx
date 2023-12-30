@@ -3,10 +3,24 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Header from "../Layouts/Header";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import userProfile from "../Assets/default_229_128x128.jpeg";
+import Nav from "react-bootstrap/Nav";
+import Overview from "../Component/Overview";
+import Respond from "../Component/Respond";
+import Following from "../Component/Following";
+import All from "../Component/All";
+import Own from "../Component/Own";
+import Recent from "../Component/Recent";
+import Recommended from "../Component/Recommended";
+import Teams from "../Component/Teams";
+import Footer from "../Layouts/Footer";
 
 function UserDashboard() {
   const { token } = useParams();
   const navigate = useNavigate();
+
+  const [selectedTab, setSelectedTab] = useState("Overview");
+
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/");
@@ -32,94 +46,144 @@ function UserDashboard() {
       console.log(err);
     }
   };
+
   useEffect(() => {
     if (token) {
       fetchPortfolio();
     }
   }, []);
+
+  const handleTabSelect = (tab) => {
+    setSelectedTab(tab);
+  };
+
+  const renderTabContent = () => {
+    switch (selectedTab) {
+      case "Overview":
+        return <Overview />;
+      case "Respond":
+        return <Respond />;
+      case "Following":
+        return <Following />;
+      case "All":
+        return <All />;
+      case "Own":
+        return <Own />;
+      case "Recent":
+        return <Recent/>;
+      case "Recommended":
+        return <Recommended />;
+      case "Teams":
+        return <Teams />;
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <Header />
-      <section>
-        <Container>
-          <Row>
-            <Col>
-              <h1>
-                Kialo.com’s terms of service and privacy policy are currently
-                being updated to reflect that it is GDPR and CCPA compliant.
-                Kialo.com is a free, non-revenue generating site. It has no ads,
-                nor is user data being abused or resold. User data is used to
-                improve the site, e.g. to see which functions are frequently
-                used, to display user content, and to make the site user
-                friendly by identifying which claims users have already seen.
-                Please contact us if you have any questions. September 08, 2017
-                KIALO TERMS OF SERVICE Welcome to Kialo! Thank you for joining
-                the debates on our site. We’re glad you’re here. These Terms of
-                Service (“Terms”) apply to your use of Kialo’s website and
-                services. Please read them carefully because by using Kialo, you
-                agree to be bound by these Terms. If you’re using Kialo on
-                behalf of an organization, you agree to these Terms on behalf of
-                that organization. Content You’ll find a couple of types of
-                content on our service. Your Content. Your contributions to
-                Kialo are yours and yours alone. By posting content to Kialo,
-                you agree to give us a perpetual and irrevocable license to use,
-                copy, display, distribute, and store your content. You also
-                agree to freely license your published content to all Kialo
-                users on the same terms. Your unpublished content will never be
-                shown to anyone other than the Kialo users you authorize to see
-                it. You’re solely responsible for the content you post to Kialo
-                and assume all risks associated with it, including intellectual
-                property or other legal claims. By posting content on Kialo, you
-                represent that you have the necessary rights to that material,
-                and that doing so doesn’t conflict with other agreements you’ve
-                made. We don’t pre-screen anyone’s content, but we have the
-                right—though no duty—to review and remove your contributions to
-                Kialo. We assume no liability for content that you or others
-                post on our service. Kialo’s Content and Brand Features. Kialo
-                is protected by copyright, trademark, and other laws. Kialo
-                gives you a personal, worldwide, royalty-free, non-assignable,
-                and non-exclusive license to use the software we provide you to
-                use our service. This license is for the sole purpose of
-                enabling you to use Kialo as permitted by these Terms. If you
-                violate these Terms, we may terminate this license. You may not
-                use any of Kialo’s trademarks, logos, domain names, or other
-                distinctive brand features without our permission, except as
-                otherwise permitted by law. Community Guidelines Kialo strives
-                to provide a great service. To that end, we ask that you respect
-                these rules, and we reserve the right to terminate your account
-                if you don’t follow them. Don’t use Kialo in a manner that
-                violates any laws, regulations, ordinances, or directives. Don’t
-                use Kialo contrary to our policies. Don’t use Kialo to do
-                anything threatening, abusive, harassing, defamatory, tortious,
-                obscene, profane, or invasive of another person’s privacy. Don’t
-                interfere with the proper functioning of any software, hardware,
-                or equipment on Kialo. Don’t engage in any conduct that inhibits
-                anyone else’s use or enjoyment of Kialo, or which may harm Kialo
-                or our users. Don’t impersonate others on Kialo in a manner that
-                is intended to or actually does confuse, deceive, or mislead
-                other people. Crawling Kialo and Exporting Discussions Crawling
-                Kialo is allowed in accordance with our robots instructions, and
-                you may use our export functionality to download debates for
-                private use. Please don’t use other means to monitor or copy any
-                material on Kialo, either manually or through automated means
-                (i.e., scraping), without prior written consent. If you’d like
-                to request consent, please contact support@kialo.com. Our Rights
-                We’re always working to improve Kialo and make our forum better,
-                so we reserve some rights. We may change our services from time
-                to time, and modify, suspend, or terminate user accounts that
-                don’t comply with our terms. Kialo is not liable for any damages
-                as a result of these actions. Other Sites and Services Kialo
-                contains links to websites and other services that we neither
-                own nor control. We don’t endorse or assume responsibility for
-                any third-party sites, information, materials, products, or
-                services. Privacy Our Privacy Policy governs our collection and
-                use of your personal information. Please review those
-                provisions, too. Security
-              </h1>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+      <div className="py-5 pt-0 mt-0 dashboard-page-main">
+        <section className="userprofile mt-0 my-5 pt-5">
+          <Container>
+            <Row className="d-flex">
+              <Col className="d-flex">
+                <div className="col-md-2 my-page-header__left-items">
+                  <img
+                    src={userProfile}
+                    alt="User Profile Image"
+                    className="img-fluid"
+                  />
+                </div>
+                <div className="my-page-header__left-items">
+                  <h1>My Diyun</h1>
+                </div>
+              </Col>
+              <Col></Col>
+            </Row>
+          </Container>
+        </section>
+
+        <section className="portal-tab-template__body">
+          <Container className="portal-tab-template__content-header">
+            <Row className="tab-switch my-5 border-bottom">
+              <Col className="tab-switch__tabs my-4">
+                <Nav variant="underline" defaultActiveKey="link-1">
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Overview")}
+                      eventKey="link-1"
+                    >
+                      Overview
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Respond")}
+                      eventKey="link-2"
+                    >
+                      Respond
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Following")}
+                      eventKey="link-3"
+                    >
+                      Following
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("All")}
+                      eventKey="link-4"
+                    >
+                      All
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Own")}
+                      eventKey="link-5"
+                    >
+                      Own
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Recent")}
+                      eventKey="link-6"
+                    >
+                      Recent
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Recommended")}
+                      eventKey="link-7"
+                    >
+                      Recommended
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => handleTabSelect("Teams")}
+                      eventKey="link-8"
+                    >
+                      Teams
+                    </Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+            </Row>
+
+            <Row className="tab-based-content">{renderTabContent()}</Row>
+          </Container>
+        </section>
+      </div>
+
+      <Footer />
     </>
   );
 }
