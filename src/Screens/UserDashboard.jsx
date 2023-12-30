@@ -6,11 +6,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 function UserDashboard() {
-  const { token } = useParams();
+  const { verification_token } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
+    if (verification_token) {
       fetchPortfolio();
     } else if (!localStorage.getItem("token")) {
       navigate("/");
@@ -18,22 +18,22 @@ function UserDashboard() {
   }, []);
 
   const fetchPortfolio = async () => {
-    // debugger;
+     debugger;
     try {
-      const url = `https://laradebate.jmbliss.com/api/verify-email/${token}`;
+      const url = `https://laradebate.jmbliss.com/api/verify-email/${verification_token}`;
       const response = await axios.get(url);
 
       console.log(response);
-      if (response?.data?.status === "success") {
-        toast.success(response?.data?.message);
-        const token = {
-          token: response?.data?.token,
-        };
-        localStorage.setItem("token", JSON.stringify(token));
-      } else {
-        toast.error(response?.data?.message);
-        navigate("/");
-      }
+      // if (response?.data?.status === "success") {
+      //   toast.success(response?.data?.message);
+      //   const token = {
+      //     token: response?.data?.token,
+      //   };
+      //   localStorage.setItem("token", JSON.stringify(token));
+      // } else {
+      //   toast.error(response?.data?.message);
+      //   navigate("/");
+      // }
     } catch (err) {
       console.log(err);
       navigate("/");

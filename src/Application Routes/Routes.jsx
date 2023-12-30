@@ -7,12 +7,13 @@ import SingleDebate from "../Screens/SingleDebate";
 import Tags from "../Screens/Tags";
 import UserDashboard from "../Screens/UserDashboard";
 import Tour from "../Screens/Tour";
-import ContactUs from "../Screens/Contactus";
 import Search from "../Screens/Search";
-// import About from "../Screens/About";
 import About from "../Screens/About";
 import Privacy from "../Screens/Privacy";
 import PasswordForget from "../Screens/ForgetPassword";
+import Terms from "../Screens/Terms";
+import ContactUs from"../Screens/Contactus";
+
 
 function AppRoutes() {
   return (
@@ -31,13 +32,14 @@ function AppRoutes() {
           <Route path="/search" element={<Search />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
           <Route path="/my/:verification_token" element={<UserDashboard />}></Route>
-          <Route path="/contact-us" element={<ContactUs />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/privacy" element={<Privacy />}></Route>
           <Route
             path="/forget-password/:token"
             element={<PasswordForget />}
           ></Route>
+          <Route path="/contact-us" element={<ContactUs />} ></Route>
+          <Route path="/about" element={<About />} ></Route>
+          <Route path="/privacy" element={<Privacy />} ></Route>
+          <Route path="/terms" element={<Terms />} ></Route>
         </Routes>
       </Router>
     </div>
