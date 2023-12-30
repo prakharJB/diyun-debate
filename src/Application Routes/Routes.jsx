@@ -11,7 +11,8 @@ import ContactUs from "../Screens/Contactus";
 import Search from "../Screens/Search";
 // import About from "../Screens/About";
 import About from "../Screens/About";
-import Privacy from "../Screens/Privacy"
+import Privacy from "../Screens/Privacy";
+import Terms from "../Screens/Terms"
 
 
 function AppRoutes() {

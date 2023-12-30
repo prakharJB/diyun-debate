@@ -764,7 +764,7 @@ margin-left: 6%;
 }
 .colm-abt2 {width: 30%;}
 .colm-abt2 h2{font-size: 16px;}
-/* mobile screen */
+
 
 /* ----------privacy----- */
 .privacy-dv {
@@ -787,6 +787,34 @@ margin-left: 6%;
 .privacy-list{
     list-style: unset;
 }
+
+/* ---Tab-Home---- */
+.tab-home-ex .nav-tabs{
+    border:none;
+}
+.tab-home-ex .nav-link.active , .nav-link.active:hover{
+      border:none; }
+      .nav-tabs .nav-link.active{
+        text-underline-offset: 0.5em;
+        text-decoration:underline!important;
+      }
+      .bg-portal .active {
+        text-decoration:none!important;
+    }
+      .tab-home-ex .nav-link:hover{
+        text-underline-offset: 0.5em;
+      }
+.tab-home-ex .nav-link{
+    color: #0069e0;
+    font-weight: 700;
+    border:none;
+    margin-right:8px;
+}
+.tab-home-ex{
+    padding: 30px 0px;
+}
+
+/* mobile screen */
 
 @media(max-width:575.9px) {
     .my-5.serachbar-languages-row.row ,.discusiion-head.row{
