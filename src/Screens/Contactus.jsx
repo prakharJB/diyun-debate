@@ -74,7 +74,7 @@ const Contactus = () => {
           </div>
         </div>
       </nav>
-      {/ ---------------Search------------ /}
+      {/* {/ ---------------Search------------ /} */}
       <div className="frm-cnt">
         <form className="example contct-us" action="/action_page.php">
           <input
@@ -149,7 +149,7 @@ const Contactus = () => {
       </div>{" "}
       <br />
       <hr></hr>
-      {/ --------------------------Footer-------------------------------- /}
+      {/* {/ --------------------------Footer-------------------------------- /} */}
       <nav className="navbar navbar-expand-lg">
         <div class="container-fluid footer-fl">
           <div className="footer-n">

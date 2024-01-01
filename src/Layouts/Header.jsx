@@ -12,6 +12,7 @@ import { fetchData } from "../Component/SunBurst";
 import HomePortal from "../Component/HomePortal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useLocation } from "react-router-dom";
+import userProfile from "../Assets/default_229_128x128.jpeg";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -77,7 +78,7 @@ function Header() {
               className={location.pathname === "/my" ? "activeNav" : ""}
               href="/my"
             >
-              My Diyun
+              {tHn.My_Diyun}
             </Nav.Link>
           ) : (
             <Nav.Link
@@ -126,14 +127,24 @@ function Header() {
             </Nav.Link>
           )}
           {logInUser ? (
-            <NavDropdown title="Profile" id="basic-nav-dropdown">
+            <NavDropdown
+              className="profile-nav"
+              title={
+                <img
+                  src={userProfile}
+                  alt="profile"
+                  className="rounded-circle profile-img-style"
+                />
+              }
+              id="basic-nav-dropdown"
+            >
               <NavDropdown.Item href="/contact-us">
                 Contact Support
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 User Settings
               </NavDropdown.Item>
-              <NavDropdown.Item href="/my">My Diyun</NavDropdown.Item>
+              <NavDropdown.Item href="/my">{tHn.My_Diyun}</NavDropdown.Item>
               <NavDropdown.Item href="/Profile">My Profile</NavDropdown.Item>
               <NavDropdown.Item href="/teams">My Teams</NavDropdown.Item>
               <NavDropdown.Item onClick={logOut} href="/">

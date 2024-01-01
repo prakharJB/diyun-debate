@@ -48,7 +48,6 @@ function UserDashboard() {
   //   }
   // };
 
-
   useEffect(() => {
     if (verification_token) {
       fetchPortfolio();
@@ -58,7 +57,7 @@ function UserDashboard() {
   }, []);
 
   const fetchPortfolio = async () => {
-     debugger;
+    debugger;
     try {
       const url = `https://laradebate.jmbliss.com/api/verify-email/${verification_token}`;
       const response = await axios.get(url);
@@ -78,7 +77,7 @@ function UserDashboard() {
       console.log(err);
       navigate("/");
     }
-  }
+  };
 
   const handleTabSelect = (tab) => {
     setSelectedTab(tab);
@@ -97,7 +96,7 @@ function UserDashboard() {
       case "Own":
         return <Own />;
       case "Recent":
-        return <Recent/>;
+        return <Recent />;
       case "Recommended":
         return <Recommended />;
       case "Teams":
@@ -111,23 +110,23 @@ function UserDashboard() {
   return (
     <>
       <Header />
-      <div className="py-5 pt-0 mt-0 dashboard-page-main">
+      <div className="py-5 pt-0 mt-0 dashboard-page-main" dir="rtl">
         <section className="userprofile mt-0 my-5 pt-5">
           <Container>
             <Row className="d-flex">
-              <Col className="d-flex">
+              <Col className="d-flex align-items-center">
                 <div className="col-md-2 my-page-header__left-items">
                   <img
                     src={userProfile}
-                    alt="User Profile Image"
+                    alt="User Profile"
                     className="img-fluid"
                   />
                 </div>
-                <div className="my-page-header__left-items">
-                  <h1>My Diyun</h1>
+                <div className="my-page-header__left-items mx-2">
+                  <h1 className="m-0">ענן ה-DI שלי</h1>
                 </div>
               </Col>
-              <Col></Col>
+              {/* <Col></Col> */}
             </Row>
           </Container>
         </section>
@@ -139,66 +138,74 @@ function UserDashboard() {
                 <Nav variant="underline" defaultActiveKey="link-1">
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Overview")}
                       eventKey="link-1"
                     >
-                      Overview
+                      סקירה כללית
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Respond")}
                       eventKey="link-2"
                     >
-                      Respond
+                      לְהָגִיב
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Following")}
                       eventKey="link-3"
                     >
-                      Following
+                      הבא
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("All")}
                       eventKey="link-4"
                     >
-                      All
+                      את כל
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Own")}
                       eventKey="link-5"
                     >
-                      Own
+                      שֶׁלוֹ
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Recent")}
                       eventKey="link-6"
                     >
-                      Recent
+                      לאחרונה
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Recommended")}
                       eventKey="link-7"
                     >
-                      Recommended
+                      מוּמלָץ
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
+                      className="pb-0"
                       onClick={() => handleTabSelect("Teams")}
                       eventKey="link-8"
                     >
-                      Teams
+                      צוותים
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
