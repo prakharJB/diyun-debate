@@ -1,6 +1,6 @@
 import { Container, Col, Row, Card } from "react-bootstrap";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import React, { useState, useEffect } from "react";
 import coverImg from "../Assets/demo-portal-cover.jpeg";
 import axios from "axios";
@@ -56,29 +56,28 @@ function HomePortal() {
           <Row>
             <Col>
               {/* -------Tab-Home----- */}
-              <div className="tab-home-ex" >
+              <div className="tab-home-ex">
                 <Tabs
                   defaultActiveKey="Featured"
                   id="uncontrolled-tab-example"
-                  className="mb-3"
+                  className="mb-3 p-0 d-flex flex-nowrap "
                 >
-                  <Tab eventKey="Featured" title="Featured">
+                  <Tab eventKey="Featured" className="p-0" title="Featured">
                     <Featured />
                   </Tab>
                   <Tab eventKey="Popular" title="Popular">
                     <Popular />
                   </Tab>
-                  <Tab eventKey="New" title="New" >
+                  <Tab eventKey="New" title="New">
                     <New />
                   </Tab>
-                  <Tab eventKey="Hot" title="Hot" >
-                   <Hot />
+                  <Tab eventKey="Hot" title="Hot">
+                    <Hot />
                   </Tab>
                 </Tabs>
               </div>
 
               {/* -------Tab------ */}
-             
             </Col>
           </Row>
         </Container>

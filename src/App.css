@@ -899,6 +899,7 @@ img.card-img-top {
 .nav-tabs .nav-link.active {
     text-underline-offset: 0.5em;
     text-decoration: underline !important;
+    background-color: transparent;
 }
 
 .bg-portal .active {
@@ -914,6 +915,7 @@ img.card-img-top {
     font-weight: 700;
     border: none;
     margin-right: 8px;
+    padding: 5px;
 }
 
 .tab-home-ex {

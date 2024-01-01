@@ -13,6 +13,12 @@ import HomePortal from "../Component/HomePortal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useLocation } from "react-router-dom";
 import userProfile from "../Assets/default_229_128x128.jpeg";
+import { SlEnvolopeLetter } from "react-icons/sl";
+import { IoIosSettings } from "react-icons/io";
+import { MdHomeFilled } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { PiUsersFourFill } from "react-icons/pi";
+import { CiLogout } from "react-icons/ci";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -115,7 +121,10 @@ function Header() {
         </Nav>
         <Nav className="mx-2">
           {logInUser ? (
-            <Nav.Link onClick={() => setCreateDebateModal(true)}>
+            <Nav.Link
+              className="login-btn"
+              onClick={() => setCreateDebateModal(true)}
+            >
               +{tHn.new}
             </Nav.Link>
           ) : (
@@ -138,17 +147,51 @@ function Header() {
               }
               id="basic-nav-dropdown"
             >
-              <NavDropdown.Item href="/contact-us">
-                Contact Support
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/contact-us"
+              >
+                <SlEnvolopeLetter className="mx-2" />
+                {tHn.Contact}
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                User Settings
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="#action/3.2"
+              >
+                <IoIosSettings className="mx-2" />
+                {tHn.User_Settings}
               </NavDropdown.Item>
-              <NavDropdown.Item href="/my">{tHn.My_Diyun}</NavDropdown.Item>
-              <NavDropdown.Item href="/Profile">My Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/teams">My Teams</NavDropdown.Item>
-              <NavDropdown.Item onClick={logOut} href="/">
-                Logout
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/my"
+              >
+                {" "}
+                <MdHomeFilled className="mx-2" />
+                {tHn.My_Diyun}
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/Profile"
+              >
+                {" "}
+                <FaUser className="mx-2" />
+                {tHn.Profile}
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/teams"
+              >
+                {" "}
+                <PiUsersFourFill className="mx-2" />
+                {tHn.Teams}
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                onClick={logOut}
+                href="/"
+              >
+                <CiLogout className="mx-2" />
+                {tHn.Logout}
               </NavDropdown.Item>
             </NavDropdown>
           ) : (

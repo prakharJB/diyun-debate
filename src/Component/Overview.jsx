@@ -50,7 +50,7 @@ const Overview = () => {
               <div className="d-flex">
                 <div className="cardd-div">
                   <Card className="">
-                    <a href="/">
+                    <a href={`/debate/${text[1]?.id}`}>
                       <Card.Img variant="top" src={testGpt} />
                       <Card.Body>
                         <Card.Title>{text[1]?.title}</Card.Title>
@@ -78,7 +78,7 @@ const Overview = () => {
                 </div>
                 <div>
                   <Card className="cardd-div">
-                    <a href="/">
+                    <a href={`/debate/${text[2]?.id}`}>
                       <Card.Img variant="top" src={testGpt} />
                       <Card.Body>
                         <Card.Title>{text[2]?.title}</Card.Title>
