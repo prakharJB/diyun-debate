@@ -1,18 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../Screens/Home";
-import Signup from "../Screens/Sign-up";
-import LoginForm from "../Screens/Login-form";
-import DebateAdd from "../Screens/Debateadd";
-import SingleDebate from "../Screens/SingleDebate";
-import Tags from "../Screens/Tags";
-import UserDashboard from "../Screens/UserDashboard";
-import Tour from "../Screens/Tour";
-import Search from "../Screens/Search";
-import About from "../Screens/About";
-import Privacy from "../Screens/Privacy";
-import PasswordForget from "../Screens/ForgetPassword";
-import Terms from "../Screens/Terms";
-import ContactUs from "../Screens/Contactus";
+import Home from "../Screens/UserScreen/Home/Home";
+import SingleDebate from "../Screens/UserScreen/SingleDebate/SingleDebate";
+import Tags from "../Screens/UserScreen/Tags.jsx/Tags";
+import UserDashboard from "../Screens/UserScreen/UserDashboard/UserDashboard";
+import Tour from "../Screens/UserScreen/Tour.jsx/Tour";
+import Search from "../Screens/UserScreen/Search/Search";
+import About from "../Screens/UserScreen/About/About";
+import Privacy from "../Screens/UserScreen/Privacy/Privacy";
+import PasswordForget from "../Screens/UserScreen/ForgetPassword/ForgetPassword";
+import Terms from "../Screens/UserScreen/Terms/Terms";
+import ContactUs from "../Screens/UserScreen/Contact/Contactus";
 
 function AppRoutes() {
   return (
@@ -20,9 +17,6 @@ function AppRoutes() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/login" element={<LoginForm />}></Route>
-          <Route path="/new" element={<DebateAdd />}></Route>
           <Route path="/debate/:id" element={<SingleDebate />}></Route>
           <Route path="/explore" element={<Home />}></Route>
           <Route path="/explore/tags" element={<Tags />}></Route>
