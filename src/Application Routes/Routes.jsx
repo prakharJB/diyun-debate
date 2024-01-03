@@ -12,7 +12,9 @@ import Search from "../Screens/Search";
 // import About from "../Screens/About";
 import About from "../Screens/About";
 import Privacy from "../Screens/Privacy";
-import Terms from "../Screens/Terms"
+import Terms from "../Screens/Terms";
+import UserSettings from "../Screens/UserSettings";
+
 
 
 function AppRoutes() {
@@ -36,6 +38,7 @@ function AppRoutes() {
           <Route path="/about" element={<About />} ></Route>
           <Route path="/privacy" element={<Privacy />} ></Route>
           <Route path="/terms" element={<Terms />} ></Route>
+          <Route path="/user-settings"element={< UserSettings />} ></Route>
           {/* <Route path="/forget-password/:token" element={</>} ></Route> */}
         </Routes>
       </Router>

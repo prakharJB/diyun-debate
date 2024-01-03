@@ -54,7 +54,7 @@ function Featured() {
         <Container>
           <Row>
             <Col>
-             
+
               <div className="mt-top">
                 <Card>
                   <a href="/">

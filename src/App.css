@@ -814,6 +814,112 @@ margin-left: 6%;
     padding: 30px 0px;
 }
 
+/* -----User Settings */
+
+
+
+  .user-profile label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;   
+  }
+  .user-profile button {
+    color: #2c343d;
+    border:1px solid #888e96;
+    background-color: #e6e9eb;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 4px; 
+    font-weight: 700;
+    font-size: 14px;   
+  }
+  #remove-button {
+    margin-right: 15px;
+  }
+  .user-profile{
+    margin-top: 34px;
+  }
+  .user-profile button:hover {
+    background-color: #656f7b;
+    color: #fff;
+  }
+  .user-setting-frm p {
+    color: #656f7b;
+    font-size:15px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-top: 10px;
+}
+  .paswrd-modal .modal-content {
+    background: #fff !important;
+    padding: 40px 64px !important;
+    width: 700px
+ !important;
+}
+.paswrd-modal .modal-body{
+display: flex;
+flex-direction: column;
+width: 100%!important;
+}
+.user-pswrd {
+    padding: 12px 11px 10px;
+    margin: 20px 0px;
+}
+.frgt-pwd , .frgt-pwd a{
+    text-align: end;
+    color: #000;
+    text-decoration: underline;
+}
+.paswrd-modal button.btn.btn-secondary {
+    background:#fff;
+    color: #2c343d;
+}
+.paswrd-modal button.btn.btn-secondary:hover{
+    background:#888e96;
+    color:#fff;
+    font-weight:500;
+}
+.paswrd-modal button.btn-close {
+    position: absolute;
+    right: 12px;
+    top: 15px;
+}
+.user-setting-frm {
+    margin:10px 0px 32px 0px;
+}
+.user-check-box {
+    display: flex;
+    align-items: baseline;
+}
+.profile-btn {
+    margin-bottom: 24px;
+}
+.name-usr {
+    color: #656f7b!important;
+    font-weight: 700;
+}
+input#check-bx {
+    margin-right: 8px;
+}
+.profile-pic {
+    background: url('');
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: all .3s ease;    
+    cursor: pointer;
+    border: 1px solid grey;
+}
+.profile-chang{
+          display: none;
+          cursor: pointer;
+ }
+
+
+
 /* mobile screen */
 
 @media(max-width:575.9px) {
