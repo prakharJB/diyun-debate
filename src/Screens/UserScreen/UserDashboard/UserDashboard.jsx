@@ -30,9 +30,8 @@ function UserDashboard() {
   }, []);
 
   const fetchPortfolio = async () => {
-    debugger;
     try {
-      const url = `https://laradebate.jmbliss.com/api/verify-email/${verification_token}`;
+      const url = `${process.env.REACT_APP_BASE_URL}/api/verify-email/${verification_token}`;
       const response = await axios.get(url);
 
       console.log(response);

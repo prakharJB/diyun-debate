@@ -30,7 +30,7 @@ const PasswordForget = (props) => {
       setPasswordError(false);
       try {
         const response = await axios.post(
-          `https://laradebate.jmbliss.com/api/reset-password/${token}`,
+          `${process.env.REACT_APP_BASE_URL}/api/reset-password/${token}`,
           formData
         );
         console.log("Signup successful!", response);
