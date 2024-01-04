@@ -21,13 +21,13 @@ function UserDashboard() {
 
   const [selectedTab, setSelectedTab] = useState("Overview");
 
-  useEffect(() => {
-    if (verification_token) {
-      fetchPortfolio();
-    } else if (!localStorage.getItem("token")) {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (verification_token) {
+  //     fetchPortfolio();
+  //   } else if (!localStorage.getItem("token")) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   const fetchPortfolio = async () => {
     try {

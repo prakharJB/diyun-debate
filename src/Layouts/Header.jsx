@@ -19,6 +19,8 @@ import { MdHomeFilled } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { PiUsersFourFill } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
+import { removeToken } from "../redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -27,18 +29,14 @@ function Header() {
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
   const [logInUser, setLogInUser] = useState();
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  const getLoggedUser = () => {
-    const user = JSON.parse(localStorage?.getItem("token"));
-    setLogInUser(user?.token);
-  };
+  const token = useSelector((state) => state?.auth?.token);
 
   useEffect(() => {
-    getLoggedUser();
+    setLogInUser(token);
   }, []);
-  const logOut = () => {
-    localStorage.removeItem("token");
-  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scroll = window.scrollY;
@@ -52,7 +50,6 @@ function Header() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -187,7 +184,8 @@ function Header() {
               </NavDropdown.Item>
               <NavDropdown.Item
                 className="d-flex align-items-center px-4 py-2"
-                onClick={logOut}
+                // onClick={logOut}
+                onClick={() => dispatch(removeToken())}
                 href="/"
               >
                 <CiLogout className="mx-2" />

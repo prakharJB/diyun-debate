@@ -8,10 +8,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
+import { CreateDebateAsyncThunk } from "../../../redux/asyncThunk/debateAsyncThunk";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const CreateDebate = (props) => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     title: "",
     thesis: "",
@@ -81,20 +85,35 @@ const CreateDebate = (props) => {
     data.append("isType", isType);
     data.append("file", image);
 
-    try {
-      const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/createdebate`,
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+    dispatch(CreateDebateAsyncThunk(data))
+      .unwrap()
+      .then((response) => {
+        // toast.success(res?.data?.messege);
+        console.log(response);
+        if (response?.status === 200) {
+          toast.success(response?.data?.message);
+        } else {
+          toast.error(response?.data?.message);
         }
-      );
-      await fetchData();
-    } catch (error) {
-      console.error("Error submitting the form:", error);
-    }
+        fetchData();
+      })
+      .catch((err) => {
+        console.log(err, "----------errror value");
+      });
+    // try {
+    //   const result = await axios.post(
+    //     `${process.env.REACT_APP_BASE_URL}/api/createdebate`,
+    //     data,
+    //     {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //     }
+    //   );
+    //   await fetchData();
+    // } catch (error) {
+    //   console.error("Error submitting the form:", error);
+    // }
 
     setFormData({
       title: "",

@@ -28,24 +28,35 @@ import Featured from "./Featured";
 import Popular from "./Popular";
 import New from "./New";
 import Hot from "./Hot";
+import { useDispatch } from "react-redux";
+import { GetDebateAsyncThunk } from "../../../redux/asyncThunk/debateAsyncThunk";
 
 function HomePortal() {
+  const dispatch = useDispatch();
   const { text, setText } = useContext(MyContext);
-  const fetchData = async () => {
-    try {
-      const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
-      const responseData = await axios.get(url);
-      // console.log("API Response:", responseData.data);
-      setText(responseData.data.mainDebates);
-      return responseData.data.mainDebates;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
+  //     const responseData = await axios.get(url);
+  //     // console.log("API Response:", responseData.data);
+  //     setText(responseData.data.mainDebates);
+  //     return responseData.data.mainDebates;
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchData();
+    dispatch(GetDebateAsyncThunk())
+      .unwrap()
+      .then((res) => {
+        setText(res?.data.mainDebates);
+      });
   }, []);
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 

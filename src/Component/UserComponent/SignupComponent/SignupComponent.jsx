@@ -6,10 +6,14 @@ import Login from "../LoginComponent/LoginComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+// import { SignupAsyncThunk } from "../../../../redux/asyncThunk/authAsyncThunk";
+import { SignupAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
 // import { Formik , Form, Field } from "formik";
 import * as Yup from "yup";
 
 const Signup = (props) => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,26 +46,43 @@ const Signup = (props) => {
       setPasswordError(false);
       setLoading(true);
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/api/register`,
-          formData
-        );
-        console.log("Signup successful!", response);
-        setLoading(false);
+        const response = await dispatch(SignupAsyncThunk(formData)).unwrap();
         if (response?.data?.status === "success") {
           toast.success(response?.data?.message);
-          const token = {
-            token: response?.data?.token,
-          };
-          localStorage.setItem("token", JSON.stringify(token));
           navigate("/my");
         } else {
           toast.error(response?.data?.message);
         }
-      } catch (error) {
-        // console.error("Signup failed!", error.response.data);
-        toast.error(error.response.data.message);
+      } catch (err) {
+        console.log(err, "----------error value");
+        // Handle errors
+        toast.error("Signup failed");
+      } finally {
+        setLoading(false); // Set loading to false when the signup process completes (whether it's success or failure)
       }
+
+      
+      // try {
+      //   const response = await axios.post(
+      //     `${process.env.REACT_APP_BASE_URL}/api/register`,
+      //     formData
+      //   );
+      //   console.log("Signup successful!", response);
+      //   setLoading(false);
+      //   if (response?.data?.status === "success") {
+      //     toast.success(response?.data?.message);
+      //     const token = {
+      //       token: response?.data?.token,
+      //     };
+      //     localStorage.setItem("token", JSON.stringify(token));
+      //     navigate("/my");
+      //   } else {
+      //     toast.error(response?.data?.message);
+      //   }
+      // } catch (error) {
+      //   // console.error("Signup failed!", error.response.data);
+      //   toast.error(error.response.data.message);
+      // }
 
       setFormData({
         email: "",

@@ -10,6 +10,7 @@ import Privacy from "../Screens/UserScreen/Privacy/Privacy";
 import PasswordForget from "../Screens/UserScreen/ForgetPassword/ForgetPassword";
 import Terms from "../Screens/UserScreen/Terms/Terms";
 import ContactUs from "../Screens/UserScreen/Contact/Contactus";
+import PrivateRoutes from "./PrivateRoute";
 
 function AppRoutes() {
   return (
@@ -23,7 +24,9 @@ function AppRoutes() {
           <Route path="/explore/tags/:category" element={<Home />}></Route>
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
-          <Route path="/my" element={<UserDashboard />}></Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/my" element={<UserDashboard />}></Route>
+          </Route>
           <Route
             path="/my/:verification_token"
             element={<UserDashboard />}
