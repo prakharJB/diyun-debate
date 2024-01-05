@@ -17,7 +17,7 @@ function AppRoutes() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" exact element={<Home />}></Route>
           <Route path="/debate/:id" element={<SingleDebate />}></Route>
           <Route path="/explore" element={<Home />}></Route>
           <Route path="/explore/tags" element={<Tags />}></Route>
