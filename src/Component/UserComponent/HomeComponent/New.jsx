@@ -6,6 +6,9 @@ import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 function New(data) {
+  console.log("Original Data:", data?.data);
+
+  const newOne = data?.data ? [...data.data].reverse() : [];
 
 
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
@@ -17,8 +20,8 @@ function New(data) {
           <Row>
             <Col>
               <div className="mt-top">
-                {data.data &&
-                  data.data?.map((val, index) => (
+                {newOne &&
+                  newOne?.map((val, index) => (
                     <Card>
                       <a href={`/debate/${val.id}`} key={index}>
                         <Card.Img variant="top" src={baseUrl + val.image} />

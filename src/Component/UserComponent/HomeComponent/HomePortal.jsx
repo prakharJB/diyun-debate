@@ -45,6 +45,7 @@ function HomePortal() {
     fetchData();
   }, []);
 
+
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
   return (
