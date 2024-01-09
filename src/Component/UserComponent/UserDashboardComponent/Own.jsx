@@ -4,7 +4,7 @@ const Own = () => {
   return (
     <div>
       
-      <p className="text-center">You do not own any discussions yet. Click on “New” to create your own discussion.</p>
+      <p className="text-center">אין לך עדיין דיונים כלשהם. לחץ על "חדש" כדי ליצור דיון משלך.</p>
     </div>
   );
 };

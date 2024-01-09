@@ -4,7 +4,7 @@ const Recommended = () => {
   return (
     <div>
       
-      <p class="text-center">This is the content for the Recommended tab.</p>
+      <p class="text-center">זהו התוכן של הכרטיסייה מומלצים.</p>
     </div>
   );
 };

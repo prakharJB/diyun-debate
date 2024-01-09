@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import tHn from "../../../locales/he.json";
+import toast from "react-hot-toast";
 
 // Define your API endpoint here   /* API FOR LOGIN */
 const API_ENDPOINT = "https://laradebate.jmbliss.com/api/contact-form";
@@ -26,9 +27,13 @@ const Contactus = () => {
     try {
       // Use the API endpoint constant here
       const response = await axios.post(API_ENDPOINT, formData);
-      console.log(response.data); // Handle success response
+      // console.log(response); // Handle success response
+      if (response?.data?.message == "Your message has been sent!") {
+        toast.success(response?.data?.message);
+        navigate("/")
+      } else toast.error(response?.data?.message);
     } catch (error) {
-      if (error.response) {
+      if (error?.response) {
         console.error("Error submitting form:", error.response.data);
       } else {
         console.error("Error submitting form:", error.message);

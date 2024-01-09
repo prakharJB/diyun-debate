@@ -8,10 +8,10 @@ const Following = () => {
         <Row>
           <Col className="select-languages d-flex justify-content-end mt-0 my-5">
             <Form.Select aria-label="Default select example">
-              <option>Most Recent Activity</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option>הפעילות האחרונה</option>
+              <option value="1">אחד</option>
+              <option value="2">שתיים</option>
+              <option value="3">שְׁלוֹשָׁה</option>
             </Form.Select>
           </Col>
         </Row>
@@ -19,8 +19,8 @@ const Following = () => {
           <Col>
             <div>
               <p className="text-center">
-                There’s nothing here yet! Click “Follow” in a discussion to be
-                notified of new claims and changes.
+              אין כאן כלום עדיין! לחץ על "עקוב" בדיון כדי להיות
+                הודעה על תביעות ושינויים חדשים.
               </p>
             </div>
           </Col>

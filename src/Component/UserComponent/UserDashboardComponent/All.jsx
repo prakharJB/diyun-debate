@@ -82,7 +82,7 @@ const All = () => {
               </div>
               <div>
                 <h4 className="see-all text-align-end text-decoration-underline">
-                  See All
+                ראה הכל
                 </h4>
               </div>
             </div>
@@ -90,10 +90,10 @@ const All = () => {
 
           <Col className="select-languages d-flex justify-content-end mt-0 my-5">
             <Form.Select aria-label="Default select example">
-              <option>Most Recent Activity</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option>הפעילות האחרונה</option>
+              <option value="1">אחד</option>
+              <option value="2">שתיים</option>
+              <option value="3">שְׁלוֹשָׁה</option>
             </Form.Select>
           </Col>
         </Row>

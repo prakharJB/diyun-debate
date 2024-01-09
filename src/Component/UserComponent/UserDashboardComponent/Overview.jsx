@@ -33,20 +33,17 @@ const Overview = () => {
         <Row>
           <Col className="welcome-content col-md-8">
             <div className="my-5 mt-0 py-5 pt-0">
-              <h2>Welcome to Diyun</h2>
-              <p>Hi, username! </p>
+              <h2>ברוכים הבאים ל-Diyun</h2>
+              <p>היי, שם משתמש! </p>
+              <p>זה My Diyun, שבו תמצא את כל הדיונים שלך ו צוותים.</p>
               <p>
-                This is My Diyun, where you’ll find all your discussions and
-                teams.
-              </p>
-              <p>
-                Ready to get started? <a href="/explore">Explore</a> discussions
-                or <a href="/explore">create</a> one yourself.
+                מוכנים להתחיל? <a href="/explore">לַחקוֹר</a>דיונים אוֹ{" "}
+                <a href="/explore">לִיצוֹר</a> אחד בעצמך.
               </p>
             </div>
 
             <div>
-              <h3 className="my-4">Recommended for you</h3>
+              <h3 className="my-4">מומלץ עבורך</h3>
               <div className="d-flex">
                 <div className="cardd-div">
                   <Card className="">
@@ -107,7 +104,7 @@ const Overview = () => {
               </div>
               <div>
                 <h4 className="see-all text-align-end text-decoration-underline">
-                  See All
+                  ראה הכל
                 </h4>
               </div>
             </div>
@@ -116,7 +113,7 @@ const Overview = () => {
           <Col className="recntly-viewed-col">
             <div>
               <div className="border-bottom  my-5 mt-0">
-                <h3 className="my-4 mt-0">Recently viewed</h3>
+                <h3 className="my-4 mt-0">נראה לאחרונה</h3>
               </div>
               <div>
                 <div>
@@ -132,7 +129,8 @@ const Overview = () => {
                         </div>
                         <div className="d-flex align-items-center discussion-card-title__title--compact-line">
                           <p>
-                            Will robots doing work be better or worse for humans
+                            האם רובוטים שעושים עבודה יהיו טובים יותר או גרועים
+                            יותר עבור בני אדם
                           </p>
                         </div>
                       </div>
@@ -152,7 +150,8 @@ const Overview = () => {
                         </div>
                         <div className="d-flex align-items-center discussion-card-title__title--compact-line">
                           <p>
-                            Will robots doing work be better or worse for humans
+                            האם רובוטים שעושים עבודה יהיו טובים יותר או גרועים
+                            יותר עבור בני אדם
                           </p>
                         </div>
                       </div>
@@ -163,7 +162,7 @@ const Overview = () => {
 
               <div>
                 <h4 className="see-all text-align-end text-decoration-underline">
-                  See All
+                  ראה הכל
                 </h4>
               </div>
             </div>

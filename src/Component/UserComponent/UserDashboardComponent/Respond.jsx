@@ -4,7 +4,7 @@ const Respond = () => {
   return (
     <div>
       
-      <p className="text-center">You do not have any alerts to take care of at the moment.</p>
+      <p className="text-center">אין לך שום התראות לטפל בהן כרגע.</p>
     </div>
   );
 };
