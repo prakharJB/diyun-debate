@@ -6,9 +6,13 @@ import ForgetPassword from "../ForgetPasswordComponent/ForgetPasswordComponent";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { LoginAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
+import { useDispatch } from "react-redux";
 
 const Login = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
 
   const handleForgetPasswordOpen = () => {
@@ -39,33 +43,29 @@ const Login = (props) => {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/login`,
-        formData
-      );
-      console.log("Signup successful!", response);
+      const response = await dispatch(LoginAsyncThunk(formData)).unwrap();
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
-        const token = {
-          token: response?.data?.token,
-        };
-        localStorage.setItem("token", JSON.stringify(token));
         navigate("/my");
       } else {
         toast.error(response?.data?.message);
       }
-    } catch (error) {
-      // console.error("Signup failed!", error.response.data);
-      toast.error(error?.response?.data?.message);
+    } catch (err) {
+      console.log(err, "----------error value");
+      // Handle errors
+      toast.error("Login failed");
+    } finally {
+      setLoading(false); // Set loading to false when the signup process completes (whether it's success or failure)
     }
+
     setFormData({
       email: "",
       password: "",
     });
     // Add your form submission logic here
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     handleClose();
     // navigate("/my")
   };
@@ -125,6 +125,13 @@ const Login = (props) => {
             >
               שכחת את הסיסמא
             </div>
+            {loading && (
+              <div className="d-flex align-items-center justify-content-center mt-4">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              </div>
+            )}
             <div className="text-center">
               <Button className="my-4 px-4" variant="primary" type="submit">
                 התחברות

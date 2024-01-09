@@ -19,6 +19,8 @@ import { MdHomeFilled } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { PiUsersFourFill } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
+import { removeToken } from "../redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -27,18 +29,14 @@ function Header() {
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
   const [logInUser, setLogInUser] = useState();
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  const getLoggedUser = () => {
-    const user = JSON.parse(localStorage?.getItem("token"));
-    setLogInUser(user?.token);
-  };
+  const token = useSelector((state) => state?.auth?.token);
 
   useEffect(() => {
-    getLoggedUser();
+    setLogInUser(token);
   }, []);
-  const logOut = () => {
-    localStorage.removeItem("token");
-  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scroll = window.scrollY;
@@ -52,7 +50,6 @@ function Header() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -77,129 +74,151 @@ function Header() {
         expand="lg"
         className={isDarkHeader ? "darkHeader" : "bg-body-tertiary"}
       >
-        <Navbar.Brand href="/">{tHn.Diyun}</Navbar.Brand>
-        <Nav className="me-auto mobile-btn-bottom">
-          {logInUser ? (
-            <Nav.Link
-              className={location.pathname === "/my" ? "activeNav" : ""}
-              href="/my"
-            >
-              {tHn.My_Diyun}
-            </Nav.Link>
-          ) : (
-            <Nav.Link
-              className={location.pathname === "/explore" ? "activeNav" : ""}
-              href="/explore"
-            >
-              {tHn.explore}
-            </Nav.Link>
-          )}
-          {logInUser ? (
-            <Nav.Link
-              className={location.pathname === "/explore" ? "activeNav" : ""}
-              href="/explore"
-            >
-              {tHn.explore}
-            </Nav.Link>
-          ) : (
-            <Nav.Link
-              className={location.pathname === "/tour" ? "activeNav" : ""}
-              href="/tour"
-            >
-              {tHn.tour}
-            </Nav.Link>
-          )}
-          {logInUser ? null : (
-            <Nav.Link onClick={() => setLoginModalShow(true)}>
-              +{tHn.new}
-            </Nav.Link>
-          )}
-
-          <Nav.Link href="/search">
-            <HiMagnifyingGlass />
-          </Nav.Link>
-        </Nav>
-        <Nav className="mx-2">
-          {logInUser ? (
-            <Nav.Link
-              className="login-btn"
-              onClick={() => setCreateDebateModal(true)}
-            >
-              +{tHn.new}
-            </Nav.Link>
-          ) : (
-            <Nav.Link
-              className="login-btn"
-              onClick={() => setLoginModalShow(true)}
-            >
-              {tHn.log_in}
-            </Nav.Link>
-          )}
-          {logInUser ? (
-            <NavDropdown
-              className="profile-nav"
-              title={
-                <img
-                  src={userProfile}
-                  alt="profile"
-                  className="rounded-circle profile-img-style"
-                />
-              }
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item
-                className="d-flex align-items-center px-4 py-2"
-                href="/contact-us"
+        <Navbar.Brand as={Link} to="/">
+          {tHn.Diyun}
+        </Navbar.Brand>
+        {logInUser ? (
+          <>
+            <Nav className="me-auto mobile-btn-bottom">
+              <Nav.Link
+                className={location.pathname === "/my" ? "activeNav" : ""}
+                to="/my"
+                as={Link}
               >
-                <SlEnvolopeLetter className="mx-2" />
-                {tHn.Contact}
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                className="d-flex align-items-center px-4 py-2"
-                href="#action/3.2"
-              >
-                <IoIosSettings className="mx-2" />
-                {tHn.User_Settings}
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                className="d-flex align-items-center px-4 py-2"
-                href="/my"
-              >
-                {" "}
-                <MdHomeFilled className="mx-2" />
                 {tHn.My_Diyun}
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                className="d-flex align-items-center px-4 py-2"
-                href="/Profile"
+              </Nav.Link>
+
+              <Nav.Link
+                className={location.pathname === "/explore" ? "activeNav" : ""}
+                to="/explore"
+                as={Link}
               >
-                {" "}
-                <FaUser className="mx-2" />
-                {tHn.Profile}
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                className="d-flex align-items-center px-4 py-2"
-                href="/teams"
+                {tHn.explore}
+              </Nav.Link>
+
+              <Nav.Link as={Link} to="/search">
+                <HiMagnifyingGlass />
+              </Nav.Link>
+            </Nav>
+            <Nav className="mx-2">
+              <Nav.Link
+                className="login-btn"
+                onClick={() => setCreateDebateModal(true)}
               >
-                {" "}
-                <PiUsersFourFill className="mx-2" />
-                {tHn.Teams}
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                className="d-flex align-items-center px-4 py-2"
-                onClick={logOut}
-                href="/"
+                +{tHn.new}
+              </Nav.Link>
+
+              <NavDropdown
+                className="profile-nav"
+                title={
+                  <img
+                    src={userProfile}
+                    alt="profile"
+                    className="rounded-circle profile-img-style"
+                  />
+                }
+                id="basic-nav-dropdown"
               >
-                <CiLogout className="mx-2" />
-                {tHn.Logout}
-              </NavDropdown.Item>
-            </NavDropdown>
-          ) : (
-            <Nav.Link className="signup-btn" onClick={() => setModalShow(true)}>
-              {tHn.sign_up}
-            </Nav.Link>
-          )}
-        </Nav>
+                <NavDropdown.Item
+                  className="d-flex align-items-center px-4 py-2"
+                  as={Link}
+                  to="/contact-us"
+                >
+                  <SlEnvolopeLetter className="mx-2" />
+                  {tHn.Contact}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  className="d-flex align-items-center px-4 py-2"
+                  as={Link}
+                  to="#action/3.2"
+                >
+                  <IoIosSettings className="mx-2" />
+                  {tHn.User_Settings}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  className="d-flex align-items-center px-4 py-2"
+                  to="/my"
+                  as={Link}
+                >
+                  {" "}
+                  <MdHomeFilled className="mx-2" />
+                  {tHn.My_Diyun}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  className="d-flex align-items-center px-4 py-2"
+                  to="/Profile"
+                  as={Link}
+                >
+                  {" "}
+                  <FaUser className="mx-2" />
+                  {tHn.Profile}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  className="d-flex align-items-center px-4 py-2"
+                  to="/teams"
+                  as={Link}
+                >
+                  {" "}
+                  <PiUsersFourFill className="mx-2" />
+                  {tHn.Teams}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  className="d-flex align-items-center px-4 py-2"
+                  // onClick={logOut}
+                  onClick={() => dispatch(removeToken())}
+                  to="/"
+                  as={Link}
+                >
+                  <CiLogout className="mx-2" />
+                  {tHn.Logout}
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </>
+        ) : (
+          <>
+            <Nav className="me-auto mobile-btn-bottom">
+              <Nav.Link
+                className={location.pathname === "/explore" ? "activeNav" : ""}
+                to="/explore"
+                as={Link}
+              >
+                {tHn.explore}
+              </Nav.Link>
+
+              <Nav.Link
+                className={location.pathname === "/tour" ? "activeNav" : ""}
+                to="/tour"
+                as={Link}
+              >
+                {tHn.tour}
+              </Nav.Link>
+
+              <Nav.Link onClick={() => setLoginModalShow(true)}>
+                +{tHn.new}
+              </Nav.Link>
+
+              <Nav.Link as={Link} to="/search">
+                <HiMagnifyingGlass />
+              </Nav.Link>
+            </Nav>
+            <Nav className="mx-2">
+              <Nav.Link
+                className="login-btn"
+                onClick={() => setLoginModalShow(true)}
+              >
+                {tHn.log_in}
+              </Nav.Link>
+
+              <Nav.Link
+                className="signup-btn"
+                onClick={() => setModalShow(true)}
+              >
+                {tHn.sign_up}
+              </Nav.Link>
+            </Nav>
+          </>
+        )}
       </Navbar>
       <CreateDebate
         show={CreateDebateModal}

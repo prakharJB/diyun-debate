@@ -11,20 +11,23 @@ import PasswordForget from "../Screens/UserScreen/ForgetPassword/ForgetPassword"
 import Terms from "../Screens/UserScreen/Terms/Terms";
 import ContactUs from "../Screens/UserScreen/Contact/Contactus";
 import UserSettings from "../Screens/UserScreen/UserSettings/UserSettings";
+import PrivateRoutes from "./PrivateRoute";
 
 function AppRoutes() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" exact element={<Home />}></Route>
           <Route path="/debate/:id" element={<SingleDebate />}></Route>
           <Route path="/explore" element={<Home />}></Route>
           <Route path="/explore/tags" element={<Tags />}></Route>
           <Route path="/explore/tags/:category" element={<Home />}></Route>
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
-          <Route path="/my" element={<UserDashboard />}></Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/my" element={<UserDashboard />}></Route>
+          </Route>
           <Route
             path="/my/:verification_token"
             element={<UserDashboard />}

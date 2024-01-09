@@ -33,7 +33,6 @@ const PasswordForget = (props) => {
           `${process.env.REACT_APP_BASE_URL}/api/reset-password/${token}`,
           formData
         );
-        console.log("Signup successful!", response);
         if (response?.data?.status === "success") {
           toast.success(response?.data?.message);
           navigate("/");

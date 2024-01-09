@@ -1,11 +1,14 @@
 import {} from "react-bootstrap";
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import tHn from "../../../locales/he.json";
 
 // Define your API endpoint here   /* API FOR LOGIN */
 const API_ENDPOINT = "https://laradebate.jmbliss.com/api/contact-form";
 
 const Contactus = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -60,8 +63,12 @@ const Contactus = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <button type="button" className="btn btn-primary">
-              לורם איפסום
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="btn btn-primary"
+            >
+              לך לדייון
             </button>
           </div>
         </div>
@@ -71,7 +78,7 @@ const Contactus = () => {
         <form className="example contct-us" action="/action_page.php">
           <input
             type="search"
-            placeholder="Search.."
+            placeholder={tHn.Search}
             name="search"
             className="cnt-frm"
           />
@@ -152,19 +159,23 @@ const Contactus = () => {
               מרכז עזרה
             </a>
           </div>
-          <div className="nav-engl ftr-nav">
+          {/* <div className="nav-engl ftr-nav">
             <a className="navbar-brand text-primary" href="#">
               אנגלית
             </a>
-          </div>
+          </div> */}
           <div className="nav-cnt ftr-nav">
-            <a className="navbar-brand text-primary" href="#">
+            <a className="navbar-brand text-primary" href="/contact-us">
               צור קשר
             </a>
           </div>
           <div className="ftr-nav">
-            <button type="button" className="btn btn-primary ftr-nav">
-              לורם איפסום
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="btn btn-primary ftr-nav"
+            >
+              לך לדייון
             </button>
           </div>
         </div>

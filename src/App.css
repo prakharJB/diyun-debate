@@ -924,12 +924,14 @@ img.card-img-top {
 
 /* -----User Settings */
 
-
+.user-setting h2{
+    font-size: 22px;font-weight: 700;color: #2c343d;margin-bottom: 24px;
+}
 
   .user-set label {
     display: block;
     margin-bottom: 8px;
-    color: #555;   
+    color: #2c343d;   
   }
   #remove-button {
     color: #ca3507;
@@ -950,6 +952,7 @@ img.card-img-top {
     border-radius: 4px; 
     font-weight: 700;
     font-size: 14px;
+    
   }
   #remove-button {
     margin-right: 15px;
@@ -964,6 +967,32 @@ img.card-img-top {
   #change-button:hover {
     background-color: #656f7b;
     color: #fff;
+  }
+  #profile-container .close-button ,  #profile-container .save-button{
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px; 
+    font-weight: 700;
+    font-size: 14px; 
+    border:1px solid #888e96;
+    color: #2c343d;
+    background-color: #fff;
+    margin-right: 15px;
+  }
+  .close-button:hover{
+    background-color: #656f7b;
+    color: #fff;
+  }
+  .contact-support a{
+    color: #2c343d;
+    text-decoration: underline;
+  }
+  label.contact-support {
+    margin-bottom: 32px;
+}
+  .save-button{
+    background-color: #e6e9eb!important;
+    color: #656f7b!important;
   }
   .btn-password {
     border-color: #888e96;
@@ -989,6 +1018,10 @@ img.card-img-top {
     width: 700px
  !important;
 }
+.data-btn{
+    display: flex;
+    justify-content: center;
+}
 .paswrd-modal .modal-body{
 display: flex;
 flex-direction: column;
@@ -997,6 +1030,20 @@ width: 100%!important;
 .user-pswrd {
     padding: 12px 11px 10px;
     margin: 20px 0px;
+}
+.bio-textarea .form-control {
+    width:600px;
+    height:200px;
+    border: 1px solid #0069e0;
+}
+.form-control:focus{
+    box-shadow: unset;
+}
+.bio-textarea p {
+    color:#0069e0;
+        font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
 }
 .frgt-pwd , .frgt-pwd a{
     text-align: end;

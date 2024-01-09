@@ -85,31 +85,6 @@ function SingleDebate() {
   };
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
-  // Sunburst
-
-  const svgRef = useRef();
-  useEffect(() => {
-    if (debateDetails && svgRef.current) {
-      drawChart();
-    }
-  }, [debateDetails]);
-  const drawChart = () => {
-    // Your D3.js code to draw the sunburst chart goes here
-    const width = 500;
-    const height = 500;
-
-    // Create a D3.js hierarchy from the nested JSON data
-    const root = d3.hierarchy(debateDetails);
-
-    const svg = d3
-      .select(svgRef.current)
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", `translate(${width / 2},${height / 2})`);
-
-    // Your sunburst chart code using D3.js hierarchy layout goes here
-  };
   return (
     <>
       <Modal

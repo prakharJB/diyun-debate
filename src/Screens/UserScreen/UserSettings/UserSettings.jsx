@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import React, { useState } from "react";
 import Header from "../../../Layouts/Header";
 
@@ -9,6 +10,7 @@ function UserSettings() {
     const [show, setShow] = useState(false);
     const [file, setFile] = useState(null);
     const [profilePic, setProfilePic] = useState(null);
+    const [biography, setBiography] = useState("");
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -18,6 +20,10 @@ function UserSettings() {
         const selectedFile = e.target.files[0];
         setFile(selectedFile)
         console.log(file)
+    };
+
+    const handleBiographyChange = (e) => {
+        setBiography(e.target.value);
     };
 
     const handleUpload = async () => {
@@ -97,6 +103,32 @@ function UserSettings() {
                                 <div class="user-setting-frm">
                                     <label htmlFor="fname" class="name-usr">Password</label>
                                     <Button variant="primary" className="btn-password" onClick={handleShow}>Change Password</Button>
+                                </div>
+                                <div className="profile-set" >
+                                    <h2>Profile Settings</h2>
+                                    <div class="user-setting-frm" >
+                                        <label for="fname" class="name-usr">Biography (optional)</label>
+                                    </div>
+                                    <form action="" className="bio-textarea">
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Control as="textarea" rows={3} maxlength="4096" onChange={handleBiographyChange} />
+                                        </Form.Group>
+                                        <p>4096</p>
+                                    </form>
+                                    <div class="user-check-box user-setting-frm">
+                                        <input type="checkbox" id="check-bx" name="email-id" value="" />
+                                        <label for="vehicle1"> Hide account timeline and statistics</label>
+                                    </div>
+                                </div>
+                                <h2>Your Data</h2>
+                                <label for="vehicle1" className="contact-support"> Please <a href=""> contact support </a> if you want to export or delete your data.</label>
+                                <div className="data-btn" >
+                                    <button className="close-button"
+                                    // onclick={removeProfilePicture()}
+                                    >Close</button>
+                                    <button className="save-button"
+                                    // onclick={document.getElementById('fileInput').click()}
+                                    >Save</button>
                                 </div>
                             </div>
 

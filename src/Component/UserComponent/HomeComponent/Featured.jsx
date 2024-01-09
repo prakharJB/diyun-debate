@@ -18,23 +18,24 @@ import testgrass from "../../../Assets/test-grass.jpeg";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 
-function Featured() {
-  const { text, setText } = useContext(MyContext);
-  const fetchData = async () => {
-    try {
-      const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
-      const responseData = await axios.get(url);
-      // console.log("API Response:", responseData.data);
-      setText(responseData.data.mainDebates);
-      return responseData.data.mainDebates;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+function Featured(data) {
+  // console.log(data)
+  // const { text, setText } = useContext(MyContext);
+  // const fetchData = async () => {
+  //   try {
+  //     const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
+  //     const responseData = await axios.get(url);
+  //     // console.log("API Response:", responseData.data);
+  //     setText(responseData.data.mainDebates);
+  //     return responseData.data.mainDebates;
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
@@ -420,8 +421,8 @@ function Featured() {
                     <Card.Text className="m-0">62.6ר</Card.Text>
                   </div>
                 </Card>
-                {text &&
-                  text?.map((val, index) => (
+                {data.data &&
+                  data?.data?.map((val, index) => (
                     <Card>
                       <a href={`/debate/${val.id}`} key={index}>
                         <Card.Img variant="top" src={baseUrl + val.image} />

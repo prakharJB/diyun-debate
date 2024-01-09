@@ -6,23 +6,23 @@ import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 
-function Hot() {
-  const { text, setText } = useContext(MyContext);
-  const fetchData = async () => {
-    try {
-      const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
-      const responseData = await axios.get(url);
-      // console.log("API Response:", responseData.data);
-      setText(responseData.data.mainDebates);
-      return responseData.data.mainDebates;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+function Hot(data) {
+  // const { text, setText } = useContext(MyContext);
+  // const fetchData = async () => {
+  //   try {
+  //     const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
+  //     const responseData = await axios.get(url);
+  //     // console.log("API Response:", responseData.data);
+  //     setText(responseData.data.mainDebates);
+  //     return responseData.data.mainDebates;
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
@@ -33,8 +33,8 @@ function Hot() {
           <Row>
             <Col>
               <div className="mt-top">
-                {text &&
-                  text?.map((val, index) => (
+                {data.data &&
+                  data.data?.map((val, index) => (
                     <Card>
                       <a href={`/debate/${val.id}`} key={index}>
                         <Card.Img variant="top" src={baseUrl + val.image} />
