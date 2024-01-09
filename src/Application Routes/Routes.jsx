@@ -1,21 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../Screens/Home";
-import Signup from "../Screens/Sign-up";
-import LoginForm from "../Screens/Login-form";
-import DebateAdd from "../Screens/Debateadd";
-import SingleDebate from "../Screens/SingleDebate";
-import Tags from "../Screens/Tags";
-import UserDashboard from "../Screens/UserDashboard";
-import Tour from "../Screens/Tour";
-import ContactUs from "../Screens/Contactus";
-import Search from "../Screens/Search";
-// import About from "../Screens/About";
-import About from "../Screens/About";
-import Privacy from "../Screens/Privacy";
-import Terms from "../Screens/Terms";
-import UserSettings from "../Screens/UserSettings";
-
-
+import Home from "../Screens/UserScreen/Home/Home";
+import SingleDebate from "../Screens/UserScreen/SingleDebate/SingleDebate";
+import Tags from "../Screens/UserScreen/Tags.jsx/Tags";
+import UserDashboard from "../Screens/UserScreen/UserDashboard/UserDashboard";
+import Tour from "../Screens/UserScreen/Tour.jsx/Tour";
+import Search from "../Screens/UserScreen/Search/Search";
+import About from "../Screens/UserScreen/About/About";
+import Privacy from "../Screens/UserScreen/Privacy/Privacy";
+import PasswordForget from "../Screens/UserScreen/ForgetPassword/ForgetPassword";
+import Terms from "../Screens/UserScreen/Terms/Terms";
+import ContactUs from "../Screens/UserScreen/Contact/Contactus";
+import UserSettings from "../Screens/UserScreen/UserSettings/UserSettings";
 
 function AppRoutes() {
   return (
@@ -23,9 +18,6 @@ function AppRoutes() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/login" element={<LoginForm />}></Route>
-          <Route path="/new" element={<DebateAdd />}></Route>
           <Route path="/debate/:id" element={<SingleDebate />}></Route>
           <Route path="/explore" element={<Home />}></Route>
           <Route path="/explore/tags" element={<Tags />}></Route>
@@ -33,13 +25,20 @@ function AppRoutes() {
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/my" element={<UserDashboard />}></Route>
-          <Route path="/my/:token" element={<UserDashboard />}></Route>
-          <Route path="/contact-us" element={<ContactUs />} ></Route>
-          <Route path="/about" element={<About />} ></Route>
-          <Route path="/privacy" element={<Privacy />} ></Route>
-          <Route path="/terms" element={<Terms />} ></Route>
-          <Route path="/user-settings"element={< UserSettings />} ></Route>
-          {/* <Route path="/forget-password/:token" element={</>} ></Route> */}
+          <Route
+            path="/my/:verification_token"
+            element={<UserDashboard />}
+          ></Route>
+          <Route
+            path="/forget-password/:token"
+            element={<PasswordForget />}
+          ></Route>
+          <Route path="/contact-us" element={<ContactUs />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/privacy" element={<Privacy />}></Route>
+          <Route path="/terms" element={<Terms />}></Route>
+          <Route path="/user-profile" element={<></>} ></Route>
+          <Route path="/user-setting" element={<UserSettings />}></Route>
         </Routes>
       </Router>
     </div>

@@ -4,13 +4,21 @@ import Navbar from "react-bootstrap/Navbar";
 import React, { useState, useEffect, useRef } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import tHn from "../locales/he.json";
-import Signup from "../Component/SignupComponent";
-import Login from "../Component/LoginComponent";
-import CreateDebate from "../Component/CreateDebate";
+import Signup from "../Component/UserComponent/SignupComponent/SignupComponent";
+import Login from "../Component/UserComponent/LoginComponent/LoginComponent";
+import CreateDebate from "../Component/UserComponent/CeateDebateComponent/CreateDebate";
 import logo from "../Assets/LOGO (2).png";
 import { fetchData } from "../Component/SunBurst";
-import HomePortal from "../Component/HomePortal";
+import HomePortal from "../Component/UserComponent/HomeComponent/HomePortal";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link, useLocation } from "react-router-dom";
+import userProfile from "../Assets/default_229_128x128.jpeg";
+import { SlEnvolopeLetter } from "react-icons/sl";
+import { IoIosSettings } from "react-icons/io";
+import { MdHomeFilled } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { PiUsersFourFill } from "react-icons/pi";
+import { CiLogout } from "react-icons/ci";
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -18,12 +26,13 @@ function Header() {
   const [LoginmodalShow, setLoginModalShow] = useState(false);
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
   const [logInUser, setLogInUser] = useState();
+  const location = useLocation();
 
   const getLoggedUser = () => {
     const user = JSON.parse(localStorage?.getItem("token"));
     setLogInUser(user?.token);
   };
-  
+
   useEffect(() => {
     getLoggedUser();
   }, []);
@@ -71,14 +80,34 @@ function Header() {
         <Navbar.Brand href="/">{tHn.Diyun}</Navbar.Brand>
         <Nav className="me-auto mobile-btn-bottom">
           {logInUser ? (
-            <Nav.Link href="/my" activeClassName="active">My Diyun</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/my" ? "activeNav" : ""}
+              href="/my"
+            >
+              {tHn.My_Diyun}
+            </Nav.Link>
           ) : (
-            <Nav.Link href="/explore" activeClassName="active">{tHn.explore}</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/explore" ? "activeNav" : ""}
+              href="/explore"
+            >
+              {tHn.explore}
+            </Nav.Link>
           )}
           {logInUser ? (
-            <Nav.Link href="/explore" activeClassName="active">{tHn.explore}</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/explore" ? "activeNav" : ""}
+              href="/explore"
+            >
+              {tHn.explore}
+            </Nav.Link>
           ) : (
-            <Nav.Link href="/tour" activeClassName="active">{tHn.tour}</Nav.Link>
+            <Nav.Link
+              className={location.pathname === "/tour" ? "activeNav" : ""}
+              href="/tour"
+            >
+              {tHn.tour}
+            </Nav.Link>
           )}
           {logInUser ? null : (
             <Nav.Link onClick={() => setLoginModalShow(true)}>
@@ -92,7 +121,10 @@ function Header() {
         </Nav>
         <Nav className="mx-2">
           {logInUser ? (
-            <Nav.Link onClick={() => setCreateDebateModal(true)}>
+            <Nav.Link
+              className="login-btn"
+              onClick={() => setCreateDebateModal(true)}
+            >
               +{tHn.new}
             </Nav.Link>
           ) : (
@@ -104,18 +136,62 @@ function Header() {
             </Nav.Link>
           )}
           {logInUser ? (
-            <NavDropdown title="Profile" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
-                Contact Support
+            <NavDropdown
+              className="profile-nav"
+              title={
+                <img
+                  src={userProfile}
+                  alt="profile"
+                  className="rounded-circle profile-img-style"
+                />
+              }
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/contact-us"
+              >
+                <SlEnvolopeLetter className="mx-2" />
+                {tHn.Contact}
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                User Settings
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="#action/3.2"
+              >
+                <IoIosSettings className="mx-2" />
+                {tHn.User_Settings}
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">My Diyun</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">My Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">My Teams</NavDropdown.Item>
-              <NavDropdown.Item onClick={logOut} href="/">
-                Logout
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/my"
+              >
+                {" "}
+                <MdHomeFilled className="mx-2" />
+                {tHn.My_Diyun}
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/Profile"
+              >
+                {" "}
+                <FaUser className="mx-2" />
+                {tHn.Profile}
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                href="/teams"
+              >
+                {" "}
+                <PiUsersFourFill className="mx-2" />
+                {tHn.Teams}
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                className="d-flex align-items-center px-4 py-2"
+                onClick={logOut}
+                href="/"
+              >
+                <CiLogout className="mx-2" />
+                {tHn.Logout}
               </NavDropdown.Item>
             </NavDropdown>
           ) : (

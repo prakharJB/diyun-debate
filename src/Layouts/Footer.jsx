@@ -13,7 +13,7 @@ function Footer() {
               <Col className="mb-3 text-center">
                 <img
                   src={footerLogo}
-                  alt="footer Logo Image"
+                  alt="footer Logo"
                   className="img-fluid footer-logo"
                 />
               </Col>
