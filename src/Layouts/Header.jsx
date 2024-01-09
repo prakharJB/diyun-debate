@@ -130,7 +130,7 @@ function Header() {
                 <NavDropdown.Item
                   className="d-flex align-items-center px-4 py-2"
                   as={Link}
-                  to="#action/3.2"
+                  to="/my/user-setting"
                 >
                   <IoIosSettings className="mx-2" />
                   {tHn.User_Settings}
@@ -146,7 +146,7 @@ function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   className="d-flex align-items-center px-4 py-2"
-                  to="/Profile"
+                  to="/my/Profile"
                   as={Link}
                 >
                   {" "}
