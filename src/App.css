@@ -922,6 +922,184 @@ img.card-img-top {
     padding: 30px 0px;
 }
 
+/* -----User Settings */
+
+.user-setting h2{
+    font-size: 22px;font-weight: 700;color: #2c343d;margin-bottom: 24px;
+}
+
+  .user-set label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c343d;   
+  }
+  #remove-button {
+    color: #ca3507;
+    border:1px solid #ca3507;
+    /* background-color: #e6e9eb; */
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px; 
+    font-weight: 700;
+    font-size: 14px;   
+  }
+  #change-button{
+    color: #2c343d;
+    border:1px solid #888e96;
+    /* background-color: #e6e9eb; */
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px; 
+    font-weight: 700;
+    font-size: 14px;
+    
+  }
+  #remove-button {
+    margin-right: 15px;
+  }
+  .user-set{
+    margin-top: 34px;
+  }
+  #remove-button:hover{
+    background-color: #ca3507;
+    color: #fff;
+  }
+  #change-button:hover {
+    background-color: #656f7b;
+    color: #fff;
+  }
+  #profile-container .close-button ,  #profile-container .save-button{
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px; 
+    font-weight: 700;
+    font-size: 14px; 
+    border:1px solid #888e96;
+    color: #2c343d;
+    background-color: #fff;
+    margin-right: 15px;
+  }
+  .close-button:hover{
+    background-color: #656f7b;
+    color: #fff;
+  }
+  .contact-support a{
+    color: #2c343d;
+    text-decoration: underline;
+  }
+  label.contact-support {
+    margin-bottom: 32px;
+}
+  .save-button{
+    background-color: #e6e9eb!important;
+    color: #656f7b!important;
+  }
+  .btn-password {
+    border-color: #888e96;
+    color: #2c343d;
+    background:#fff;
+    font-size:14px;
+    font-weight:700;
+    padding:12px 18px;
+}
+.btn-password:hover{
+    background:#656f7b;
+}
+  .user-setting-frm p {
+    color: #656f7b;
+    font-size:15px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-top: 10px;
+}
+  .paswrd-modal .modal-content {
+    background: #fff !important;
+    padding: 40px 64px !important;
+    width: 700px
+ !important;
+}
+.data-btn{
+    display: flex;
+    justify-content: center;
+}
+.paswrd-modal .modal-body{
+display: flex;
+flex-direction: column;
+width: 100%!important;
+}
+.user-pswrd {
+    padding: 12px 11px 10px;
+    margin: 20px 0px;
+}
+.bio-textarea .form-control {
+    width:600px;
+    height:200px;
+    border: 1px solid #0069e0;
+}
+.form-control:focus{
+    box-shadow: unset;
+}
+.bio-textarea p {
+    color:#0069e0;
+        font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.frgt-pwd , .frgt-pwd a{
+    text-align: end;
+    color: #000;
+    text-decoration: underline;
+}
+.paswrd-modal button.btn.btn-secondary {
+    background:#fff;
+    color: #2c343d;
+}
+.paswrd-modal button.btn.btn-secondary:hover{
+    background:#888e96;
+    color:#fff;
+    font-weight:500;
+}
+.paswrd-modal button.btn-close {
+    position: absolute;
+    right: 12px;
+    top: 15px;
+}
+.user-setting-frm {
+    margin:10px 0px 32px 0px;
+}
+.user-check-box {
+    display: flex;
+    align-items: baseline;
+}
+.profile-btn {
+    margin-bottom: 24px;
+}
+.name-usr {
+    color: #656f7b!important;
+    font-weight: 700;
+}
+input#check-bx {
+    margin-right: 8px;
+}
+.profile-pic {
+    background: url('');
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: all .3s ease;    
+    cursor: pointer;
+    border: 1px solid grey;
+}
+.profile-chang{
+          display: none;
+          cursor: pointer;
+ }
+
+
+
 /* mobile screen */
 
 @media(max-width:575.9px) {

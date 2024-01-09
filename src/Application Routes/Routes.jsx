@@ -10,6 +10,7 @@ import Privacy from "../Screens/UserScreen/Privacy/Privacy";
 import PasswordForget from "../Screens/UserScreen/ForgetPassword/ForgetPassword";
 import Terms from "../Screens/UserScreen/Terms/Terms";
 import ContactUs from "../Screens/UserScreen/Contact/Contactus";
+import UserSettings from "../Screens/UserScreen/UserSettings/UserSettings";
 import PrivateRoutes from "./PrivateRoute";
 
 function AppRoutes() {
@@ -39,6 +40,8 @@ function AppRoutes() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/privacy" element={<Privacy />}></Route>
           <Route path="/terms" element={<Terms />}></Route>
+          <Route path="/user-profile" element={<></>} ></Route>
+          <Route path="/user-setting" element={<UserSettings />}></Route>
         </Routes>
       </Router>
     </div>
