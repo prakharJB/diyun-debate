@@ -288,7 +288,7 @@ function SingleDebate() {
         {/* </Modal.Body> */}
         <Button onClick={handleClose}>Enter</Button>
       </Modal>
-      {/* <Header /> */}
+      <Header />
       {/* <div style={{ width: "100%", height: "500px" }}>
         <Sunburst
           data={sunburstData}
