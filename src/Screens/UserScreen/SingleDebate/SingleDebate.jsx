@@ -8,11 +8,11 @@ import Modal from "react-bootstrap/Modal";
 import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
-import * as d3 from "d3";
+import { Tree as D3Tree } from "react-d3-tree";
+// import Sunburst from 'react-sunburst';
 
 function SingleDebate() {
   const [detailDebateModal, setDetailDebateModal] = useState(false);
-  const myChart = Sunburst();
   const [pros, setPros] = useState({
     title: "",
   });
@@ -32,9 +32,25 @@ function SingleDebate() {
       console.error("Error fetching data:", error);
     }
   };
+  const fetchDataById = async (newId) => {
+    try {
+      const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${newId}/displaydebate`;
+      const responseData = await axios.get(url);
+      console.log("API Response:", responseData?.data?.debate);
+      setDebateDetails(responseData?.data?.debate);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataById(id); // Initial fetch using ID
+  }, [id]);
 
   useEffect(() => {
     fetchData();
+  }, []);
+  useEffect(() => {
     modalShow();
   }, []);
   const handleClose = () => setDetailDebateModal(false);
@@ -52,7 +68,7 @@ function SingleDebate() {
     console.log("Form submitted:", pros);
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/debates/${id}/addProsChildDebate`,
+        `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addProsChildDebate`,
         pros,
         {
           headers: {
@@ -64,13 +80,16 @@ function SingleDebate() {
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
+    fetchDataById(debateDetails.id);
+    setShowProsForm(false);
+    setPros({ title: "" });
   };
   const handleSubmitCons = async (e) => {
     e.preventDefault();
     console.log("Form submitted:", cons);
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/debates/${id}/addConsChildDebate`,
+        `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addConsChildDebate`,
         cons,
         {
           headers: {
@@ -82,8 +101,150 @@ function SingleDebate() {
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
+    fetchDataById(debateDetails.id);
+    setShowConsForm(false);
+    setCons({ title: "" });
   };
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
+
+  const handleDivClick = (id, isPro) => {
+    // Find the clicked div in the state
+    const clickedDiv = isPro
+      ? debateDetails.pros.find((pro) => pro.id === id)
+      : debateDetails.cons.find((con) => con.id === id);
+
+    // Swap the positions with the debateDetails.title
+    const updatedTitle = clickedDiv.title;
+    // clickedDiv.title = debateDetails.title;
+    debateDetails.title = updatedTitle;
+    fetchDataById(id);
+    // Update the state to trigger a re-render
+    setDebateDetails({ ...debateDetails });
+  };
+
+  const [showProsForm, setShowProsForm] = useState(false);
+  const [showConsForm, setShowConsForm] = useState(false);
+  const toggleProsForm = () => {
+    setShowProsForm(!showProsForm);
+    setShowConsForm(false); // Hide Cons form when showing Pros form
+  };
+
+  const toggleConsForm = () => {
+    setShowConsForm(!showConsForm);
+    setShowProsForm(false); // Hide Pros form when showing Cons form
+  };
+
+  // tree
+
+  // const [treeData, setTreeData] = useState({});
+
+  // const fetchtreeData = async (id) => {
+  //   try {
+  //     const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
+  //     const responseData = await axios.get(url);
+  //     const debateDetails = responseData?.data?.debate;
+
+  //     const treeItem = {
+  //       name: debateDetails.title,
+  //       attributes: {
+  //         backgroundInfo: debateDetails.backgroundinfo,
+  //         totalVotes: debateDetails.total_votes,
+  //         side: debateDetails.side,
+  //       },
+  //       children: [],
+  //     };
+
+  //     if (debateDetails.pros && debateDetails.pros.length > 0) {
+  //       debateDetails.pros.forEach((pro) => {
+  //         treeItem.children.push({
+  //           name: pro.title,
+  //           attributes: {
+  //             backgroundInfo: pro.backgroundinfo,
+  //             totalVotes: pro.total_votes,
+  //             side: pro.side,
+  //           },
+  //           children: fetchData(pro.id),
+  //         });
+  //       });
+  //     }
+
+  //     if (debateDetails.cons && debateDetails.cons.length > 0) {
+  //       debateDetails.cons.forEach((con) => {
+  //         treeItem.children.push({
+  //           name: con.title,
+  //           attributes: {
+  //             backgroundInfo: con.backgroundinfo,
+  //             totalVotes: con.total_votes,
+  //             side: con.side,
+  //           },
+  //           children: fetchData(con.id),
+  //         });
+  //       });
+  //     }
+
+  //     return [treeItem];
+  //   } catch (error) {
+  //     console.error("Error fetching tree data:", error);
+  //     return [];
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const parentId = 25; // Replace with the actual parent_id
+  //   fetchtreeData(parentId).then((treeData) => {
+  //     setTreeData({ name: "Root", attributes: {}, children: treeData });
+  //   });
+  // }, []);
+
+  // sunburst
+
+  // const [sunburstData, setSunburstData] = useState({
+  //   name: "Root",
+  //   children: [],
+  // });
+
+  // const fetchSunData = async (id) => {
+  //   try {
+  //     const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
+  //     const responseData = await axios.get(url);
+  //     const debateDetails = responseData?.data?.debate;
+
+  //     const sunburstItem = {
+  //       name: debateDetails.title,
+  //       children: [],
+  //     };
+
+  //     if (debateDetails.pros && debateDetails.pros.length > 0) {
+  //       debateDetails.pros.forEach((pro) => {
+  //         sunburstItem.children.push({
+  //           name: pro.title,
+  //           children: fetchSunData(pro.id),
+  //         });
+  //       });
+  //     }
+
+  //     if (debateDetails.cons && debateDetails.cons.length > 0) {
+  //       debateDetails.cons.forEach((con) => {
+  //         sunburstItem.children.push({
+  //           name: con.title,
+  //           children: fetchSunData(con.id),
+  //         });
+  //       });
+  //     }
+
+  //     return [sunburstItem];
+  //   } catch (error) {
+  //     console.error("Error fetching sunburst data:", error);
+  //     return [];
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const parentId = 25; // Replace with the actual parent_id
+  //   fetchSunData(parentId).then((sunburstData) => {
+  //     setSunburstData({ name: "Root", children: sunburstData });
+  //   });
+  // }, []);
 
   return (
     <>
@@ -128,26 +289,48 @@ function SingleDebate() {
         <Button onClick={handleClose}>Enter</Button>
       </Modal>
       {/* <Header /> */}
+      {/* <div style={{ width: "100%", height: "500px" }}>
+        <Sunburst
+          data={sunburstData}
+          width={500}
+          height={500}
+          // tooltipContent={(node) => `${node.name}: ${node.size || 0}`}
+        />
+      </div> */}
+      {/* <div style={{ width: "100%", height: "500px" }}>
+        <D3Tree
+          data={treeData}
+          orientation="vertical"
+          translate={{ x: 100, y: 100 }}
+          collapsible={true}
+        />
+      </div> */}
       <section style={{ background: "#F2F4F5" }} dir="rtl">
         <Container>
           <Row>
             <Col md={8} className="m-auto mt-4">
-              <div></div>
-              <Accordion>
-                <Accordion.Item eventKey="0" dir="rtl">
-                  <Accordion.Header>{debateDetails?.title}</Accordion.Header>
-                  <Accordion.Body></Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
-              <div className="d-flex w-100">
-                <div className="w-50">
-                  <Accordion>
-                    <Accordion.Item eventKey="0" dir="rtl">
-                      <Accordion.Header>Pros</Accordion.Header>
-                      <Accordion.Body>
+              <div className="p-4 my-4  ">
+                <div style={{ background: "#ffff" }} className="p-4 rounded">
+                  {debateDetails?.title}
+                </div>
+                <div className="d-flex">
+                  <div className="w-50">
+                    <div
+                      style={{ background: "#ffff" }}
+                      className="text-success p-2 border rounded"
+                    >
+                      Pros
+                      <Button onClick={toggleProsForm} className="btn-success">
+                        +
+                      </Button>
+                    </div>
+                    {showProsForm && (
+                      <div
+                        style={{ background: "#ffff" }}
+                        className="p-2 border rounded"
+                      >
                         <Form onSubmit={handleSubmitPros}>
                           <Form.Group controlId="formName">
-                            {/* <Form.Label className="mt-4">Name</Form.Label> */}
                             <Form.Control
                               type="text"
                               placeholder="Suggest your pros here. It will become visible to all viewer once the discussion admins have accepted it."
@@ -158,7 +341,7 @@ function SingleDebate() {
                           </Form.Group>
 
                           <Button
-                            className="my-4"
+                            className="my-2"
                             variant="success"
                             type="submit"
                             style={{ fontWeight: "700" }}
@@ -166,18 +349,26 @@ function SingleDebate() {
                             Pros
                           </Button>
                         </Form>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </div>
-                <div className="w-50">
-                  <Accordion>
-                    <Accordion.Item eventKey="0" dir="rtl">
-                      <Accordion.Header>Cons</Accordion.Header>
-                      <Accordion.Body className="danger">
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-50">
+                    <div
+                      style={{ background: "#ffff" }}
+                      className="text-danger p-2 border rounded"
+                    >
+                      Cons
+                      <Button onClick={toggleConsForm} className="btn-danger">
+                        +
+                      </Button>
+                    </div>
+                    {showConsForm && (
+                      <div
+                        style={{ background: "#ffff" }}
+                        className="p-2 border rounded"
+                      >
                         <Form onSubmit={handleSubmitCons}>
                           <Form.Group controlId="formName">
-                            {/* <Form.Label className="mt-4">Name</Form.Label> */}
                             <Form.Control
                               type="text"
                               placeholder="Enter your name"
@@ -188,7 +379,7 @@ function SingleDebate() {
                           </Form.Group>
 
                           <Button
-                            className="my-4"
+                            className="my-2"
                             variant="danger"
                             type="submit"
                             style={{ fontWeight: "700" }}
@@ -196,35 +387,37 @@ function SingleDebate() {
                             Cons
                           </Button>
                         </Form>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </div>
-              </div>
-              <div className="d-flex w-100">
-                <div className="w-50">
-                  {debateDetails?.pros &&
-                    debateDetails?.pros.map((val, index) => (
-                      <div
-                        style={{ background: "#Fff" }}
-                        className="border p-4 ml-1"
-                        key={val.id}
-                      >
-                        {val?.title}
                       </div>
-                    ))}
+                    )}
+                  </div>
                 </div>
-                <div className="w-50">
-                  {debateDetails?.cons &&
-                    debateDetails?.cons.map((val, index) => (
-                      <div
-                        style={{ background: "#fff" }}
-                        className="border p-4 mr-1"
-                        key={val.id}
-                      >
-                        {val?.title}
-                      </div>
-                    ))}
+                <div className="d-flex w-100">
+                  <div className="w-50 p-2 mt-1 rounded">
+                    {debateDetails?.pros &&
+                      debateDetails?.pros.map((val, index) => (
+                        <div
+                          key={val.id}
+                          style={{ background: "#ffff" }}
+                          className="p-2 mt-1 rounded"
+                          onClick={() => handleDivClick(val.id, true)}
+                        >
+                          {val?.title}
+                        </div>
+                      ))}
+                  </div>
+                  <div className="w-50 p-2 mt-1 rounded">
+                    {debateDetails?.cons &&
+                      debateDetails?.cons.map((val, index) => (
+                        <div
+                          key={val.id}
+                          style={{ background: "#ffff" }}
+                          onClick={() => handleDivClick(val.id, false)}
+                          className="p-2 mt-1 rounded"
+                        >
+                          {val?.title}
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
             </Col>
