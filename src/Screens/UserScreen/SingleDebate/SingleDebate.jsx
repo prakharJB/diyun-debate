@@ -3,13 +3,14 @@ import { Container, Row, Col, Accordion, Form, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Sunburst from "sunburst-chart";
+// import Sunburst from "sunburst-chart";
 import Modal from "react-bootstrap/Modal";
 import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
 import { Tree as D3Tree } from "react-d3-tree";
 // import Sunburst from 'react-sunburst';
+import { Sunburst } from 'react-vis';
 
 function SingleDebate() {
   const [detailDebateModal, setDetailDebateModal] = useState(false);
@@ -21,6 +22,7 @@ function SingleDebate() {
   });
   const { id } = useParams();
   const [debateDetails, setDebateDetails] = useState();
+  const [oldDebateDetails, setOldDebateDetails] = useState();
 
   const fetchData = async () => {
     try {
@@ -117,6 +119,13 @@ function SingleDebate() {
     const updatedTitle = clickedDiv.title;
     // clickedDiv.title = debateDetails.title;
     debateDetails.title = updatedTitle;
+
+    // const oldTitle = debateDetails.title;
+    // oldDebateDetails.title = oldTitle;
+
+    // setOldDebateDetails({ ...oldDebateDetails });
+
+
     fetchDataById(id);
     // Update the state to trigger a re-render
     setDebateDetails({ ...debateDetails });
@@ -190,7 +199,7 @@ function SingleDebate() {
   // };
 
   // useEffect(() => {
-  //   const parentId = 25; // Replace with the actual parent_id
+  //   const parentId = id; // Replace with the actual parent_id
   //   fetchtreeData(parentId).then((treeData) => {
   //     setTreeData({ name: "Root", attributes: {}, children: treeData });
   //   });
@@ -198,6 +207,7 @@ function SingleDebate() {
 
   // sunburst
 
+  // const [sunburstDebateData, setSunburstDebateData] = useState()
   // const [sunburstData, setSunburstData] = useState({
   //   name: "Root",
   //   children: [],
@@ -207,14 +217,14 @@ function SingleDebate() {
   //   try {
   //     const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
   //     const responseData = await axios.get(url);
-  //     const debateDetails = responseData?.data?.debate;
+  //     const sunburstDebateData = responseData?.data?.debate;
 
   //     const sunburstItem = {
-  //       name: debateDetails.title,
+  //       name: sunburstDebateData.title,
   //       children: [],
   //     };
 
-  //     if (debateDetails.pros && debateDetails.pros.length > 0) {
+  //     if (sunburstDebateData.pros && sunburstDebateData.pros.length > 0) {
   //       debateDetails.pros.forEach((pro) => {
   //         sunburstItem.children.push({
   //           name: pro.title,
@@ -241,6 +251,12 @@ function SingleDebate() {
 
   // useEffect(() => {
   //   const parentId = 25; // Replace with the actual parent_id
+  //   fetchSunData(parentId).then((sunburstData) => {
+  //     setSunburstData({ name: "Root", children: sunburstData });
+  //   });
+  // }, []);
+  // useEffect(() => {
+  //   const parentId = id; // Replace with the actual parent_id
   //   fetchSunData(parentId).then((sunburstData) => {
   //     setSunburstData({ name: "Root", children: sunburstData });
   //   });
@@ -296,8 +312,8 @@ function SingleDebate() {
           height={500}
           // tooltipContent={(node) => `${node.name}: ${node.size || 0}`}
         />
-      </div> */}
-      {/* <div style={{ width: "100%", height: "500px" }}>
+      </div>
+      <div style={{ width: "100%", height: "500px" }}>
         <D3Tree
           data={treeData}
           orientation="vertical"
@@ -305,12 +321,15 @@ function SingleDebate() {
           collapsible={true}
         />
       </div> */}
-      <section style={{ background: "#F2F4F5" }} dir="rtl">
+      <section style={{ background: "#F2F4F5" }} className="h-100" dir="rtl">
         <Container>
           <Row>
-            <Col md={8} className="m-auto mt-4">
+            <Col md={10} className="m-auto mt-4">
               <div className="p-4 my-4  ">
-                <div style={{ background: "#ffff" }} className="p-4 rounded">
+                <div style={{ background: "#ffff" }} className="p-4 rounded w-50 m-auto">
+                  {oldDebateDetails?.title}
+                </div>
+                <div style={{ background: "#ffff" }} className="p-4 mt-1 rounded">
                   {debateDetails?.title}
                 </div>
                 <div className="d-flex">

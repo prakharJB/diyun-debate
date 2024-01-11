@@ -3,9 +3,17 @@ import AppRoutes from "./Application Routes/Routes";
 import toast, { Toaster } from "react-hot-toast";
 import { MyContext } from "./Component/SunBurst";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import  Axios  from "axios";
 
 function App() {
   const [text, setText] = useState("");
+  const token = useSelector((state) => state?.auth?.token);
+
+  if (token) {
+    Axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  }
+  
   return (
     <>
       <div>
