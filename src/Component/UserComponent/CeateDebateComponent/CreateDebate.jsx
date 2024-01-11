@@ -99,6 +99,7 @@ const CreateDebate = (props) => {
       })
       .catch((err) => {
         console.log(err, "----------errror value");
+        toast.error(err?.message);
       });
     // try {
     //   const result = await axios.post(

@@ -10,7 +10,7 @@ import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
 import { Tree as D3Tree } from "react-d3-tree";
 // import Sunburst from 'react-sunburst';
-import { Sunburst } from 'react-vis';
+import { Sunburst } from "react-vis";
 
 function SingleDebate() {
   const [detailDebateModal, setDetailDebateModal] = useState(false);
@@ -22,7 +22,6 @@ function SingleDebate() {
   });
   const { id } = useParams();
   const [debateDetails, setDebateDetails] = useState();
-  const [oldDebateDetails, setOldDebateDetails] = useState();
 
   const fetchData = async () => {
     try {
@@ -108,29 +107,34 @@ function SingleDebate() {
     setCons({ title: "" });
   };
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
-
-  const handleDivClick = (id, isPro) => {
+  const [oldTitle, setOldTitle] = useState("");
+  const [oldDebateId, setOldDebateId] = useState("");
+  // const [oldDebate, setOldDebate] = useState(null);
+  const handleDivClick = async (id, isPro) => {
     // Find the clicked div in the state
     const clickedDiv = isPro
       ? debateDetails.pros.find((pro) => pro.id === id)
       : debateDetails.cons.find((con) => con.id === id);
 
-    // Swap the positions with the debateDetails.title
+    setOldTitle(debateDetails.title);
+    setOldDebateId(debateDetails.id);
     const updatedTitle = clickedDiv.title;
-    // clickedDiv.title = debateDetails.title;
     debateDetails.title = updatedTitle;
-
-    // const oldTitle = debateDetails.title;
-    // oldDebateDetails.title = oldTitle;
-
-    // setOldDebateDetails({ ...oldDebateDetails });
-
+    // setOldDebate({ ...debateDetails });
 
     fetchDataById(id);
-    // Update the state to trigger a re-render
     setDebateDetails({ ...debateDetails });
   };
-
+  const revertToOldTitle = async () => {
+    debateDetails.title = oldTitle;
+    setOldTitle("");
+    await fetchDataById(oldDebateId);
+    // setDebateDetails({ ...debateDetails });
+    // if (oldDebate) {
+    //   setDebateDetails({ ...oldDebate });
+    //   setOldDebate(null);
+    // }
+  };
   const [showProsForm, setShowProsForm] = useState(false);
   const [showConsForm, setShowConsForm] = useState(false);
   const toggleProsForm = () => {
@@ -321,15 +325,29 @@ function SingleDebate() {
           collapsible={true}
         />
       </div> */}
-      <section style={{ background: "#F2F4F5" }} className="h-100" dir="rtl">
+      <section
+        style={{ background: "#F2F4F5", paddingBottom: "calc(100vh - 250px)" }}
+        className="h-100"
+        dir="rtl"
+      >
         <Container>
           <Row>
             <Col md={10} className="m-auto mt-4">
               <div className="p-4 my-4  ">
-                <div style={{ background: "#ffff" }} className="p-4 rounded w-50 m-auto">
-                  {oldDebateDetails?.title}
+                {/* {oldTitle === "" ? ( */}
+                <div
+                  style={{ background: "#ffff" }}
+                  className="p-4 rounded w-50 m-auto"
+                  onClick={() => revertToOldTitle()}
+                >
+                  {oldTitle}
                 </div>
-                <div style={{ background: "#ffff" }} className="p-4 mt-1 rounded">
+                {/* ) : null} */}
+
+                <div
+                  style={{ background: "#ffff" }}
+                  className="p-4 mt-1 rounded"
+                >
                   {debateDetails?.title}
                 </div>
                 <div className="d-flex">
