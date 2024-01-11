@@ -13,6 +13,7 @@ import New from "./New";
 import Hot from "./Hot";
 import { useDispatch, useSelector } from "react-redux";
 import { GetDebateAsyncThunk } from "../../../redux/asyncThunk/debateAsyncThunk";
+import ExploreBg from "../../../Screens/UserScreen/ExploreBg/ExploreBg";
 
 function HomePortal() {
   const dispatch = useDispatch();
@@ -75,7 +76,7 @@ function HomePortal() {
                   </Tab>
                 </Tabs>
               </div>
-
+{/* <ExploreBg data={text} /> */}
               {/* -------Tab------ */}
             </Col>
           </Row>

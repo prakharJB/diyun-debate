@@ -13,6 +13,7 @@ import ContactUs from "../Screens/UserScreen/Contact/Contactus";
 import UserSettings from "../Screens/UserScreen/UserSettings/UserSettings";
 import PrivateRoutes from "./PrivateRoute";
 import UserProfile from "../Screens/UserScreen/UserProfile/UserProfile";
+import NewBg from "../Screens/UserScreen/ExploreBg/ExploreBg";
 
 function AppRoutes() {
   return (
@@ -23,7 +24,7 @@ function AppRoutes() {
           <Route path="/debate/:id" element={<SingleDebate />}></Route>
           <Route path="/explore" element={<Home />}></Route>
           <Route path="/explore/tags" element={<Tags />}></Route>
-          <Route path="/explore/tags/:category" element={<Home />}></Route>
+          <Route path="/explore/tags/:category" element={<NewBg />}></Route>
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route element={<PrivateRoutes />}>

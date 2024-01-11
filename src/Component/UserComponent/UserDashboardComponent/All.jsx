@@ -82,7 +82,7 @@ const All = () => {
               </div>
               <div>
                 <h4 className="see-all text-align-end text-decoration-underline">
-                ראה הכל
+                  ראה הכל
                 </h4>
               </div>
             </div>
