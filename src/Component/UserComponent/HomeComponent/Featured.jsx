@@ -17,6 +17,7 @@ import testrobot from "../../../Assets/test-robot.jpeg";
 import testgrass from "../../../Assets/test-grass.jpeg";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
+import { useState } from "react";
 
 function Featured(data) {
   // console.log(data)
@@ -37,7 +38,32 @@ function Featured(data) {
   //   fetchData();
   // }, []);
 
+  const { state } = useContext(MyContext);
+  const [statics, setStatics] = useState();
+  // const [text, setText] = useState([]);
+  const [topContributors, setTopContributors] = useState();
+
+
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responseData = await axios.get(`https://laradebate.jmbliss.com/api/overall-stats`);
+        setStatics(responseData?.data);
+        console.log(responseData?.data)
+
+        // Fetch top contributors
+        const topContributorsResponse = await axios.get(`https://laradebate.jmbliss.com/api/top-contributors`);
+        setTopContributors(topContributorsResponse?.data?.topContributors);
+        console.log(topContributorsResponse?.data?.topContributors);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [state]);
 
   return (
     <>
@@ -109,7 +135,7 @@ function Featured(data) {
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">תרומות</Card.Text>
                         <Card.Text className="highlight-number">
-                          3,144,694
+                          {statics?.overallContributions}
                         </Card.Text>
                       </div>
                     </div>
@@ -120,7 +146,7 @@ function Featured(data) {
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">ויכוחים</Card.Text>
                         <Card.Text className="highlight-number">
-                          18,467
+                          {statics?.overallParentDebates}
                         </Card.Text>
                       </div>
                     </div>
@@ -130,10 +156,11 @@ function Featured(data) {
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">טוען</Card.Text>
                         <Card.Text className="highlight-number">
-                          741,211
+                          {statics?.overallClaims}
                         </Card.Text>
                       </div>
                     </div>
+
                     {/* <Button variant="primary">Go somewhere</Button> */}
                   </Card.Body>
                 </Card>
@@ -199,45 +226,46 @@ function Featured(data) {
                       <HiMiniTrophy />
                       <Card.Title>תורמים מובילים</Card.Title>
                     </div>
-                    <div className="d-flex align-items-baseline mt-2 justify-content-between">
+                    {topContributors &&
+                      topContributors?.map((Contributors, index) => (
+                        <div className="d-flex align-items-baseline mt-2 justify-content-between">
+                          <FaUserPen />
+                          <div className="d-flex align-items-end flex-column">
+                            <Card.Text key={index}><a href={`/debate/${Contributors.id}`}></a>1.{Contributors?.username}</Card.Text>
+                            {/* <Card.Text>3,144,694</Card.Text> */}
+                            {Contributors?.total_contributions} contributions
+                          </div>
+                        </div>
+
+                      ))}
+                    {/* <hr />
+                    <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .1</Card.Text>
-                        {/* <Card.Text>3,144,694</Card.Text> */}
+                        <Card.Text>שם משתמש .2</Card.Text>                        
                       </div>
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .2</Card.Text>
-                        {/* <Card.Text>1,269,270</Card.Text> */}
+                        <Card.Text>שם משתמש .3</Card.Text>                        
                       </div>
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .3</Card.Text>
-                        {/* <Card.Text>18,467</Card.Text> */}
+                        <Card.Text>שם משתמש .4</Card.Text>                        
                       </div>
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .4</Card.Text>
-                        {/* <Card.Text>18,467</Card.Text> */}
+                        <Card.Text>שם משתמש .5</Card.Text>                        
                       </div>
-                    </div>
-                    <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
-                      <FaUserPen />
-                      <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .5</Card.Text>
-                        {/* <Card.Text>18,467</Card.Text> */}
-                      </div>
-                    </div>
+                    </div> */}
 
                     {/* <Button variant="primary">Go somewhere</Button> */}
                   </Card.Body>
@@ -423,9 +451,9 @@ function Featured(data) {
                 </Card>
                 {data.data &&
                   data?.data?.map((val, index) => (
-                    <Card>
-                      <a href={`/debate/${val.id}`} key={index}>
-                        <Card.Img variant="top" src={baseUrl + val.image} />
+                    <Card key={index}>
+                      <a href={`/debate/${val.id}`}>
+                        <Card.Img variant="top" src={baseUrl + val.image} />a
                         <Card.Body>
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
