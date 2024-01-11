@@ -14,6 +14,7 @@ import UserSettings from "../Screens/UserScreen/UserSettings/UserSettings";
 import PrivateRoutes from "./PrivateRoute";
 import UserProfile from "../Screens/UserScreen/UserProfile/UserProfile";
 import NewBg from "../Screens/UserScreen/ExploreBg/ExploreBg";
+import UserProfilenew from "../Component/UserComponent/UserDashboardComponent/UserProfilenew";
 
 function AppRoutes() {
   return (
@@ -46,6 +47,7 @@ function AppRoutes() {
           <Route path="/terms" element={<Terms />}></Route>
           <Route path="/user-profile" element={<></>}></Route>
           <Route path="/user-setting" element={<UserSettings />}></Route>
+          <Route path="/user-new" element={<UserProfilenew />}></Route>
         </Routes>
       </Router>
     </div>

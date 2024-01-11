@@ -1231,3 +1231,10 @@ input#check-bx {
     text-decoration: underline;
     text-underline-offset: 0.3em
 }
+
+
+/* user profile css */
+.d-flex-gap{
+column-gap: 30px;
+row-gap: 30px;
+}
