@@ -1235,6 +1235,13 @@ input#check-bx {
 
 /* user profile css */
 .d-flex-gap{
-column-gap: 30px;
-row-gap: 30px;
+column-gap: 25px;
+row-gap: 25px;
+}
+.fw-light h5,.fw-light h2{
+
+    font-weight: 300;
+}
+.profile{
+    max-width: 980px;
 }
