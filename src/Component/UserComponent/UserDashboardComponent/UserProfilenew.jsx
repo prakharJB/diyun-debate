@@ -43,7 +43,10 @@ export default function UserProfilenew() {
   useEffect(() => {
     fetchData();
   }, []);
-
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
   return (
     <div className="container d-flex d-flex-gap flex-column flex-md-row mt-5 mb-5 fw-light profile">
       <div className=" col-md-6  col-12 card pt-5 pb-5">
@@ -52,16 +55,20 @@ export default function UserProfilenew() {
           <h2 className="card-title  text-center">{profileDataA?.username}</h2>
 
           <p className="card-text mb-0 fw-bold opacity-75">joined:</p>
-          <h5 className="card-title ">{profileDataA?.created_at}</h5>
+          <h5 className="card-title ">
+            {formatDate(profileDataA?.created_at)}
+          </h5>
 
-          <p className="card-text mb-0 mt-3 fw-bold opacity-75"><i class="fa-solid fa-heart"></i>Thanks:</p>
+          <p className="card-text mb-0 mt-3 fw-bold opacity-75">
+            <i class="fa-solid fa-heart"></i>Thanks:
+          </p>
           <h5 className="card-title ">{profileDataA?.total_received_thanks}</h5>
 
           <a
             href="/my/user-setting"
             className="w-100 btn btn-lg btn-outline-primary mt-3"
           >
-           Edit profile
+            Edit profile
           </a>
         </div>
       </div>
@@ -93,13 +100,11 @@ export default function UserProfilenew() {
         <div className="activity">
           <p className="fw-bold opacity-75">Activity</p>
           <div className="d-flex card-body text-left card mb-4 flex-row">
-            <div className="col-sm-4  col-12 ">
-                img
-            </div>
+            <div className="col-sm-4  col-12 ">img</div>
             <div className="col-sm-8  col-12">
-            {/* <h4>{profileDataC[0].title}</h4> */}
-            <h4>test</h4>
-              </div>
+              {/* <h4>{profileDataC[0].title}</h4> */}
+              <h4>test</h4>
+            </div>
           </div>
         </div>
       </div>
