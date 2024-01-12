@@ -70,7 +70,7 @@ function Tags() {
                     {items?.map((val, index) => (
                       <li className="mt-4">
                         <Link
-                          to={`/explore/tags/${val}`}
+                          to={`/explore/tags/${val?.name}`}
                           key={index}
                           className="tag-card"
                         >
@@ -80,7 +80,7 @@ function Tags() {
                             alt="cover"
                           />
                           <div className="tag-card__overlay"></div>
-                          <div className="tag-card__name">{val}</div>
+                          <div className="tag-card__name">{val?.name}</div>
                         </Link>
                       </li>
                     ))}
