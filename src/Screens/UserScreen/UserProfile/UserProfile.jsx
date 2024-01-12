@@ -1,15 +1,12 @@
 import { Container } from "react-bootstrap";
 import Header from "../../../Layouts/Header";
+import UserProfilenew from "../../../Component/UserComponent/UserDashboardComponent/UserProfilenew";
 
 function UserProfile() {
   return (
     <>
       <Header />
-      <div className="user-profile">
-        <div className="section-user-profile">
-          <Container></Container>
-        </div>
-      </div>
+      <UserProfilenew />
     </>
   );
 }
