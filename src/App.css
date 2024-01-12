@@ -1104,7 +1104,7 @@ input#check-bx {
     font-size: 25px;
  }
  ::-webkit-input-placeholder { 
-    background: #1d1b31;
+    /* background: #1d1b31; */
     border-radius: 12px;
 }
 
