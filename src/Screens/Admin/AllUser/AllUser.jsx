@@ -42,7 +42,7 @@ function AllUser() {
                                 <th>Email_verified_at</th>
                                 <th>Created_on</th>
                                 <th>Updated_on</th>
-                                <th>Edit</th>
+                                <th>View</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -55,8 +55,8 @@ function AllUser() {
                                 <td data-label="EMAIL">{val?.username}</td>
                                 <td data-label="WORK PHONE">{val?.email_verified_at}</td>
                                 <td data-label="RECEIVABLES(BCY)"><a href=""></a>{val?.created_at}</td>
-                                <td data-label="RECEIVABLES(BCY)"><a href="">{val?.updated_at}</a></td>
-                                <td data-label="UNUSED CREDITS(BCY)"><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                                <td data-label="RECEIVABLES(BCY)">{val?.updated_at}</td>
+                                <td data-label="UNUSED CREDITS(BCY)"><a href=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 <td data-label="RECEIVABLES(BCY)"><a href=""><i class="fa fa-times" aria-hidden="true"></i></a></td>
                             </tr>
                             ))}
