@@ -41,6 +41,19 @@ const CreateDebate = (props) => {
   const handleImgChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
+
+  const [textTitleCount, setTextTitleCount] = useState(0);
+  const handleTitle = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setTextTitleCount(e.target.value.length);
+  };
+
+  const [textThesisCount, setTextThesisCount] = useState(0);
+  const handleThesis = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setTextThesisCount(e.target.value.length);
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -50,7 +63,7 @@ const CreateDebate = (props) => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
       const responseData = await axios.get(url);
-      // console.log("API Response:", responseData.data);
+       console.log("API Response:", responseData.data);
       setText(responseData.data.mainDebates);
       return responseData.data.mainDebates;
     } catch (error) {
@@ -84,23 +97,28 @@ const CreateDebate = (props) => {
     data.append("isDebatePublic", isDebatePublic);
     data.append("isType", isType);
     data.append("file", image);
-
-    dispatch(CreateDebateAsyncThunk(data))
-      .unwrap()
-      .then((response) => {
-        // toast.success(res?.data?.messege);
-        console.log(response);
-        if (response?.status === 200) {
-          toast.success(response?.data?.message);
-        } else {
-          toast.error(response?.data?.message);
-        }
-        fetchData();
-      })
-      .catch((err) => {
-        console.log(err, "----------errror value");
-        toast.error(err?.message);
-      });
+    try {
+      dispatch(CreateDebateAsyncThunk(data))
+        .unwrap()
+        .then((response) => {
+          // toast.success(res?.data?.messege);
+          console.log(response);
+          if (response?.status === 200) {
+            toast.success(response?.data?.message);
+          } else {
+            toast.error(response?.data?.message);
+          }
+          fetchData();
+        })
+        .catch((err) => {
+          console.log(err, "----------errror value");
+          toast.error(err?.message);
+        });
+    } catch (err) {
+      console.log(err, "----------error value");
+      // Handle errors
+      toast.error("Debate not create");
+    }
     // try {
     //   const result = await axios.post(
     //     `${process.env.REACT_APP_BASE_URL}/api/createdebate`,
@@ -125,6 +143,8 @@ const CreateDebate = (props) => {
       isDebatePublic: "",
       isType: "",
     });
+    setTextTitleCount(0);
+    setTextThesisCount(0);
     handleClose();
   };
   const [errors, setErrors] = useState(false);
@@ -242,10 +262,12 @@ const CreateDebate = (props) => {
                     type="text"
                     placeholder="כותרת הדיון"
                     value={formData.title}
+                    maxLength="100"
                     name="title"
-                    onChange={handleChange}
+                    onChange={handleTitle}
                   />
                 </Form.Group>
+                {textTitleCount}/100
                 {errors.title && (
                   <Form.Text className="text-danger">{errors.title}</Form.Text>
                 )}
@@ -254,11 +276,13 @@ const CreateDebate = (props) => {
                   <Form.Control
                     type="text"
                     placeholder="הכנס לתזה שלך"
+                    maxLength="500"
                     value={formData.thesis}
                     name="thesis"
-                    onChange={handleChange}
+                    onChange={handleThesis}
                   />
                 </Form.Group>
+                {textThesisCount}/500
                 {errors.thesis && (
                   <Form.Text className="text-danger">{errors.thesis}</Form.Text>
                 )}
