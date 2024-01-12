@@ -54,8 +54,8 @@ export default function UserProfilenew() {
           <p className="card-text mb-0 fw-bold opacity-75">joined:</p>
           <h5 className="card-title ">{profileDataA?.created_at}</h5>
 
-          <p className="card-text mb-0 mt-3 fw-bold opacity-75"><i class="fa-solid fa-heart"></i>Thanks:</p>
-          <h5 className="card-title ">{profileDataA?.total_received_thanks}</h5>
+          <p className="card-text mb-0 mt-3 fw-bold opacity-75">Thanks:</p>
+          <h5 className="card-title "><i class="fa-solid fa-heart"></i>	&nbsp;{profileDataA?.total_received_thanks}</h5>
 
           <a
             href="/my/user-setting"
