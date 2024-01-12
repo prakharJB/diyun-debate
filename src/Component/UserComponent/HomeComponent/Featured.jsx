@@ -17,9 +17,11 @@ import testrobot from "../../../Assets/test-robot.jpeg";
 import testgrass from "../../../Assets/test-grass.jpeg";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Featured(data) {
-  // console.log(data)
+  console.log(data);
   // const { text, setText } = useContext(MyContext);
   // const fetchData = async () => {
   //   try {
@@ -37,7 +39,35 @@ function Featured(data) {
   //   fetchData();
   // }, []);
 
+  const { state } = useContext(MyContext);
+  const [statics, setStatics] = useState();
+  // const [text, setText] = useState([]);
+  const [topContributors, setTopContributors] = useState();
+
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responseData = await axios.get(
+          `https://laradebate.jmbliss.com/api/overall-stats`
+        );
+        setStatics(responseData?.data);
+        console.log(responseData?.data);
+
+        // Fetch top contributors
+        const topContributorsResponse = await axios.get(
+          `https://laradebate.jmbliss.com/api/top-contributors`
+        );
+        setTopContributors(topContributorsResponse?.data?.topContributors);
+        console.log(topContributorsResponse?.data?.topContributors);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [state]);
 
   return (
     <>
@@ -47,17 +77,15 @@ function Featured(data) {
             <Col>
               <div className="mt-top">
                 <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testDog} />
+                  <Link to={`/debate/${data?.data[0]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[0]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>האם יש לאסור ניסויים בבעלי חיים?</Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[0]?.title}</Card.Title>
                     </Card.Body>
-                  </a>
+                  </Link>
                   <hr />
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
@@ -73,17 +101,15 @@ function Featured(data) {
                   </div>
                 </Card>
                 <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testedu} />
+                  <Link to={`/debate/${data?.data[3]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[3]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>מה חשוב יותר השכלה או מיומנות?</Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[3]?.title}</Card.Title>
                     </Card.Body>
-                  </a>
+                  </Link>
                   <hr />
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
@@ -98,6 +124,7 @@ function Featured(data) {
                     <Card.Text className="m-0">62.6ר</Card.Text>
                   </div>
                 </Card>
+
                 <Card>
                   <Card.Body>
                     <div className="not-hover d-flex align-items-baseline justify-content-between">
@@ -109,7 +136,7 @@ function Featured(data) {
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">תרומות</Card.Text>
                         <Card.Text className="highlight-number">
-                          3,144,694
+                          {statics?.overallContributions}
                         </Card.Text>
                       </div>
                     </div>
@@ -120,7 +147,7 @@ function Featured(data) {
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">ויכוחים</Card.Text>
                         <Card.Text className="highlight-number">
-                          18,467
+                          {statics?.overallParentDebates}
                         </Card.Text>
                       </div>
                     </div>
@@ -130,27 +157,24 @@ function Featured(data) {
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">טוען</Card.Text>
                         <Card.Text className="highlight-number">
-                          741,211
+                          {statics?.overallClaims}
                         </Card.Text>
                       </div>
                     </div>
+
                     {/* <Button variant="primary">Go somewhere</Button> */}
                   </Card.Body>
                 </Card>
                 <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testcode} />
+                  <Link to={`/debate/${data?.data[4]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[4]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>
-                        איזו טכנולוגיה שימושית יותר במגזר ה-IT?
-                      </Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[4]?.title}</Card.Title>
                     </Card.Body>
-                  </a>
+                  </Link>
                   <hr />
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
@@ -166,19 +190,15 @@ function Featured(data) {
                   </div>
                 </Card>
                 <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={coverImg} />
+                  <Link to={`/debate/${data?.data[5]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[5]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>
-                        האם ממשלות צריכות אי פעם להגביל את חופש הביטוי?
-                      </Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[5]?.title}</Card.Title>
                     </Card.Body>
-                  </a>
+                  </Link>
                   <hr />
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
@@ -199,45 +219,46 @@ function Featured(data) {
                       <HiMiniTrophy />
                       <Card.Title>תורמים מובילים</Card.Title>
                     </div>
-                    <div className="d-flex align-items-baseline mt-2 justify-content-between">
+                    {topContributors &&
+                      topContributors?.map((Contributors, index) => (
+                        <div className="d-flex align-items-baseline mt-2 justify-content-between">
+                          <FaUserPen />
+                          <div className="d-flex align-items-end flex-column">
+                            <Card.Text key={index}>
+                              {index + 1}.{Contributors?.username}
+                            </Card.Text>
+                            {Contributors?.total_contributions} תרומות
+                          </div>
+                        </div>
+                      ))}
+                    {/* <hr />
+                    <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .1</Card.Text>
-                        {/* <Card.Text>3,144,694</Card.Text> */}
+                        <Card.Text>שם משתמש .2</Card.Text>                        
                       </div>
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .2</Card.Text>
-                        {/* <Card.Text>1,269,270</Card.Text> */}
+                        <Card.Text>שם משתמש .3</Card.Text>                        
                       </div>
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .3</Card.Text>
-                        {/* <Card.Text>18,467</Card.Text> */}
+                        <Card.Text>שם משתמש .4</Card.Text>                        
                       </div>
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-between">
                       <FaUserPen />
                       <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .4</Card.Text>
-                        {/* <Card.Text>18,467</Card.Text> */}
+                        <Card.Text>שם משתמש .5</Card.Text>                        
                       </div>
-                    </div>
-                    <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
-                      <FaUserPen />
-                      <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .5</Card.Text>
-                        {/* <Card.Text>18,467</Card.Text> */}
-                      </div>
-                    </div>
+                    </div> */}
 
                     {/* <Button variant="primary">Go somewhere</Button> */}
                   </Card.Body>
@@ -295,21 +316,16 @@ function Featured(data) {
                     </div>
                     <div className="w-67 ">
                       <div className="position-relative">
-                        <a href="/">
+                        <Link to={`/debate/${data?.data[6]?.id}`}>
                           <Card.Img
                             className="unset-height single-card-img"
                             variant="top"
-                            src={testGpt}
+                            src={baseUrl + data?.data[6]?.image}
                           />
                           <Card.Body className="position-absolute top-0">
-                            <Card.Title>Chat GPT הוא טוב או רע?</Card.Title>
-                            {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                            {/* <Button variant="primary">Go somewhere</Button> */}
+                            <Card.Title>{data?.data[6]?.title}</Card.Title>
                           </Card.Body>
-                        </a>
+                        </Link>
                       </div>
                       <hr className="position-absolute w-67" />
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0 position-absolute bottom-0">
@@ -337,18 +353,14 @@ function Featured(data) {
                     </div>
                   </div>
                 </Card>
-                <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testgrass} />
+                {/* <Card>
+                  <a as={Link} href={`/debate/${data?.data[6]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[6]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>
-                        האם יש לאסור מכירת מזון מהונדס גנטית?
-                      </Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[6]?.title}</Card.Title>
                     </Card.Body>
                   </a>
                   <hr />
@@ -366,17 +378,13 @@ function Featured(data) {
                   </div>
                 </Card>
                 <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testrobot} />
+                  <a as={Link} href={`/debate/${data?.data[7]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[7]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>
-                        האם רובוטים שעושים עבודה יהיו טובים יותר?
-                      </Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[7]?.title}</Card.Title>
                     </Card.Body>
                   </a>
                   <hr />
@@ -394,17 +402,13 @@ function Featured(data) {
                   </div>
                 </Card>
                 <Card>
-                  <a href="/">
-                    <Card.Img variant="top" src={testnature} />
+                  <a as={Link} href={`/debate/${data?.data[8]?.id}`}>
+                    <Card.Img
+                      variant="top"
+                      src={baseUrl + data?.data[8]?.image}
+                    />
                     <Card.Body>
-                      <Card.Title>
-                        האם העולם יהיה מקום טוב יותר בלי בני אדם?
-                      </Card.Title>
-                      {/* <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text> */}
-                      {/* <Button variant="primary">Go somewhere</Button> */}
+                      <Card.Title>{data?.data[8]?.title}</Card.Title>
                     </Card.Body>
                   </a>
                   <hr />
@@ -420,16 +424,16 @@ function Featured(data) {
                     <FaEye />
                     <Card.Text className="m-0">62.6ר</Card.Text>
                   </div>
-                </Card>
+                </Card> */}
                 {data.data &&
                   data?.data?.map((val, index) => (
-                    <Card>
-                      <a href={`/debate/${val.id}`} key={index}>
+                    <Card key={index}>
+                      <Link to={`/debate/${val.id}`}>
                         <Card.Img variant="top" src={baseUrl + val.image} />
                         <Card.Body>
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
-                      </a>
+                      </Link>
                       <hr />
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
