@@ -231,7 +231,7 @@ function Featured(data) {
                         <div className="d-flex align-items-baseline mt-2 justify-content-between">
                           <FaUserPen />
                           <div className="d-flex align-items-end flex-column">
-                            <Card.Text key={index}><a href={`/debate/${Contributors.id}`}></a>1.{Contributors?.username}</Card.Text>
+                            <Card.Text key={index}><a href={`/debate/${Contributors.id}`}></a>{index}.{Contributors?.username}</Card.Text>
                             {/* <Card.Text>3,144,694</Card.Text> */}
                             {Contributors?.total_contributions} contributions
                           </div>
