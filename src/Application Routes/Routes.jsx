@@ -52,7 +52,7 @@ function AppRoutes() {
           <Route path="/user-setting" element={<UserSettings />}></Route>
           {/* <Route path="/user-new" element={<UserProfilenew />}></Route> */}
           <Route path="/admin-dashboard" element={< AllUser />} ></Route>
-          <Route path="/user-details" element={<UserDetail />} ></Route>
+          <Route path="/user-detail/:id" element={<UserDetail />} ></Route>
         </Routes>
       </Router>
     </div>
