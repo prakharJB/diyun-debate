@@ -1394,3 +1394,20 @@ row-gap: 25px;
 .profile{
     max-width: 900px;
 }
+.activity  .fa-pencil {
+    position: relative;
+}
+
+.activity  .fa-pencil:after {
+    position: absolute;
+    content: "";
+    height: 500%;
+    width: 2px;
+    background: #d2d2d2;
+    left: 16px;
+    top: 100%;
+}
+
+.activity {
+    overflow-y: hidden;
+}

@@ -63,12 +63,11 @@ export default function UserProfilenew() {
           <h5 className="card-title ">
             <i class="fa-solid fa-heart"></i> &nbsp;
             {profileDataA?.total_received_thanks}
-            
           </h5>
 
           <a
             href="/my/user-setting"
-            className="w-100 btn btn-lg btn-outline-primary mt-3"
+            className="w-100 fw-bold  btn btn-lg btn-outline-primary mt-3"
           >
             Edit profile
           </a>
@@ -76,7 +75,7 @@ export default function UserProfilenew() {
       </div>
       <div className="col-sm-6">
         <div className="statics">
-          <p className="fw-bold opacity-75">Statistics (Public Debates)</p>
+          <p className="fw-bold opacity-75 mb-4">Statistics (Public Debates)</p>
           <div className="d-flex d-flex-gap">
             <div className="col-md-6  col-12 card-body text-center card mb-4">
               <p>Claims</p>
@@ -100,15 +99,25 @@ export default function UserProfilenew() {
         </div>
 
         <div className="activity">
-          <p className="fw-bold opacity-75">Activity</p>
-           {profileDataC &&
+    
+              <p className="fw-bold opacity-75">Activity</p>
+  
+          {profileDataC &&
             profileDataC.map((val, index) => (
               <div className="">
-                <h4>{val.created_at}</h4>
-                <div className="d-flex card-body text-left card mb-4 flex-row">
+                      <div className="d-flex m-3 mb-0 mt-4">
+            <div className="col-sm-4">
+            <i class="fa fa-pencil bg-primary text-light rounded-circle p-2 mb-3" aria-hidden="true"></i>
+            </div>
+            <div className="col-sm-8">
+            <p>{val.created_at}</p>
+            </div>
+          </div>
+         
+                <div className="d-flex card-body text-left card mt-2 flex-row">
                   <div className="col-sm-4  col-12 ">img</div>
                   <div className="col-sm-8  col-12">
-                    <h5>{val.title}</h5>
+                    <h5 className="fw-bold">{val.title}</h5>
                   </div>
                 </div>
               </div>
