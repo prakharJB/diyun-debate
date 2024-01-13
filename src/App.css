@@ -1104,7 +1104,7 @@ input#check-bx {
     font-size: 25px;
  }
  ::-webkit-input-placeholder { 
-    background: #1d1b31;
+    /* background: #1d1b31; */
     border-radius: 12px;
 }
 
@@ -1412,5 +1412,22 @@ row-gap: 25px;
     font-weight: 300;
 }
 .profile{
-    max-width: 980px;
+    max-width: 900px;
+}
+.activity  .fa-pencil {
+    position: relative;
+}
+
+.activity  .fa-pencil:after {
+    position: absolute;
+    content: "";
+    height: 500%;
+    width: 2px;
+    background: #d2d2d2;
+    left: 16px;
+    top: 100%;
+}
+
+.activity {
+    overflow-y: hidden;
 }
