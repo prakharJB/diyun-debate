@@ -63,7 +63,7 @@ const CreateDebate = (props) => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
       const responseData = await axios.get(url);
-       console.log("API Response:", responseData.data);
+      console.log("API Response:", responseData.data);
       setText(responseData.data.mainDebates);
       return responseData.data.mainDebates;
     } catch (error) {
@@ -101,23 +101,24 @@ const CreateDebate = (props) => {
       dispatch(CreateDebateAsyncThunk(data))
         .unwrap()
         .then((response) => {
-          // toast.success(res?.data?.messege);
           console.log(response);
           if (response?.status === 200) {
             toast.success(response?.data?.message);
           } else {
             toast.error(response?.data?.message);
+            console.log(response);
           }
           fetchData();
         })
         .catch((err) => {
-          console.log(err, "----------errror value");
-          toast.error(err?.message);
+          console.error(err, "----------error value");
+          // Handle errors
+          toast.error("An error occurred while creating debate");
         });
     } catch (err) {
-      console.log(err, "----------error value");
-      // Handle errors
-      toast.error("Debate not create");
+      console.error(err, "----------error value");
+      // This block won't capture errors from asynchronous code
+      toast.error("This won't be reached for asynchronous errors");
     }
     // try {
     //   const result = await axios.post(
