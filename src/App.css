@@ -1104,7 +1104,7 @@ input#check-bx {
     font-size: 25px;
  }
  ::-webkit-input-placeholder { 
-    background: #1d1b31;
+    /* background: #1d1b31; */
     border-radius: 12px;
 }
 
@@ -1220,6 +1220,7 @@ input#check-bx {
     width: 80%;
     transition: 0.7s ease;
     white-space: nowrap;
+    z-index: -1;
 }
 
 .side-menu.main ~ .invoice-system {
