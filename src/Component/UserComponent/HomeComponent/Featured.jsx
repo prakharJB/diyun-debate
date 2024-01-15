@@ -69,6 +69,15 @@ function Featured(data) {
     fetchData();
   }, [state]);
 
+  const filteredData = data.data.filter(
+    (val) =>
+      val.id !== data?.data[0]?.id &&
+      val.id !== data?.data[1]?.id &&
+      val.id !== data?.data[2]?.id &&
+      val.id !== data?.data[3]?.id &&
+      val.id !== data?.data[4]?.id
+  );
+
   return (
     <>
       <section className="bg-portal pb-4" dir="rtl">
@@ -101,13 +110,13 @@ function Featured(data) {
                   </div>
                 </Card>
                 <Card>
-                  <Link to={`/debate/${data?.data[3]?.id}`}>
+                  <Link to={`/debate/${data?.data[1]?.id}`}>
                     <Card.Img
                       variant="top"
-                      src={baseUrl + data?.data[3]?.image}
+                      src={baseUrl + data?.data[1]?.image}
                     />
                     <Card.Body>
-                      <Card.Title>{data?.data[3]?.title}</Card.Title>
+                      <Card.Title>{data?.data[1]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -166,13 +175,13 @@ function Featured(data) {
                   </Card.Body>
                 </Card>
                 <Card>
-                  <Link to={`/debate/${data?.data[4]?.id}`}>
+                  <Link to={`/debate/${data?.data[2]?.id}`}>
                     <Card.Img
                       variant="top"
-                      src={baseUrl + data?.data[4]?.image}
+                      src={baseUrl + data?.data[2]?.image}
                     />
                     <Card.Body>
-                      <Card.Title>{data?.data[4]?.title}</Card.Title>
+                      <Card.Title>{data?.data[2]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -190,13 +199,13 @@ function Featured(data) {
                   </div>
                 </Card>
                 <Card>
-                  <Link to={`/debate/${data?.data[5]?.id}`}>
+                  <Link to={`/debate/${data?.data[3]?.id}`}>
                     <Card.Img
                       variant="top"
-                      src={baseUrl + data?.data[5]?.image}
+                      src={baseUrl + data?.data[3]?.image}
                     />
                     <Card.Body>
-                      <Card.Title>{data?.data[5]?.title}</Card.Title>
+                      <Card.Title>{data?.data[3]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -231,36 +240,6 @@ function Featured(data) {
                           </div>
                         </div>
                       ))}
-                    {/* <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
-                      <FaUserPen />
-                      <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .2</Card.Text>                        
-                      </div>
-                    </div>
-                    <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
-                      <FaUserPen />
-                      <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .3</Card.Text>                        
-                      </div>
-                    </div>
-                    <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
-                      <FaUserPen />
-                      <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .4</Card.Text>                        
-                      </div>
-                    </div>
-                    <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
-                      <FaUserPen />
-                      <div className="d-flex align-items-end flex-column">
-                        <Card.Text>שם משתמש .5</Card.Text>                        
-                      </div>
-                    </div> */}
-
-                    {/* <Button variant="primary">Go somewhere</Button> */}
                   </Card.Body>
                 </Card>
                 <Card className="single-card">
@@ -316,14 +295,14 @@ function Featured(data) {
                     </div>
                     <div className="w-67 ">
                       <div className="position-relative">
-                        <Link to={`/debate/${data?.data[6]?.id}`}>
+                        <Link to={`/debate/${data?.data[4]?.id}`}>
                           <Card.Img
                             className="unset-height single-card-img"
                             variant="top"
-                            src={baseUrl + data?.data[6]?.image}
+                            src={baseUrl + data?.data[4]?.image}
                           />
                           <Card.Body className="position-absolute top-0">
-                            <Card.Title>{data?.data[6]?.title}</Card.Title>
+                            <Card.Title>{data?.data[4]?.title}</Card.Title>
                           </Card.Body>
                         </Link>
                       </div>
@@ -353,80 +332,9 @@ function Featured(data) {
                     </div>
                   </div>
                 </Card>
-                {/* <Card>
-                  <a as={Link} href={`/debate/${data?.data[6]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[6]?.image}
-                    />
-                    <Card.Body>
-                      <Card.Title>{data?.data[6]?.title}</Card.Title>
-                    </Card.Body>
-                  </a>
-                  <hr />
-                  <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
-                    <TbMessage2 />
-                    <Card.Text className="m-0">749</Card.Text>
-                    <FaPen />
-                    <Card.Text className="m-0">10.9ר</Card.Text>
-                    <FaVoteYea />
-                    <Card.Text className="m-0">6.2ר</Card.Text>
-                    <TbUsersGroup />
-                    <Card.Text className="m-0">1ר</Card.Text>
-                    <FaEye />
-                    <Card.Text className="m-0">62.6ר</Card.Text>
-                  </div>
-                </Card>
-                <Card>
-                  <a as={Link} href={`/debate/${data?.data[7]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[7]?.image}
-                    />
-                    <Card.Body>
-                      <Card.Title>{data?.data[7]?.title}</Card.Title>
-                    </Card.Body>
-                  </a>
-                  <hr />
-                  <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
-                    <TbMessage2 />
-                    <Card.Text className="m-0">749</Card.Text>
-                    <FaPen />
-                    <Card.Text className="m-0">10.9ר</Card.Text>
-                    <FaVoteYea />
-                    <Card.Text className="m-0">6.2ר</Card.Text>
-                    <TbUsersGroup />
-                    <Card.Text className="m-0">1ר</Card.Text>
-                    <FaEye />
-                    <Card.Text className="m-0">62.6ר</Card.Text>
-                  </div>
-                </Card>
-                <Card>
-                  <a as={Link} href={`/debate/${data?.data[8]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[8]?.image}
-                    />
-                    <Card.Body>
-                      <Card.Title>{data?.data[8]?.title}</Card.Title>
-                    </Card.Body>
-                  </a>
-                  <hr />
-                  <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
-                    <TbMessage2 />
-                    <Card.Text className="m-0">749</Card.Text>
-                    <FaPen />
-                    <Card.Text className="m-0">10.9ר</Card.Text>
-                    <FaVoteYea />
-                    <Card.Text className="m-0">6.2ר</Card.Text>
-                    <TbUsersGroup />
-                    <Card.Text className="m-0">1ר</Card.Text>
-                    <FaEye />
-                    <Card.Text className="m-0">62.6ר</Card.Text>
-                  </div>
-                </Card> */}
-                {data.data &&
-                  data?.data?.map((val, index) => (
+
+                {filteredData &&
+                  filteredData?.map((val, index) => (
                     <Card key={index}>
                       <Link to={`/debate/${val.id}`}>
                         <Card.Img variant="top" src={baseUrl + val.image} />
