@@ -14,6 +14,7 @@
     "d3": "^7.8.5",
     "font-awesome": "^4.7.0",
     "formik": "^2.4.5",
+    "framer-motion": "^10.18.0",
     "isexe": "^3.1.1",
     "jquery": "^3.7.1",
     "react": "^18.2.0",

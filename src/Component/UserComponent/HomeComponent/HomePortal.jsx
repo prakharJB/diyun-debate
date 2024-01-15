@@ -14,9 +14,11 @@ import Hot from "./Hot";
 import { useDispatch, useSelector } from "react-redux";
 import { GetDebateAsyncThunk } from "../../../redux/asyncThunk/debateAsyncThunk";
 import ExploreBg from "../../../Screens/UserScreen/ExploreBg/ExploreBg";
+import Loader from "../Loader";
 
 function HomePortal() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   const { text, setText } = useContext(MyContext);
   const fetchData = async () => {
     try {
@@ -27,6 +29,8 @@ function HomePortal() {
       return responseData.data.mainDebates;
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
   // const getAllData = useSelector((state) => state?.AllTrade?.AllTradeData);
@@ -46,7 +50,6 @@ function HomePortal() {
     fetchData();
   }, []);
 
-
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
   return (
@@ -55,29 +58,36 @@ function HomePortal() {
         <Container>
           <Row>
             <Col>
-              {/* -------Tab-Home----- */}
-              <div className="tab-home-ex">
-                <Tabs
-                  defaultActiveKey="Featured"
-                  id="uncontrolled-tab-example"
-                  className="mb-3 p-0 d-flex flex-nowrap "
-                >
-                  <Tab eventKey="Featured" className="p-0" title={tHn.Featured}>
-                    <Featured data={text} />
-                  </Tab>
-                  <Tab eventKey="Popular" title={tHn.Popular}>
-                    <Popular data={text} />
-                  </Tab>
-                  <Tab eventKey="New" title={tHn.new}>
-                    <New data={text} />
-                  </Tab>
-                  <Tab eventKey="Hot" title={tHn.hot}>
-                    <Hot data={text} />
-                  </Tab>
-                </Tabs>
-              </div>
-{/* <ExploreBg data={text} /> */}
-              {/* -------Tab------ */}
+              {loading ? (
+                <div className="loaderStyle">
+                  <Loader />
+                </div>
+              ) : (
+                <div className="tab-home-ex">
+                  <Tabs
+                    defaultActiveKey="Featured"
+                    id="uncontrolled-tab-example"
+                    className="mb-3 p-0 d-flex flex-nowrap "
+                  >
+                    <Tab
+                      eventKey="Featured"
+                      className="p-0"
+                      title={tHn.Featured}
+                    >
+                      <Featured data={text} />
+                    </Tab>
+                    <Tab eventKey="Popular" title={tHn.Popular}>
+                      <Popular data={text} />
+                    </Tab>
+                    <Tab eventKey="New" title={tHn.new}>
+                      <New data={text} />
+                    </Tab>
+                    <Tab eventKey="Hot" title={tHn.hot}>
+                      <Hot data={text} />
+                    </Tab>
+                  </Tabs>
+                </div>
+              )}
             </Col>
           </Row>
         </Container>
