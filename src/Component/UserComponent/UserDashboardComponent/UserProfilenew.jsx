@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function UserProfilenew() {
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   // api one data
   const [profileDataA, setprofileDataA] = useState();
 
@@ -47,6 +48,7 @@ export default function UserProfilenew() {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
+
   return (
     <div className="container d-flex d-flex-gap flex-column flex-md-row mt-5 mb-5 fw-light profile">
       <div className=" col-md-6  col-12  pt-5 pb-5">
@@ -99,23 +101,26 @@ export default function UserProfilenew() {
         </div>
 
         <div className="activity">
-    
-              <p className="fw-bold opacity-75">Activity</p>
-  
+          <p className="fw-bold opacity-75">Activity</p>
+
           {profileDataC &&
             profileDataC.map((val, index) => (
               <div className="">
-                      <div className="d-flex m-3 mb-0 mt-4">
-            <div className="col-sm-4">
-            <i class="fa fa-pencil bg-primary text-light rounded-circle p-2 mb-3" aria-hidden="true"></i>
-            </div>
-            <div className="col-sm-8">
-            <p>{val.created_at}</p>
-            </div>
-          </div>
-         
+                <div className="d-flex m-3 mb-0 mt-4">
+                  <div className="col-sm-4">
+                    <i
+                      class="fa fa-pencil bg-primary text-light rounded-circle p-2 mb-3"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div className="col-sm-8">
+                    <p>{val.created_at}</p>
+                  </div>
+                </div>
+
                 <div className="d-flex card-body text-left card mt-2 flex-row">
-                  <div className="col-sm-4  col-12 ">img</div>
+                  <div className="col-sm-4  col-12 ">  
+                  <img src={baseUrl + val?.image} alt="" /></div>
                   <div className="col-sm-8  col-12">
                     <h5 className="fw-bold">{val.title}</h5>
                   </div>
