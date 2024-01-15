@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function UserProfilenew() {
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   // api one data
   const [profileDataA, setprofileDataA] = useState();
 
@@ -110,12 +111,12 @@ export default function UserProfilenew() {
             <i class="fa fa-pencil bg-primary text-light rounded-circle p-2 mb-3" aria-hidden="true"></i>
             </div>
             <div className="col-sm-8">
-            <p>{val.created_at}</p>
+            <p>{formatDate(val.created_at)}</p>
             </div>
           </div>
          
                 <div className="d-flex card-body text-left card mt-2 flex-row">
-                  <div className="col-sm-4  col-12 ">img</div>
+                  <div className="col-sm-4  col-12 "><img src={baseUrl + val?.image} alt="" /></div>
                   <div className="col-sm-8  col-12">
                     <h5 className="fw-bold">{val.title}</h5>
                   </div>
