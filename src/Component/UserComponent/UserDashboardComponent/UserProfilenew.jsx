@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader";
+import { Link } from "react-router-dom";
 
 export default function UserProfilenew() {
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
@@ -83,12 +84,12 @@ export default function UserProfilenew() {
                 {profileDataA?.total_received_thanks}
               </h5>
 
-              <a
-                href="/my/user-setting"
+              <Link
+                to="/my/user-setting"
                 className="w-100 fw-bold  btn btn-lg btn-outline-primary mt-3"
               >
                 Edit profile
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-sm-6">
@@ -138,7 +139,11 @@ export default function UserProfilenew() {
 
                     <div className="d-flex card-body text-left card mt-2 flex-row">
                       <div className="col-sm-4  col-12 p-2">
-                        <img  className="w-100" src={baseUrl + val?.image} alt="" />
+                        <img
+                          className="w-100"
+                          src={baseUrl + val?.image}
+                          alt=""
+                        />
                       </div>
                       <div className="col-sm-8  col-12 p-2">
                         <h5 className="fw-bold">{val.title}</h5>

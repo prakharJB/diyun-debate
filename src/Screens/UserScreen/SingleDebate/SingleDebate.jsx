@@ -88,7 +88,7 @@ function SingleDebate() {
       if (error?.response?.data?.status == 401) {
         toast.error("please login for debate");
       } else {
-        toast.error(error?.response?.data?.message);
+        toast.error("Something wrong please try some time letter");
       }
     }
     fetchDataById(debateDetails.id);
@@ -114,7 +114,7 @@ function SingleDebate() {
       if (error?.response?.data?.status == 401) {
         toast.error("please login for debate");
       } else {
-        toast.error(error?.response?.data?.message);
+        toast.error("Something wrong please try some time letter");
       }
     }
     fetchDataById(debateDetails.id);
