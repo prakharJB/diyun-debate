@@ -5,6 +5,21 @@
     left: 50%;
 }
 
+.img-bg-color {
+    background-color: #a9b0b8;
+    position: relative;
+}
+
+.img-bg-color:before {
+    background-image: linear-gradient(0deg, transparent, rgba(0, 0, 0, .1) 50%, rgba(0, 0, 0, .25), rgba(0, 0, 0, .35));
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 /* Dashboard page css start */
 .team-model .modal-header .btn-close {
     margin: unset;
@@ -468,9 +483,9 @@ div#responsive-navbar-nav {
 }
 
 .navbar {
-    position:fixed;
+    position: fixed;
     top: 0;
-    width:100%;
+    width: 100%;
     z-index: 9;
     transition: 0.5s;
     background-color: transparent !important;
@@ -675,6 +690,10 @@ a {
     height: 130px;
 }
 
+.single-card .color-text-icon, .single-card .card-title.h5 {
+    color: #fff;
+}
+
 .single-card {
     grid-column: 1/-1;
 }
@@ -685,6 +704,7 @@ a {
 
 .w-67 hr {
     bottom: 25px;
+    color: #fff;
 }
 
 .w-33 {
@@ -1510,9 +1530,11 @@ th {
 .activity {
     overflow-y: hidden;
 }
+
 .profile.d-flex>div {
     flex: auto;
 }
-.profile-section{
+
+.profile-section {
     background-color: #fafcfd;
 }

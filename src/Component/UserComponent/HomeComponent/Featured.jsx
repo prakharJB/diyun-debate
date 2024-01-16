@@ -87,10 +87,12 @@ function Featured(data) {
               <div className="mt-top">
                 <Card>
                   <Link to={`/debate/${data?.data[0]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[0]?.image}
-                    />
+                    <div className="img-bg-color">
+                      <Card.Img
+                        variant="top"
+                        src={baseUrl + data?.data[0]?.image}
+                      />
+                    </div>
                     <Card.Body>
                       <Card.Title>{data?.data[0]?.title}</Card.Title>
                     </Card.Body>
@@ -111,10 +113,12 @@ function Featured(data) {
                 </Card>
                 <Card>
                   <Link to={`/debate/${data?.data[1]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[1]?.image}
-                    />
+                    <div className="img-bg-color">
+                      <Card.Img
+                        variant="top"
+                        src={baseUrl + data?.data[1]?.image}
+                      />
+                    </div>
                     <Card.Body>
                       <Card.Title>{data?.data[1]?.title}</Card.Title>
                     </Card.Body>
@@ -176,10 +180,12 @@ function Featured(data) {
                 </Card>
                 <Card>
                   <Link to={`/debate/${data?.data[2]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[2]?.image}
-                    />
+                    <div className="img-bg-color">
+                      <Card.Img
+                        variant="top"
+                        src={baseUrl + data?.data[2]?.image}
+                      />
+                    </div>
                     <Card.Body>
                       <Card.Title>{data?.data[2]?.title}</Card.Title>
                     </Card.Body>
@@ -296,11 +302,13 @@ function Featured(data) {
                     <div className="w-67 ">
                       <div className="position-relative">
                         <Link to={`/debate/${data?.data[4]?.id}`}>
-                          <Card.Img
-                            className="unset-height single-card-img"
-                            variant="top"
-                            src={baseUrl + data?.data[4]?.image}
-                          />
+                          <div className="img-bg-color">
+                            <Card.Img
+                              className="unset-height single-card-img"
+                              variant="top"
+                              src={baseUrl + data?.data[4]?.image}
+                            />
+                          </div>
                           <Card.Body className="position-absolute top-0">
                             <Card.Title>{data?.data[4]?.title}</Card.Title>
                           </Card.Body>
@@ -337,7 +345,9 @@ function Featured(data) {
                   filteredData?.map((val, index) => (
                     <Card key={index}>
                       <Link to={`/debate/${val.id}`}>
-                        <Card.Img variant="top" src={baseUrl + val.image} />
+                        <div className="img-bg-color">
+                          <Card.Img variant="top" src={baseUrl + val.image} />
+                        </div>
                         <Card.Body>
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
