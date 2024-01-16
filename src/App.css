@@ -479,18 +479,27 @@ div#responsive-navbar-nav {
 .darkHeader {
     background-color: #fff !important;
 }
-
+.logoimgdark {
+    display: none;
+}
+.darkHeader .logoimgdark {
+    display: block;
+}
+.darkHeader .navbar-brand img:not(.logoimgdark){
+    display: none;
+}
 .me-auto {
     margin-left: auto !important;
     margin-right: unset !important;
 }
 
 .explore-bg {
-    /* background-image: url("./Assets/explore-bg.jpg"); */
-    padding: 64px 0;
+    background-image: url("./Assets/HeroBg.png");
+    padding: 70px 0;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #0662AB;
+    background-position: center;
 }
 
 .bg-portal {

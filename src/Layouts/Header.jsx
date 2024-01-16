@@ -21,6 +21,9 @@ import { PiUsersFourFill } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import logoimg from "../Assets/headerlogimg.png";
+import logoimgdark from "../Assets/logoimgdark.png";
+
 
 function Header() {
   const [isDarkHeader, setDarkHeader] = useState(false);
@@ -75,7 +78,9 @@ function Header() {
         className={isDarkHeader ? "darkHeader" : "bg-body-tertiary"}
       >
         <Navbar.Brand as={Link} to="/">
-          {tHn.Diyun}
+          <img src={logoimg} alt="logo" />
+          <img className="logoimgdark" src={logoimgdark} alt="darklogo" />
+          
         </Navbar.Brand>
         {logInUser ? (
           <>
