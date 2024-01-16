@@ -35,11 +35,11 @@ function AppRoutes() {
             <Route path="/my" element={<UserDashboard />}></Route>
             <Route path="/my/user-setting" element={<UserSettings />}></Route>
             <Route path="/my/profile" element={<UserProfile />}></Route>
+            <Route
+              path="/my/:verification_token"
+              element={<UserDashboard />}
+            ></Route>
           </Route>
-          <Route
-            path="/my/:verification_token"
-            element={<UserDashboard />}
-          ></Route>
           <Route
             path="/forget-password/:token"
             element={<PasswordForget />}
@@ -51,8 +51,8 @@ function AppRoutes() {
           <Route path="/user-profile" element={<></>}></Route>
           <Route path="/user-setting" element={<UserSettings />}></Route>
           {/* <Route path="/user-new" element={<UserProfilenew />}></Route> */}
-          <Route path="/admin-dashboard" element={< AllUser />} ></Route>
-          <Route path="/user-detail/:id" element={<UserDetail />} ></Route>
+          <Route path="/admin-dashboard" element={<AllUser />}></Route>
+          <Route path="/user-detail/:id" element={<UserDetail />}></Route>
         </Routes>
       </Router>
     </div>
