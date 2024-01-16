@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader";
+import { Link } from "react-router-dom";
 
 export default function UserProfilenew() {
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
@@ -86,40 +87,40 @@ export default function UserProfilenew() {
                   {profileDataA?.total_received_thanks}
                 </h5>
 
-                <a
-                  href="/my/user-setting"
-                  className="w-100 fw-bold  btn btn-lg btn-outline-primary mt-3"
-                >
-                  Edit profile
-                </a>
+              <Link
+                to="/my/user-setting"
+                className="w-100 fw-bold  btn btn-lg btn-outline-primary mt-3"
+              >
+                Edit profile
+              </Link>
+            </div>
+          </div>
+          <div className="col-sm-6">
+            <div className="statics">
+              <p className="fw-bold opacity-75 mb-4">
+                Statistics (Public Debates)
+              </p>
+              <div className="d-flex d-flex-gap">
+                <div className="col-md-6  col-12 card-body text-center card mb-4">
+                  <p>Claims</p>
+                  <h4>{profileDataB?.totalClaims}</h4>
+                </div>
+                <div className="col-md-6  col-12 card-body text-center card mb-4">
+                  <p>Contributions</p>
+                  <h4>{profileDataB?.totalContributions}</h4>
+                </div>
+              </div>
+              <div className="d-flex d-flex-gap">
+                <div className="col-md-6  col-12 card-body text-center card mb-4">
+                  <p>Comments</p>
+                  <h4>{profileDataB?.totalComments}</h4>
+                </div>
+                <div className="col-md-6  col-12 card-body text-center card mb-4">
+                  <p>Votes</p>
+                  <h4>{profileDataB?.totalVotes}</h4>
+                </div>
               </div>
             </div>
-            <div className="col-sm-6">
-              <div className="statics">
-                <p className="fw-bold opacity-75 mb-4">
-                  Statistics (Public Debates)
-                </p>
-                <div className="d-flex d-flex-gap">
-                  <div className="col-md-6  col-12 card-body text-center card mb-4">
-                    <p>Claims</p>
-                    <h4>{profileDataB?.totalClaims}</h4>
-                  </div>
-                  <div className="col-md-6  col-12 card-body text-center card mb-4">
-                    <p>Contributions</p>
-                    <h4>{profileDataB?.totalContributions}</h4>
-                  </div>
-                </div>
-                <div className="d-flex d-flex-gap">
-                  <div className="col-md-6  col-12 card-body text-center card mb-4">
-                    <p>Comments</p>
-                    <h4>{profileDataB?.totalComments}</h4>
-                  </div>
-                  <div className="col-md-6  col-12 card-body text-center card mb-4">
-                    <p>Votes</p>
-                    <h4>{profileDataB?.totalVotes}</h4>
-                  </div>
-                </div>
-              </div>
 
               <div className="activity">
                 <p className="fw-bold opacity-75">Activity</p>

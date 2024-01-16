@@ -10,7 +10,6 @@ function New(data) {
 
   const newOne = data?.data ? [...data.data].reverse() : [];
 
-
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
   return (
@@ -24,7 +23,9 @@ function New(data) {
                   newOne?.map((val, index) => (
                     <Card>
                       <a href={`/debate/${val.id}`} key={index}>
-                        <Card.Img variant="top" src={baseUrl + val.image} />
+                        <div className="img-bg-color">
+                          <Card.Img variant="top" src={baseUrl + val.image} />
+                        </div>
                         <Card.Body>
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
