@@ -7,10 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-// import { SignupAsyncThunk } from "../../../../redux/asyncThunk/authAsyncThunk";
 import { SignupAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
-// import { Formik , Form, Field } from "formik";
-import * as Yup from "yup";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -58,10 +55,9 @@ const Signup = (props) => {
         // Handle errors
         toast.error("Signup failed");
       } finally {
-        setLoading(false); // Set loading to false when the signup process completes (whether it's success or failure)
+        setLoading(false);
       }
 
-      
       // try {
       //   const response = await axios.post(
       //     `${process.env.REACT_APP_BASE_URL}/api/register`,

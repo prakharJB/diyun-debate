@@ -72,10 +72,11 @@ const CreateDebate = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.backgroundinfo === "" || formData.tags === "") {
+    if (formData.image === "" || formData.backgroundinfo === "" || formData.tags === "") {
       setErrors({
         backgroundinfo: "נדרש מידע רקע",
         tags: "יש צורך בתגים",
+        image:"נדרשת תמונה"
       });
       return;
     }
@@ -105,7 +106,7 @@ const CreateDebate = (props) => {
           if (response?.status === 200) {
             toast.success(response?.data?.message);
           } else {
-            toast.error(response?.data?.message);
+            toast.error("An error occurred while creating debate");
             console.log(response);
           }
           fetchData();
@@ -120,20 +121,7 @@ const CreateDebate = (props) => {
       // This block won't capture errors from asynchronous code
       toast.error("This won't be reached for asynchronous errors");
     }
-    // try {
-    //   const result = await axios.post(
-    //     `${process.env.REACT_APP_BASE_URL}/api/createdebate`,
-    //     data,
-    //     {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data",
-    //       },
-    //     }
-    //   );
-    //   await fetchData();
-    // } catch (error) {
-    //   console.error("Error submitting the form:", error);
-    // }
+ 
 
     setFormData({
       title: "",
@@ -349,7 +337,9 @@ const CreateDebate = (props) => {
                     onChange={handleImgChange}
                   />
                 </Form.Group>
-
+                {errors.image && (
+                  <Form.Text className="text-danger">{errors.image}</Form.Text>
+                )}
                 <Form.Group controlId="formTags">
                   <Form.Label className="mt-4">תגים</Form.Label>
                   <Form.Control

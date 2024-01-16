@@ -11,8 +11,11 @@ import Card from "react-bootstrap/Card";
 import { Tree as D3Tree } from "react-d3-tree";
 // import Sunburst from 'react-sunburst';
 import { Sunburst } from "react-vis";
+import toast from "react-hot-toast";
 
 function SingleDebate() {
+  const [textProsCount, setTextProsCount] = useState(0);
+  const [textConsCount, setTextConsCount] = useState(0);
   const [detailDebateModal, setDetailDebateModal] = useState(false);
   const [pros, setPros] = useState({
     title: "",
@@ -60,9 +63,11 @@ function SingleDebate() {
   };
   const handleProsChange = (e) => {
     setPros({ ...pros, [e.target.name]: e.target.value });
+    setTextProsCount(e.target.value.length);
   };
   const handleConsChange = (e) => {
     setCons({ ...cons, [e.target.name]: e.target.value });
+    setTextConsCount(e.target.value.length);
   };
   const handleSubmitPros = async (e) => {
     e.preventDefault();
@@ -80,6 +85,11 @@ function SingleDebate() {
       console.log(result);
     } catch (error) {
       console.error("Error submitting the form:", error);
+      if (error?.response?.data?.status == 401) {
+        toast.error("please login for debate");
+      } else {
+        toast.error(error?.response?.data?.message);
+      }
     }
     fetchDataById(debateDetails.id);
     setShowProsForm(false);
@@ -101,6 +111,11 @@ function SingleDebate() {
       console.log(result);
     } catch (error) {
       console.error("Error submitting the form:", error);
+      if (error?.response?.data?.status == 401) {
+        toast.error("please login for debate");
+      } else {
+        toast.error(error?.response?.data?.message);
+      }
     }
     fetchDataById(debateDetails.id);
     setShowConsForm(false);
@@ -370,11 +385,14 @@ function SingleDebate() {
                           <Form.Group controlId="formName">
                             <Form.Control
                               type="text"
-                              placeholder="Suggest your pros here. It will become visible to all viewer once the discussion admins have accepted it."
+                              placeholder="Suggest your pros here."
                               name="title"
                               value={pros.title}
+                              maxLength="500"
+                              autoFocus
                               onChange={handleProsChange}
                             />
+                            {textProsCount}/500
                           </Form.Group>
 
                           <Button
@@ -408,13 +426,15 @@ function SingleDebate() {
                           <Form.Group controlId="formName">
                             <Form.Control
                               type="text"
-                              placeholder="Enter your name"
+                              placeholder="Suggest your cons here."
                               name="title"
                               value={cons.title}
+                              autoFocus
+                              maxLength="500"
                               onChange={handleConsChange}
                             />
+                            {textConsCount}/500
                           </Form.Group>
-
                           <Button
                             className="my-2"
                             variant="danger"
