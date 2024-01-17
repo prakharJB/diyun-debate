@@ -36,14 +36,22 @@ function Header() {
   const token = useSelector((state) => state?.auth?.token);
 
   useEffect(() => {
-  const hasBrokerContentClass = document.querySelector('section').classList.contains('banner-class');
-  if (hasBrokerContentClass) {
-    const dashRebateElements = document.querySelectorAll('body');
-    dashRebateElements.forEach(element => {
-      element.classList.add('banner-header');
-    });
-  }
-}, []);
+    const hasBrokerContentClass = document.querySelector('section').classList.contains('banner-class');
+
+    if (hasBrokerContentClass) {
+      document.body.classList.add('banner-header');
+    }
+
+    // Cleanup function to remove the added class when the component unmounts
+    return () => {
+      if (hasBrokerContentClass) {
+        document.body.classList.remove('banner-header');
+      }
+    };
+  }, []);
+
+
+
 
 
 const [scroll, setScroll] = useState(0);
