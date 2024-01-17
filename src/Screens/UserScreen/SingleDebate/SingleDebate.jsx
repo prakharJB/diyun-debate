@@ -12,6 +12,7 @@ import { Tree as D3Tree } from "react-d3-tree";
 // import Sunburst from 'react-sunburst';
 import { Sunburst } from "react-vis";
 import toast from "react-hot-toast";
+import tHn from "../../../locales/he.json"
 
 function SingleDebate() {
   const [textProsCount, setTextProsCount] = useState(0);
@@ -310,7 +311,7 @@ function SingleDebate() {
           <Card.Body>
             <Card.Title>{debateDetails?.title}</Card.Title>
             <Card.Text>
-              <Card.Title>Background Info</Card.Title>
+              <Card.Title>{tHn.Background_Info}</Card.Title>
               {debateDetails?.backgroundinfo}
             </Card.Text>
           </Card.Body>

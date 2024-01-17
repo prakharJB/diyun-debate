@@ -24,7 +24,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Featured(data) {
-  console.log(data);
   // const { text, setText } = useContext(MyContext);
   // const fetchData = async () => {
   //   try {
@@ -72,13 +71,13 @@ function Featured(data) {
     fetchData();
   }, [state]);
 
-  const filteredData = data.data.filter(
+  const filteredData = data?.data?.filter(
     (val) =>
-      val.id !== data?.data[0]?.id &&
-      val.id !== data?.data[1]?.id &&
-      val.id !== data?.data[2]?.id &&
-      val.id !== data?.data[3]?.id &&
-      val.id !== data?.data[4]?.id
+      val?.id !== data?.data[0]?.id &&
+      val?.id !== data?.data[1]?.id &&
+      val?.id !== data?.data[2]?.id &&
+      val?.id !== data?.data[3]?.id &&
+      val?.id !== data?.data[4]?.id
   );
   const settings = {
     // initialSlide: 0,
@@ -391,12 +390,12 @@ function Featured(data) {
                 {filteredData &&
                   filteredData?.map((val, index) => (
                     <Card key={index}>
-                      <Link to={`/debate/${val.id}`}>
+                      <Link to={`/debate/${val?.id}`}>
                         <div className="img-bg-color">
                           <Card.Img variant="top" src={baseUrl + val.image} />
                         </div>
                         <Card.Body>
-                          <Card.Title>{val.title}</Card.Title>
+                          <Card.Title>{val?.title}</Card.Title>
                         </Card.Body>
                       </Link>
                       <hr />

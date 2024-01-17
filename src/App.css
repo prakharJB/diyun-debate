@@ -180,11 +180,17 @@
 }
 
 .footer-sec {
-    background: #0662ab
+    /* background: #0662ab */
+    /* background-image: url("./Assets/new-white-footer.png");
+    padding: 70px 0;
+    background-size: cover;
+    background-repeat: no-repeat; */
+    background-color: #fff;
+    /* background-position: center; */
 }
 
 .footer-sec li a {
-    color: #fff !important;
+    color: #000 !important;
 }
 
 /* search page css strt */

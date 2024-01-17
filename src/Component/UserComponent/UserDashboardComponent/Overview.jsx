@@ -48,7 +48,7 @@ const Overview = () => {
                 <div className="cardd-div">
                   <Card className="">
                     <a href={`/debate/${text[1]?.id}`}>
-                      <Card.Img variant="top" src={testGpt} />
+                      <Card.Img variant="top"  src={baseUrl + text[1]?.image} />
                       <Card.Body>
                         <Card.Title>{text[1]?.title}</Card.Title>
                         {/* <Card.Text>
@@ -76,7 +76,7 @@ const Overview = () => {
                 <div>
                   <Card className="cardd-div">
                     <a href={`/debate/${text[2]?.id}`}>
-                      <Card.Img variant="top" src={testGpt} />
+                      <Card.Img variant="top"  src={baseUrl + text[2]?.image} />
                       <Card.Body>
                         <Card.Title>{text[2]?.title}</Card.Title>
                         {/* <Card.Text>
