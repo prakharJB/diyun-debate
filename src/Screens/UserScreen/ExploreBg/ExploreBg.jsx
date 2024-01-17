@@ -14,6 +14,7 @@ function ExploreBg(data) {
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
   const fetchData = async () => {
+    debugger;
     try {
       const response = await axios.get(
         `https://laradebate.jmbliss.com/api/debates/tag/${category}`
@@ -22,8 +23,13 @@ function ExploreBg(data) {
       console.log(response);
     } catch (error) {
       console.error("Error fetching data:", error);
-      toast.error("tag is not use in debate");
-      navigate("/explore/tags");
+      if (error?.response?.data?.status == 404) {
+        toast.error(error?.response?.data?.message);
+        navigate("/explore/tags");
+      } else {
+        toast.error("tag is not use in debate");
+        navigate("/explore/tags");
+      }
     }
   };
   useEffect(() => {
