@@ -26,6 +26,8 @@ function SingleDebate() {
   const { id } = useParams();
   const [debateDetails, setDebateDetails] = useState();
 
+  // display single debate
+
   const fetchData = async () => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
@@ -36,6 +38,8 @@ function SingleDebate() {
       console.error("Error fetching data:", error);
     }
   };
+
+  // display sing debate
   const fetchDataById = async (newId) => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${newId}/displaydebate`;
@@ -69,6 +73,8 @@ function SingleDebate() {
     setCons({ ...cons, [e.target.name]: e.target.value });
     setTextConsCount(e.target.value.length);
   };
+
+  // Submit Pros
   const handleSubmitPros = async (e) => {
     e.preventDefault();
     console.log("Form submitted:", pros);
@@ -95,6 +101,9 @@ function SingleDebate() {
     setShowProsForm(false);
     setPros({ title: "" });
   };
+
+  // Submit Cons
+
   const handleSubmitCons = async (e) => {
     e.preventDefault();
     console.log("Form submitted:", cons);

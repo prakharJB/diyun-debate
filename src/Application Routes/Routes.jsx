@@ -31,6 +31,7 @@ function AppRoutes() {
           <Route path="/explore/tags/:category" element={<NewBg />}></Route>
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
+          {/* Private route for verify token  */}
           <Route element={<PrivateRoutes />}>
             <Route path="/my" element={<UserDashboard />}></Route>
             <Route path="/my/user-setting" element={<UserSettings />}></Route>

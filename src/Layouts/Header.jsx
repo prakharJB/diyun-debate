@@ -21,8 +21,8 @@ import { PiUsersFourFill } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import logoimg from "../Assets/headerlogimg.png";
-import logoimgdark from "../Assets/logoimgdark.png";
+import logoimgdark from "../Assets/White-logo.png";
+import logoimg from "../Assets/Blue-logo.png";
 
 
 function Header() {

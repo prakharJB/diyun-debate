@@ -19,6 +19,9 @@ import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Featured(data) {
   console.log(data);
@@ -77,7 +80,16 @@ function Featured(data) {
       val.id !== data?.data[3]?.id &&
       val.id !== data?.data[4]?.id
   );
-
+  const settings = {
+    // initialSlide: 0,
+    infinite: false,
+    dots: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
   return (
     <>
       <section className="bg-portal pb-4" dir="rtl">
@@ -206,10 +218,12 @@ function Featured(data) {
                 </Card>
                 <Card>
                   <Link to={`/debate/${data?.data[3]?.id}`}>
-                    <Card.Img
-                      variant="top"
-                      src={baseUrl + data?.data[3]?.image}
-                    />
+                    <div className="img-bg-color">
+                      <Card.Img
+                        variant="top"
+                        src={baseUrl + data?.data[3]?.image}
+                      />
+                    </div>
                     <Card.Body>
                       <Card.Title>{data?.data[3]?.title}</Card.Title>
                     </Card.Body>
@@ -234,18 +248,51 @@ function Featured(data) {
                       <HiMiniTrophy />
                       <Card.Title>תורמים מובילים</Card.Title>
                     </div>
-                    {topContributors &&
-                      topContributors?.map((Contributors, index) => (
-                        <div className="d-flex align-items-baseline mt-2 justify-content-between">
-                          <FaUserPen />
-                          <div className="d-flex align-items-end flex-column">
-                            <Card.Text key={index}>
-                              {index + 1}.{Contributors?.username}
-                            </Card.Text>
-                            {Contributors?.total_contributions} תרומות
-                          </div>
-                        </div>
-                      ))}
+                    <Slider {...settings}>
+                      {topContributors &&
+                        topContributors
+                          .reduce((accumulator, Contributors, index) => {
+                            // Group contributors into sets of 4
+                            if (index % 4 === 0) {
+                              accumulator.push([]);
+                            }
+                            accumulator[accumulator.length - 1].push(
+                              Contributors
+                            );
+                            return accumulator;
+                          }, [])
+                          .map((group, groupIndex) => (
+                            <div
+                              key={groupIndex}
+                              className=" align-items-baseline mt-2 justify-content-between"
+                            >
+                              {group.map((contributor, contributorIndex) => (
+                                <div>
+                                  <div
+                                    key={contributorIndex}
+                                    className="d-flex justify-content-between"
+                                  >
+                                    <div>
+                                      <Card.Text className="m-0">
+                                        {contributor.username}
+                                      </Card.Text>
+                                      <Card.Text>
+                                        תרומות {contributor.total_contributions}
+                                      </Card.Text>
+                                    </div>
+                                    <div>
+                                      <Card.Text>
+                                        {contributorIndex + 1}
+                                      </Card.Text>
+                                    </div>
+                                  </div>
+
+                                  <hr className="mt-1 mb-0" />
+                                </div>
+                              ))}
+                            </div>
+                          ))}
+                    </Slider>
                   </Card.Body>
                 </Card>
                 <Card className="single-card">
