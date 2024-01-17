@@ -25,7 +25,7 @@ function Explore() {
 
   return (
     <>
-      <section className="explore-bg">
+      <section className="explore-bg banner-class">
         <Container>
           <Row>
             <Col className="bg text-center">
