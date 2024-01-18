@@ -1,29 +1,58 @@
-const DebateTree = ({ debates }) => {
-  console.log(debates);
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Tree as D3Tree } from "react-d3-tree";
+import { useParams } from "react-router-dom";
 
-  const renderDebate = (debate, level = 0) => {
-    console.log(`Rendering debate: ${debate.title} at level ${level}`);
+const DebateTree = () => {
+  const [treeData, setTreeData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    return (
-      <div key={debate.id} style={{ marginLeft: `${level * 20}px` }}>
-        <p>{debate.title}</p>
-        {debate.cons &&
-          debate.cons.length > 0 &&
-          debate.cons.map((childDebate) =>
-            renderDebate(childDebate, level + 1)
-          )}
-        {debate.pros &&
-          debate.pros.length > 0 &&
-          debate.pros.map((childDebate) =>
-            renderDebate(childDebate, level + 1)
-          )}
-      </div>
-    );
-  };
+  const { id } = useParams();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
+        const responseData = await axios.get(url);
+        const debateDetails = responseData?.data?.debate;
+
+        // Assuming debateDetails is already in the nested tree format
+        const treeData = [
+          {
+            name: "Root",
+            attributes: {},
+            children: debateDetails,
+          },
+        ];
+
+        setTreeData(treeData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching tree data:", error);
+        setError("Error fetching tree data");
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
-    <div>
-      {Array.isArray(debates) && debates.map((debate) => renderDebate(debate))}
+    <div style={{ width: "100%", height: "500px" }}>
+      <D3Tree
+        data={treeData}
+        orientation="vertical"
+        translate={{ x: 100, y: 100 }}
+        collapsible={true}
+      />
     </div>
   );
 };

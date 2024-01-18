@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetDebateAsyncThunk } from "../../../redux/asyncThunk/debateAsyncThunk";
 import ExploreBg from "../../../Screens/UserScreen/ExploreBg/ExploreBg";
 import Loader from "../Loader";
+import toast from "react-hot-toast";
 
 function HomePortal() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function HomePortal() {
       return responseData.data.mainDebates;
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }

@@ -36,7 +36,7 @@ function Header() {
   const token = useSelector((state) => state?.auth?.token);
 
   useEffect(() => {
-    const hasBrokerContentClass = document.querySelector('section').classList.contains('banner-class');
+    const hasBrokerContentClass = document.querySelector('section').classList?.contains('banner-class');
 
     if (hasBrokerContentClass) {
       document.body.classList.add('banner-header');

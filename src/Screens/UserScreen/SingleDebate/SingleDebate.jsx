@@ -8,11 +8,12 @@ import Modal from "react-bootstrap/Modal";
 import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
-import { Tree as D3Tree } from "react-d3-tree";
+
 // import Sunburst from 'react-sunburst';
 import { Sunburst } from "react-vis";
 import toast from "react-hot-toast";
-import tHn from "../../../locales/he.json"
+import tHn from "../../../locales/he.json";
+import DebateTree from "../../../Component/UserComponent/DebateTree";
 
 function SingleDebate() {
   const [textProsCount, setTextProsCount] = useState(0);
@@ -172,68 +173,6 @@ function SingleDebate() {
     setShowProsForm(false); // Hide Pros form when showing Cons form
   };
 
-  // tree
-
-  // const [treeData, setTreeData] = useState({});
-
-  // const fetchtreeData = async (id) => {
-  //   try {
-  //     const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
-  //     const responseData = await axios.get(url);
-  //     const debateDetails = responseData?.data?.debate;
-
-  //     const treeItem = {
-  //       name: debateDetails.title,
-  //       attributes: {
-  //         backgroundInfo: debateDetails.backgroundinfo,
-  //         totalVotes: debateDetails.total_votes,
-  //         side: debateDetails.side,
-  //       },
-  //       children: [],
-  //     };
-
-  //     if (debateDetails.pros && debateDetails.pros.length > 0) {
-  //       debateDetails.pros.forEach((pro) => {
-  //         treeItem.children.push({
-  //           name: pro.title,
-  //           attributes: {
-  //             backgroundInfo: pro.backgroundinfo,
-  //             totalVotes: pro.total_votes,
-  //             side: pro.side,
-  //           },
-  //           children: fetchData(pro.id),
-  //         });
-  //       });
-  //     }
-
-  //     if (debateDetails.cons && debateDetails.cons.length > 0) {
-  //       debateDetails.cons.forEach((con) => {
-  //         treeItem.children.push({
-  //           name: con.title,
-  //           attributes: {
-  //             backgroundInfo: con.backgroundinfo,
-  //             totalVotes: con.total_votes,
-  //             side: con.side,
-  //           },
-  //           children: fetchData(con.id),
-  //         });
-  //       });
-  //     }
-
-  //     return [treeItem];
-  //   } catch (error) {
-  //     console.error("Error fetching tree data:", error);
-  //     return [];
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const parentId = id; // Replace with the actual parent_id
-  //   fetchtreeData(parentId).then((treeData) => {
-  //     setTreeData({ name: "Root", attributes: {}, children: treeData });
-  //   });
-  // }, []);
-
   // sunburst
 
   // const [sunburstDebateData, setSunburstDebateData] = useState()
@@ -341,15 +280,10 @@ function SingleDebate() {
           height={500}
           // tooltipContent={(node) => `${node.name}: ${node.size || 0}`}
         />
-      </div>
-      <div style={{ width: "100%", height: "500px" }}>
-        <D3Tree
-          data={treeData}
-          orientation="vertical"
-          translate={{ x: 100, y: 100 }}
-          collapsible={true}
-        />
-      </div> */}
+      </div>*/}
+
+      <DebateTree  />
+
       <section
         style={{ background: "#F2F4F5", paddingBottom: "calc(100vh - 250px)" }}
         className="h-100"
@@ -359,7 +293,6 @@ function SingleDebate() {
           <Row>
             <Col md={10} className="m-auto mt-4">
               <div className="p-4 my-4  ">
-                {/* {oldTitle === "" ? ( */}
                 <div
                   style={{ background: "#ffff" }}
                   className="p-4 rounded w-50 m-auto"
@@ -367,7 +300,6 @@ function SingleDebate() {
                 >
                   {oldTitle}
                 </div>
-                {/* ) : null} */}
 
                 <div
                   style={{ background: "#ffff" }}

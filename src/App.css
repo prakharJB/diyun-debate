@@ -1200,36 +1200,6 @@ input#check-bx {
     border: 1px solid grey;
 }
 
-<<<<<<< HEAD
- .all-debate section.bg-portal.pb-4{
-    z-index: 999;
-    position: relative;
-    /* width: calc(100% - 230px); */
-    margin-right: 0;
-    margin-left: auto;
-    transition: 0.7s ease;
- }
- .side-menu.main ~ .all-debate{
-    left:100px;
-}
- .side-menu.main ~ .bg-portal  {
-    /* left: 100px; */
- /* transition:0.7s ease;  */
- /* margin-left: 0; */
-}
-
- /* AdminDashboard */
- .side-menu h1{
-    color: #fff;
-    font-size: 25px;
- }
- .column1-all-debate{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 30px;
- }
- ::-webkit-input-placeholder { 
-=======
 .profile-chang {
     display: none;
     cursor: pointer;
@@ -1242,7 +1212,6 @@ input#check-bx {
 }
 
 ::-webkit-input-placeholder {
->>>>>>> 552f52cb013ff8508245efd3607a98ca6a53c9b1
     /* background: #1d1b31; */
     border-radius: 12px;
 }
@@ -1332,24 +1301,6 @@ input#check-bx {
 
 .side-menu {
     white-space: nowrap;
-<<<<<<< HEAD
-    /* width: fit-content; */
-  }
-  .side-menu.main + section{
-    width: calc(100% - 85px);
-  }
-  .side-menu.main h1 {
-    opacity:0;
-  }
-  .side-menu.main i.bx.bx-notepad{
-    opacity:0;
-  }
-  .side-menu.main .test{
-    position:absolute;
-    right:20%;
-  }
-  .side-menu.main ~ .dashboard  {
-=======
 }
 
 .side-menu.main h1 {
@@ -1366,7 +1317,6 @@ input#check-bx {
 }
 
 .side-menu.main~.dashboard {
->>>>>>> 552f52cb013ff8508245efd3607a98ca6a53c9b1
     left: 100px;
     transition: 0.7s ease;
 }
@@ -1416,15 +1366,10 @@ input#check-bx {
 
 /* AdminDashboard */
 
-<<<<<<< HEAD
- .invoice-system , .all-debate {
-    position:absolute;
-=======
 /* User-Table */
 
 .invoice-system {
     position: absolute;
->>>>>>> 552f52cb013ff8508245efd3607a98ca6a53c9b1
     left: 260px;
     height: 100%;
     width: 80%;
