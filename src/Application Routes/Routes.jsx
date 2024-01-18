@@ -59,7 +59,6 @@ function AppRoutes() {
           <Route path="all-debate" element={<AllDebate />} ></Route>
           <Route path="/single-debate" element={< SingleDebateDetail />} ></Route>
           <Route path="/admin-dashboard" element={<AllUser />}></Route>
-          <Route path="/user-detail/:id" element={<UserDetail />}></Route>
         </Routes>
       </Router>
     </div>
