@@ -12,18 +12,23 @@ function ExploreBg(data) {
   const { category } = useParams();
   const [apiData, setApiData] = useState([]);
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
-
+  const reversedCategory = category ? [...category].reverse().join("") : "";
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://laradebate.jmbliss.com/api/debates/tag/${category}`
+        `https://laradebate.jmbliss.com/api/debates/tag/${reversedCategory}`
       );
       setApiData(response?.data?.debates);
       console.log(response);
     } catch (error) {
       console.error("Error fetching data:", error);
-      toast.error("tag is not use in debate");
-      navigate("/explore/tags");
+      if (error?.response?.data?.status == 404) {
+        toast.error(error?.response?.data?.message);
+        navigate("/explore/tags");
+      } else {
+        toast.error("tag is not use in debate");
+        navigate("/explore/tags");
+      }
     }
   };
   useEffect(() => {

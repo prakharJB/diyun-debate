@@ -37,7 +37,9 @@ function Hot(data) {
                   data.data?.map((val, index) => (
                     <Card>
                       <a href={`/debate/${val.id}`} key={index}>
-                        <Card.Img variant="top" src={baseUrl + val.image} />
+                        <div className="img-bg-color">
+                          <Card.Img variant="top" src={baseUrl + val.image} />
+                        </div>
                         <Card.Body>
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>

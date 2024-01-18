@@ -21,39 +21,83 @@ import { PiUsersFourFill } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import logoimgdark from "../Assets/White-logo.png";
+import logoimg from "../Assets/Blue-logo.png";
+
 
 function Header() {
-  const [isDarkHeader, setDarkHeader] = useState(false);
+
   const [modalShow, setModalShow] = useState(false);
   const [LoginmodalShow, setLoginModalShow] = useState(false);
   const [CreateDebateModal, setCreateDebateModal] = useState(false);
   const [logInUser, setLogInUser] = useState();
   const location = useLocation();
   const dispatch = useDispatch();
-
   const token = useSelector((state) => state?.auth?.token);
+
+  useEffect(() => {
+    const hasBrokerContentClass = document.querySelector('section').classList.contains('banner-class');
+
+    if (hasBrokerContentClass) {
+      document.body.classList.add('banner-header');
+    }
+
+    // Cleanup function to remove the added class when the component unmounts
+    return () => {
+      if (hasBrokerContentClass) {
+        document.body.classList.remove('banner-header');
+      }
+    };
+  }, []);
+
+
+
+
+
+const [scroll, setScroll] = useState(0);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  };
+
+  // Attach the scroll event listener when the component mounts
+  window.addEventListener('scroll', handleScroll);
+
+  // Clean up the event listener when the component unmounts
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []); // Empty dependency array means this effect runs once after the initial render
+
+// Add or remove the 'scrolled' class based on the scroll position
+const isScrolled = scroll >= 60;
+
+
 
   useEffect(() => {
     setLogInUser(token);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scroll = window.scrollY;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scroll = window.scrollY;
 
-      if (scroll >= 60) {
-        setDarkHeader(true);
-      } else {
-        setDarkHeader(false);
-      }
-    };
+  //     if (scroll >= 60) {
+  //       setDarkHeader(true);
+  //     } else {
+  //       setDarkHeader(false);
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  
   const [activeModal, setActiveModal] = useState(null);
 
   // Modify the functions that open the modals to set the active modal
@@ -66,16 +110,22 @@ function Header() {
     setActiveModal("signup");
     setModalShow(true);
   };
+
+
+  
   return (
     <>
       <Navbar
         dir="rtl"
         collapseOnSelect
         expand="lg"
-        className={isDarkHeader ? "darkHeader" : "bg-body-tertiary"}
+        className={`test ${isScrolled ? 'scrolled' : ''}`}
+        
       >
         <Navbar.Brand as={Link} to="/">
-          {tHn.Diyun}
+          <img src={logoimg} alt="logo" />
+          <img className="logoimgdark" src={logoimgdark} alt="darklogo" />
+          
         </Navbar.Brand>
         {logInUser ? (
           <>

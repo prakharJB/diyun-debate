@@ -25,26 +25,26 @@ function Explore() {
 
   return (
     <>
-      <section className="explore-bg">
+      <section className="explore-bg banner-class">
         <Container>
           <Row>
             <Col className="bg text-center">
               <div>
                 <h1 className="text-center explore-page__headline">{tHn.explore_debates}</h1>
                 {/* {items?.map((val, index) => (
-                <Link key={index} to={`/explore/tags/${val}`} className="mx-1 tags-btn" >{val}</Link>
+                <Link key={index} to={`/explore/tags/${val}`} className="mx-2 tags-btn" >{val}</Link>
                 ))} */}
-                <div className="mobile-flex-wrap">
-                  <Link to={`/explore/tags/Politics`} className="mx-1 tags-btn" >פּוֹלִיטִיקָה</Link>
-                  <Link to={`/explore/tags/Philosophy`} className="mx-1 tags-btn" >פִילוֹסוֹפִיָה</Link>
-                  <Link to={`/explore/tags/Science`} className="mx-1 tags-btn" >מַדָע</Link>
-                  <Link to={`/explore/tags/Ethics`} className="mx-1 tags-btn" >אֶתִיקָה</Link>
-                  <Link to={`/explore/tags/Gender`} className="mx-1 tags-btn" >אֶתִיקָה</Link>
-                  <Link to={`/explore/tags/Religion`} className="mx-1 tags-btn" >דָת</Link>
-                  <Link to={`/explore/tags/Technology`} className="mx-1 tags-btn" >טֶכנוֹלוֹגִיָה</Link>
+                <div className="mobile-flex-wrap d-flex justify-content-center flex-wrap">
+                  <Link to={`/explore/tags/Politics`} className="mx-2 tags-btn" >פּוֹלִיטִיקָה</Link>
+                  <Link to={`/explore/tags/Philosophy`} className="mx-2 tags-btn" >פִילוֹסוֹפִיָה</Link>
+                  <Link to={`/explore/tags/Science`} className="mx-2 tags-btn" >מַדָע</Link>
+                  <Link to={`/explore/tags/Ethics`} className="mx-2 tags-btn" >אֶתִיקָה</Link>
+                  <Link to={`/explore/tags/Gender`} className="mx-2 tags-btn" >אֶתִיקָה</Link>
+                  <Link to={`/explore/tags/Religion`} className="mx-2 tags-btn" >דָת</Link>
+                  <Link to={`/explore/tags/Technology`} className="mx-2 tags-btn" >טֶכנוֹלוֹגִיָה</Link>
                 </div>
               </div>
-              <Link className="btn-show-tags" to="/explore/tags">ראה עוד</Link>
+              <Link className="btn-show-tags text-decoration-underline" to="/explore/tags">ראה עוד</Link>
               {/* Politics component */}          
             </Col>
           </Row>          

@@ -33,15 +33,16 @@ function AppRoutes() {
           <Route path="/explore/tags/:category" element={<NewBg />}></Route>
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/search" element={<Search />}></Route>
+          {/* Private route for verify token  */}
           <Route element={<PrivateRoutes />}>
             <Route path="/my" element={<UserDashboard />}></Route>
             <Route path="/my/user-setting" element={<UserSettings />}></Route>
             <Route path="/my/profile" element={<UserProfile />}></Route>
+            <Route
+              path="/my/:verification_token"
+              element={<UserDashboard />}
+            ></Route>
           </Route>
-          <Route
-            path="/my/:verification_token"
-            element={<UserDashboard />}
-          ></Route>
           <Route
             path="/forget-password/:token"
             element={<PasswordForget />}
@@ -57,6 +58,8 @@ function AppRoutes() {
           <Route path="/user-detail/:id" element={<UserDetail />} ></Route>
           <Route path="all-debate" element={<AllDebate />} ></Route>
           <Route path="/single-debate" element={< SingleDebateDetail />} ></Route>
+          <Route path="/admin-dashboard" element={<AllUser />}></Route>
+          <Route path="/user-detail/:id" element={<UserDetail />}></Route>
         </Routes>
       </Router>
     </div>
