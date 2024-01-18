@@ -123,8 +123,8 @@ const isScrolled = scroll >= 60;
         
       >
         <Navbar.Brand as={Link} to="/">
-          <img src={logoimg} alt="logo" />
-          <img className="logoimgdark" src={logoimgdark} alt="darklogo" />
+          <img className="logoimgdark"  src={logoimg} alt="logo" />
+          <img  className="logoimglight" src={logoimgdark} alt="darklogo" />
           
         </Navbar.Brand>
         {logInUser ? (
