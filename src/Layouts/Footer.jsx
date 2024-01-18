@@ -12,7 +12,7 @@ function Footer() {
             <Col>
               <footer className="">
                 <Row>
-                  <Col className="mb-3 text-center">
+                  <Col className="mb-4 text-center">
                     <Link to="/">
                       <img
                         src={footerLogo}

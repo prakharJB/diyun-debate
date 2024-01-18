@@ -40,7 +40,7 @@ function SingleDebate() {
     }
   };
 
-  // display sing debate
+  // display single debate
   const fetchDataById = async (newId) => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${newId}/displaydebate`;
