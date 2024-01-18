@@ -493,18 +493,21 @@ div#responsive-navbar-nav {
 }
 
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 9;
-    transition: 0.5s;
+    transition: 0.2s;
     background-color: #fff !important;
 }
 .banner-header nav {
     background: transparent !important;
+    position: fixed;
 }
-
-.banner-header nav a {
+a.navbar-brand img {
+    width: 70px;
+}
+.banner-header nav>div>a {
     color: #fff !important;
 }
 .banner-header .scrolled {
@@ -514,14 +517,24 @@ div#responsive-navbar-nav {
 .banner-header .scrolled a {
     color: #000 !important;
 }
-.logoimgdark {
+.logoimgdark,.scrolled  .logoimglight,img.logoimglight:not(.banner-header img.logoimglight) {
     display: none;
 }
-.darkHeader .logoimgdark {
+.scrolled  .logoimgdark ,img.logoimgdark:not(.banner-header img.logoimgdark){
     display: block;
 }
-.darkHeader .navbar-brand img:not(.logoimgdark){
-    display: none;
+.banner-header nav:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    height: 100%;
+    z-index: -1;
+    top: -100%;
+    transition: 0.2s;
+}
+.banner-header .scrolled:after {
+    top:0%;
 }
 .me-auto {
     margin-left: auto !important;
@@ -1455,6 +1468,9 @@ th {
 /* tablet screen */
 
 @media(max-width:768px) {
+    .banner-header .scrolled a{
+        color: #fff !important;
+    }
     .navbar-expand-lg .navbar-nav .nav-link {
         margin: 0 !important;
     }
