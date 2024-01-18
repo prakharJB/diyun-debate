@@ -658,6 +658,7 @@ a {
 
 .mt-top .card {
     height: 330px;
+    overflow: hidden;
     /* direction: ltr; */
 }
 
@@ -922,6 +923,7 @@ img.card-img-top {
     padding: 30px 0px;
 }
 
+
 /* -----User Settings */
 
 .user-setting h2{
@@ -936,7 +938,6 @@ img.card-img-top {
   #remove-button {
     color: #ca3507;
     border:1px solid #ca3507;
-    /* background-color: #e6e9eb; */
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px; 
@@ -946,7 +947,6 @@ img.card-img-top {
   #change-button{
     color: #2c343d;
     border:1px solid #888e96;
-    /* background-color: #e6e9eb; */
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px; 
@@ -1098,10 +1098,32 @@ input#check-bx {
           cursor: pointer;
  }
 
+ .all-debate section.bg-portal.pb-4{
+    z-index: 999;
+    position: relative;
+    /* width: calc(100% - 230px); */
+    margin-right: 0;
+    margin-left: auto;
+    transition: 0.7s ease;
+ }
+ .side-menu.main ~ .all-debate{
+    left:100px;
+}
+ .side-menu.main ~ .bg-portal  {
+    /* left: 100px; */
+ /* transition:0.7s ease;  */
+ /* margin-left: 0; */
+}
+
  /* AdminDashboard */
  .side-menu h1{
     color: #fff;
     font-size: 25px;
+ }
+ .column1-all-debate{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
  }
  ::-webkit-input-placeholder { 
     /* background: #1d1b31; */
@@ -1183,6 +1205,10 @@ input#check-bx {
   }  
   .side-menu{
     white-space: nowrap;
+    /* width: fit-content; */
+  }
+  .side-menu.main + section{
+    width: calc(100% - 85px);
   }
   .side-menu.main h1 {
     opacity:0;
@@ -1232,14 +1258,16 @@ input#check-bx {
 
  /* User-Table */
 
- .invoice-system {
+ .invoice-system , .all-debate {
     position:absolute;
     left: 260px;
     height: 100%;
     width: 80%;
-    transition: 0.7s ease;
-    white-space: nowrap;
+    transition: 0.7s ease;   
     z-index: -1;
+}
+.invoice-system{
+    white-space: nowrap;
 }
 
 .side-menu.main ~ .invoice-system {

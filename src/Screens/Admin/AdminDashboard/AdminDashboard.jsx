@@ -1,6 +1,7 @@
 import { } from "react-bootstrap";
 import $ from "jquery";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function AdminDashboard() {
     useEffect(() => {
@@ -14,8 +15,7 @@ function AdminDashboard() {
     }, []); // Empty dependency array means this effect runs once when the component mounts
 
     return (
-        <>
-            {/* <div className="admin-dashbord" > */}
+        <>           
             <div class="side-menu">
                 <div class="brand-name">
                     <i class="bx bx-notepad" aria-hidden="true"></i>
@@ -24,13 +24,12 @@ function AdminDashboard() {
                 </div>
 
                 <ul class="menu-item">
-                    <li><a href="/admin-dashboard"><i class="bx bx-user" aria-hidden="true"></i><span>All User</span></a></li>
-                    <li><a href="customer-active.html"><i class="bx bx-conversation" aria-hidden="true"></i><span>All Debate</span></a></li>
-                    <li><a href="invoice.html"><i class="bx bx-tag" aria-hidden="true"></i><span>All Tag</span></a></li>
-                    <li><a href="Portfolio.html"><i class="bx bx-donate-heart" aria-hidden="true"></i><span>Total Contribution</span></a></li>
+                    <li><Link to="/admin-dashboard"><i class="bx bx-user" aria-hidden="true"></i><span>All User</span></Link></li>
+                    <li><a href="/all-debate"><i class="bx bx-conversation" aria-hidden="true"></i><span>All Debate</span></a></li>
+                    <li><a href="#"><i class="bx bx-tag" aria-hidden="true"></i><span>All Tag</span></a></li>
+                    <li><a href="#"><i class="bx bx-donate-heart" aria-hidden="true"></i><span>Total Contribution</span></a></li>
                 </ul>
-            </div>
-            {/* </div> */}
+            </div>           
         </>
     );
 }

@@ -8,18 +8,19 @@ function AllUser() {
     const [users, setUsers] = useState([]);
     const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(
+                `https://laradebate.jmbliss.com/api/admin/all-users`
+            );
+            setUsers(response?.data);
+            console.log(response);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(
-                    `https://laradebate.jmbliss.com/api/admin/all-users`
-                );
-                setUsers(response?.data);
-                console.log(response);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
+
         fetchData();
     }, []);
     const formatDate = (dateString) => {
@@ -27,14 +28,15 @@ function AllUser() {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
-    // Delete user Id
+    // DELETE USER BY ID
     const [usersDetailsDelete, setUsersDetailsDelete] = useState([]);
     const handleDelete = async (id) => {
         debugger
         try {
             const response = await axios.delete(`https://laradebate.jmbliss.com/api/admin/user/${id}`);
             setUsersDetailsDelete(response?.data);
-            console.log(`deleted successfully.`);
+            console.log(`deleted successfully.`, response);
+            fetchData();
         } catch (error) {
             console.error("Error Delete User:", error);
         }
