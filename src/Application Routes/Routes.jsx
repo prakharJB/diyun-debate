@@ -18,6 +18,8 @@ import NewBg from "../Screens/UserScreen/ExploreBg/ExploreBg";
 import AdminDashboard from "../Screens/Admin/AdminDashboard/AdminDashboard";
 import AllUser from "../Screens/Admin/AllUser/AllUser";
 import UserDetail from "../Screens/Admin/UserDetail/UserDetail";
+import SingleDebateDetail from "../Screens/Admin/SingleDebateDetail/SingleDebateDetail";
+import AllDebate from "../Screens/Admin/AllDebate/AllDebate";
 
 function AppRoutes() {
   return (
@@ -52,6 +54,10 @@ function AppRoutes() {
           <Route path="/user-profile" element={<></>}></Route>
           <Route path="/user-setting" element={<UserSettings />}></Route>
           {/* <Route path="/user-new" element={<UserProfilenew />}></Route> */}
+          <Route path="/admin-dashboard" element={< AllUser />} ></Route>
+          <Route path="/user-detail/:id" element={<UserDetail />} ></Route>
+          <Route path="all-debate" element={<AllDebate />} ></Route>
+          <Route path="/single-debate" element={< SingleDebateDetail />} ></Route>
           <Route path="/admin-dashboard" element={<AllUser />}></Route>
           <Route path="/user-detail/:id" element={<UserDetail />}></Route>
         </Routes>
