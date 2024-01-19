@@ -23,6 +23,7 @@ import { removeToken } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import logoimgdark from "../Assets/White-logo.png";
 import logoimg from "../Assets/Blue-logo.png";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 
 function Header() {
@@ -147,7 +148,8 @@ const isScrolled = scroll >= 60;
               </Nav.Link>
 
               <Nav.Link as={Link} to="/search">
-                <HiMagnifyingGlass />
+                {/* <HiMagnifyingGlass /> */}
+                <i class="fa-solid fa-magnifying-glass"></i>
               </Nav.Link>
             </Nav>
             <Nav className="mx-2">
@@ -249,7 +251,7 @@ const isScrolled = scroll >= 60;
               </Nav.Link>
 
               <Nav.Link as={Link} to="/search">
-                <HiMagnifyingGlass />
+              <FaMagnifyingGlass />
               </Nav.Link>
             </Nav>
             <Nav className="mx-2">
