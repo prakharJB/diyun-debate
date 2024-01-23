@@ -6,7 +6,9 @@ function UserProfile() {
   return (
     <>
       <Header />
-      <UserProfilenew />
+      <section>
+        <UserProfilenew />
+      </section>
     </>
   );
 }

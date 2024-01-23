@@ -1,5 +1,6 @@
 import {Container} from "react-bootstrap"
 import Header from "../../../Layouts/Header";
+import Footer from "../../../Layouts/Footer";
 
 function Terms(){
     return(
@@ -84,6 +85,7 @@ function Terms(){
 
         </Container>
         </section>
+        <Footer />
         </div>
         </>
     )

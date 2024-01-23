@@ -6,6 +6,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Header from "../../../Layouts/Header";
+import Footer from "../../../Layouts/Footer";
 
 function ExploreBg(data) {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ function ExploreBg(data) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://laradebate.jmbliss.com/api/debates/tag/${reversedCategory}`
+        `https://laradebate.jmbliss.com/api/debates/tag/${category}`
       );
       setApiData(response?.data?.debates);
       console.log(response);
@@ -36,6 +38,7 @@ function ExploreBg(data) {
   }, []);
   return (
     <>
+      <Header />
       <section className="bg-portal pb-4" dir="rtl">
         <Container>
           <Row>
@@ -70,6 +73,7 @@ function ExploreBg(data) {
           </Row>
         </Container>
       </section>
+      <Footer />
     </>
   );
 }

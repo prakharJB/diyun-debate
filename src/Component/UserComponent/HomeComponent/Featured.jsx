@@ -1,20 +1,11 @@
 import { Container, Col, Row, Card } from "react-bootstrap";
 import React, { useEffect } from "react";
-import coverImg from "../../../Assets/demo-portal-cover.jpeg";
 import axios from "axios";
 import { IoStatsChart } from "react-icons/io5";
 import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { TbMessageCirclePlus } from "react-icons/tb";
 import { HiMiniTrophy } from "react-icons/hi2";
-import { FaUserPen } from "react-icons/fa6";
-import testDog from "../../../Assets/test-dog-img.jpeg";
-import testGpt from "../../../Assets/test-chatgpt.jpeg";
-import testnature from "../../../Assets/test-nature.jpeg";
-import testedu from "../../../Assets/test-education.jfif";
-import testcode from "../../../Assets/test-code.jfif";
-import testrobot from "../../../Assets/test-robot.jpeg";
-import testgrass from "../../../Assets/test-grass.jpeg";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 import { useState } from "react";
@@ -24,23 +15,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Featured(data) {
-  // const { text, setText } = useContext(MyContext);
-  // const fetchData = async () => {
-  //   try {
-  //     const url = `${process.env.REACT_APP_BASE_URL}/api/showalldebate`;
-  //     const responseData = await axios.get(url);
-  //     // console.log("API Response:", responseData.data);
-  //     setText(responseData.data.mainDebates);
-  //     return responseData.data.mainDebates;
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   const { state } = useContext(MyContext);
   const [statics, setStatics] = useState();
   // const [text, setText] = useState([]);
@@ -71,14 +45,24 @@ function Featured(data) {
     fetchData();
   }, [state]);
 
-  const filteredData = data?.data?.filter(
-    (val) =>
-      val?.id !== data?.data[0]?.id &&
-      val?.id !== data?.data[1]?.id &&
-      val?.id !== data?.data[2]?.id &&
-      val?.id !== data?.data[3]?.id &&
-      val?.id !== data?.data[4]?.id
-  );
+  // const filteredData = data?.data?.filter(
+  //   (val) =>
+  //     val?.id !== data?.data[0]?.id &&
+  //     val?.id !== data?.data[1]?.id &&
+  //     val?.id !== data?.data[2]?.id &&
+  //     val?.id !== data?.data[3]?.id &&
+  //     val?.id !== data?.data[4]?.id
+  // );
+  const filteredData = Array.isArray(data?.data)
+    ? data?.data.filter(
+        (val) =>
+          val?.id !== data?.data[0]?.id &&
+          val?.id !== data?.data[1]?.id &&
+          val?.id !== data?.data[2]?.id &&
+          val?.id !== data?.data[3]?.id &&
+          val?.id !== data?.data[4]?.id
+      )
+    : [];
   const settings = {
     // initialSlide: 0,
     infinite: false,
@@ -305,7 +289,9 @@ function Featured(data) {
                         <div className="d-flex align-items-baseline mt-2 justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
-                            <Card.Text>שם משתמש</Card.Text>
+                            <Card.Text>
+                              {topContributors && topContributors[0]?.username}
+                            </Card.Text>
                             {/* <Card.Text>3,144,694</Card.Text> */}
                           </div>
                         </div>
@@ -313,7 +299,9 @@ function Featured(data) {
                         <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
-                            <Card.Text>שם משתמש</Card.Text>
+                            <Card.Text>
+                              {topContributors && topContributors[1]?.username}
+                            </Card.Text>
                             {/* <Card.Text>1,269,270</Card.Text> */}
                           </div>
                         </div>
@@ -321,7 +309,9 @@ function Featured(data) {
                         <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
-                            <Card.Text>שם משתמש</Card.Text>
+                            <Card.Text>
+                              {topContributors && topContributors[2]?.username}
+                            </Card.Text>
                             {/* <Card.Text>18,467</Card.Text> */}
                           </div>
                         </div>
@@ -329,7 +319,9 @@ function Featured(data) {
                         <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
-                            <Card.Text>שם משתמש</Card.Text>
+                            <Card.Text>
+                              {topContributors && topContributors[3]?.username}
+                            </Card.Text>
                             {/* <Card.Text>18,467</Card.Text> */}
                           </div>
                         </div>
@@ -337,7 +329,9 @@ function Featured(data) {
                         <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
-                            <Card.Text>שם משתמש</Card.Text>
+                            <Card.Text>
+                              {topContributors && topContributors[4]?.username}
+                            </Card.Text>
                             {/* <Card.Text>18,467</Card.Text> */}
                           </div>
                         </div>

@@ -35,13 +35,13 @@ function Explore() {
                 <Link key={index} to={`/explore/tags/${val}`} className="mx-2 tags-btn" >{val}</Link>
                 ))} */}
                 <div className="mobile-flex-wrap d-flex justify-content-center flex-wrap">
-                  <Link to={`/explore/tags/Politics`} className="mx-2 tags-btn" >פּוֹלִיטִיקָה</Link>
-                  <Link to={`/explore/tags/Philosophy`} className="mx-2 tags-btn" >פִילוֹסוֹפִיָה</Link>
-                  <Link to={`/explore/tags/Science`} className="mx-2 tags-btn" >מַדָע</Link>
-                  <Link to={`/explore/tags/Ethics`} className="mx-2 tags-btn" >אֶתִיקָה</Link>
-                  <Link to={`/explore/tags/Gender`} className="mx-2 tags-btn" >אֶתִיקָה</Link>
-                  <Link to={`/explore/tags/Religion`} className="mx-2 tags-btn" >דָת</Link>
-                  <Link to={`/explore/tags/Technology`} className="mx-2 tags-btn" >טֶכנוֹלוֹגִיָה</Link>
+                  <Link to={`/explore/tags/מימון`} className="mx-2 tags-btn" >מימון</Link>
+                  <Link to={`/explore/tags/הנדסה גנטית`} className="mx-2 tags-btn" >הנדסה גנטית</Link>
+                  <Link to={`/explore/tags/בקרת נשק`} className="mx-2 tags-btn" >בקרת נשק</Link>
+                  <Link to={`/explore/tags/בינה מלאכותית`} className="mx-2 tags-btn" >בינה מלאכותית</Link>
+                  <Link to={`/explore/tags/מערכת הבריאות`} className="mx-2 tags-btn" >מערכת הבריאות</Link>
+                  <Link to={`/explore/tags/גרעיני`} className="mx-2 tags-btn" >גרעיני</Link>
+                  <Link to={`/explore/tags/עונש מוות`} className="mx-2 tags-btn" >עונש מוות</Link>
                 </div>
               </div>
               <Link className="btn-show-tags text-decoration-underline" to="/explore/tags">ראה עוד</Link>

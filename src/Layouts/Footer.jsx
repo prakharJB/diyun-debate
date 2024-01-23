@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import footerLogo from "../Assets/White-logo.png";
+import footerLogo from "../Assets/Blue-logo.png";
 import { Link } from "react-router-dom";
 import footerImg from "../Assets/new-white-footer.png";
 
@@ -12,7 +12,7 @@ function Footer() {
             <Col>
               <footer className="">
                 <Row>
-                  <Col className="mb-3 text-center">
+                  <Col className="mb-4 text-center">
                     <Link to="/">
                       <img
                         src={footerLogo}
@@ -28,27 +28,27 @@ function Footer() {
                     <div className="col mb-3 text-center">
                       <ul className="nav flex-column p-0">
                         <li className="nav-item mb-2">
-                          <a
-                            href="/explore"
+                          <Link
+                            to="/explore"
                             className="nav-link p-0 text-muted"
                           >
                             לַחקוֹר
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a href="/search" className="nav-link p-0 text-muted">
+                          <Link to="/search" className="nav-link p-0 text-muted">
                             לחפש
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a href="/tour" className="nav-link p-0 text-muted">
+                          <Link to="/tour" className="nav-link p-0 text-muted">
                             סיור
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a href="/about" className="nav-link p-0 text-muted">
+                          <Link to="/about" className="nav-link p-0 text-muted">
                             על אודות
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -56,19 +56,19 @@ function Footer() {
                     <div className="col mb-3 text-center">
                       <ul className="nav flex-column p-0">
                         <li className="nav-item mb-2">
-                          <a href="/" className="nav-link p-0 text-muted">
+                          <Link to="/" className="nav-link p-0 text-muted">
                             מה חדש
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a href="/" className="nav-link p-0 text-muted">
+                          <Link to="/privacy" className="nav-link p-0 text-muted">
                             מדיניות הפרטיות
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a href="/" className="nav-link p-0 text-muted">
+                          <Link to="/terms" className="nav-link p-0 text-muted">
                             תנאי השירות
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -76,22 +76,22 @@ function Footer() {
                     <div className="col mb-3 text-center">
                       <ul className="nav flex-column p-0">
                         <li className="nav-item mb-2">
-                          <a href="/" className="nav-link p-0 text-muted">
+                          <Link to="/" className="nav-link p-0 text-muted">
                             מרכז עזרה
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a
-                            href="/contact-us"
+                          <Link
+                            to="/contact-us"
                             className="nav-link p-0 text-muted"
                           >
                             צור קשר
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <a href="/status" className="nav-link p-0 text-muted">
+                          <Link to="/status" className="nav-link p-0 text-muted">
                             סטָטוּס
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -101,6 +101,12 @@ function Footer() {
             </Col>
           </Row>
           <hr />
+        </Container>
+        <Container className="m-4">
+          <div>
+
+          </div>
+
         </Container>
       </section>
       <section>
