@@ -151,11 +151,11 @@ function Featured(data) {
 
                 <Card>
                   <Card.Body>
-                    <div className="not-hover d-flex align-items-baseline justify-content-between">
+                    <div className="not-hover d-flex align-items-baseline justify-content-start">
                       <IoStatsChart />
                       <Card.Title>ויכוח במספרים</Card.Title>
                     </div>
-                    <div className="d-flex align-items-baseline mt-2 justify-content-between">
+                    <div className="d-flex align-items-baseline mt-2 justify-content-start">
                       <FaPen />
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">תרומות</Card.Text>
@@ -166,7 +166,7 @@ function Featured(data) {
                     </div>
 
                     <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
+                    <div className="d-flex align-items-baseline justify-content-start">
                       <TbMessageCirclePlus />
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">ויכוחים</Card.Text>
@@ -176,7 +176,7 @@ function Featured(data) {
                       </div>
                     </div>
                     <hr />
-                    <div className="d-flex align-items-baseline justify-content-between">
+                    <div className="d-flex align-items-baseline justify-content-start">
                       <TbMessage2 />
                       <div className="d-flex align-items-end flex-column">
                         <Card.Text className="m-0">טוען</Card.Text>
@@ -243,7 +243,7 @@ function Featured(data) {
                 </Card>
                 <Card>
                   <Card.Body>
-                    <div className="not-hover d-flex align-items-baseline justify-content-between">
+                    <div className="not-hover d-flex align-items-baseline justify-content-start">
                       <HiMiniTrophy />
                       <Card.Title>תורמים מובילים</Card.Title>
                     </div>
@@ -263,13 +263,13 @@ function Featured(data) {
                           .map((group, groupIndex) => (
                             <div
                               key={groupIndex}
-                              className=" align-items-baseline mt-2 justify-content-between"
+                              className=" align-items-baseline mt-2 justify-content-start"
                             >
                               {group.map((contributor, contributorIndex) => (
                                 <div>
                                   <div
                                     key={contributorIndex}
-                                    className="d-flex justify-content-between"
+                                    className="d-flex justify-content-start"
                                   >
                                     <div>
                                       <Card.Text className="m-0">
@@ -298,11 +298,11 @@ function Featured(data) {
                   <div className="d-flex w-100">
                     <div className="w-33">
                       <Card.Body>
-                        <div className="not-hover d-flex align-items-baseline justify-content-between">
+                        <div className="not-hover d-flex align-items-baseline justify-content-start">
                           {/* <HiMiniTrophy /> */}
                           <Card.Title>תורמים</Card.Title>
                         </div>
-                        <div className="d-flex align-items-baseline mt-2 justify-content-between">
+                        <div className="d-flex align-items-baseline mt-2 justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
                             <Card.Text>שם משתמש</Card.Text>
@@ -310,7 +310,7 @@ function Featured(data) {
                           </div>
                         </div>
                         <hr />
-                        <div className="d-flex align-items-baseline justify-content-between">
+                        <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
                             <Card.Text>שם משתמש</Card.Text>
@@ -318,7 +318,7 @@ function Featured(data) {
                           </div>
                         </div>
                         <hr />
-                        <div className="d-flex align-items-baseline justify-content-between">
+                        <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
                             <Card.Text>שם משתמש</Card.Text>
@@ -326,7 +326,7 @@ function Featured(data) {
                           </div>
                         </div>
                         <hr />
-                        <div className="d-flex align-items-baseline justify-content-between">
+                        <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
                             <Card.Text>שם משתמש</Card.Text>
@@ -334,7 +334,7 @@ function Featured(data) {
                           </div>
                         </div>
                         <hr />
-                        <div className="d-flex align-items-baseline justify-content-between">
+                        <div className="d-flex align-items-baseline justify-content-start">
                           {/* <FaUserPen /> */}
                           <div className="d-flex align-items-end flex-column">
                             <Card.Text>שם משתמש</Card.Text>

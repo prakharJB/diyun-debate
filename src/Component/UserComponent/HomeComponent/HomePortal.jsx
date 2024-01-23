@@ -67,7 +67,7 @@ function HomePortal() {
                   <Tabs
                     defaultActiveKey="Featured"
                     id="uncontrolled-tab-example"
-                    className="mb-3 p-0 d-flex flex-nowrap "
+                    className="mb-3 p-0 d-flex flex-wrap "
                   >
                     <Tab
                       eventKey="Featured"
