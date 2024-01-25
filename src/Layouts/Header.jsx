@@ -52,9 +52,6 @@ function Header() {
   }, []);
 
 
-
-
-
 const [scroll, setScroll] = useState(0);
 
 useEffect(() => {
@@ -80,25 +77,7 @@ const isScrolled = scroll >= 60;
     setLogInUser(token);
   }, []);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scroll = window.scrollY;
-
-  //     if (scroll >= 60) {
-  //       setDarkHeader(true);
-  //     } else {
-  //       setDarkHeader(false);
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
-  
+ 
   const [activeModal, setActiveModal] = useState(null);
 
   // Modify the functions that open the modals to set the active modal
@@ -112,6 +91,7 @@ const isScrolled = scroll >= 60;
     setModalShow(true);
   };
 
+// header active link
 
   
   return (
@@ -152,12 +132,12 @@ const isScrolled = scroll >= 60;
                 <i class="fa-solid fa-magnifying-glass"></i>
               </Nav.Link>
             </Nav>
-            <Nav className="mx-2">
+            <Nav className="mx-2 d-flex align-items-center">
               <Nav.Link
-                className="login-btn"
+                className="login-btn text-decoration-none nav-link border border-primary rounded-1 p-3 pt-1 pb-1 create-new-btn"
                 onClick={() => setCreateDebateModal(true)}
               >
-                +{tHn.new}
+               + 	&nbsp;{tHn.new}
               </Nav.Link>
 
               <NavDropdown

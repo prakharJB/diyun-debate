@@ -13,6 +13,11 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import homeicon from "../../../Assets/home-icon-1.png";
+import homeicona from "../../../Assets/home-icon-2.png";
+import homeicond from "../../../Assets/home-icon-4.png";
+import homeicone from "../../../Assets/home-icon-5.png";
+import homeiconf from "../../../Assets/home-icon-6.png";
 
 function Featured(data) {
   const { state } = useContext(MyContext);
@@ -70,12 +75,12 @@ function Featured(data) {
     slidesToShow: 1,
     slidesToScroll: 1,
     lazyLoad: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
   };
   return (
     <>
-      <section className="bg-portal pb-4" dir="rtl">
+      <section className="bg-portal pb-4 home-sec-1" dir="rtl">
         <Container>
           <Row>
             <Col>
@@ -89,7 +94,7 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title>{data?.data[0]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">{data?.data[0]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -115,7 +120,7 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title>{data?.data[1]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">{data?.data[1]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -133,15 +138,15 @@ function Featured(data) {
                   </div>
                 </Card>
 
-                <Card>
-                  <Card.Body>
-                    <div className="not-hover d-flex align-items-baseline justify-content-start">
-                      <IoStatsChart />
-                      <Card.Title>ויכוח במספרים</Card.Title>
+                <Card >
+                  <Card.Body className="p-4 kialo-number">
+                    <div className="not-hover mb-3 d-flex align-items-baseline justify-content-start">
+                    <img className="home-icons"  src={homeicon} alt="logo" />
+                      <Card.Title> ויכוח במספרים(דיונים ציבוריים)</Card.Title>
                     </div>
                     <div className="d-flex align-items-baseline mt-2 justify-content-start">
-                      <FaPen />
-                      <div className="d-flex align-items-end flex-column">
+                    <img className="home-icons"  src={homeicona} alt="logo" />
+                      <div className="d-flex  flex-column">
                         <Card.Text className="m-0">תרומות</Card.Text>
                         <Card.Text className="highlight-number">
                           {statics?.overallContributions}
@@ -151,8 +156,8 @@ function Featured(data) {
 
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-start">
-                      <TbMessageCirclePlus />
-                      <div className="d-flex align-items-end flex-column">
+                    <img className="home-icons"  src={homeicond} alt="logo" />
+                      <div className="d-flex  flex-column">
                         <Card.Text className="m-0">ויכוחים</Card.Text>
                         <Card.Text className="highlight-number">
                           {statics?.overallParentDebates}
@@ -161,8 +166,8 @@ function Featured(data) {
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-start">
-                      <TbMessage2 />
-                      <div className="d-flex align-items-end flex-column">
+                    <img className="home-icons"  src={homeicone} alt="logo" />
+                      <div className="d-flex  flex-column">
                         <Card.Text className="m-0">טוען</Card.Text>
                         <Card.Text className="highlight-number">
                           {statics?.overallClaims}
@@ -182,7 +187,7 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title>{data?.data[2]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">{data?.data[2]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -208,7 +213,7 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title>{data?.data[3]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">{data?.data[3]?.title}</Card.Title>
                     </Card.Body>
                   </Link>
                   <hr />
@@ -227,9 +232,9 @@ function Featured(data) {
                 </Card>
                 <Card>
                   <Card.Body>
-                    <div className="not-hover d-flex align-items-baseline justify-content-start">
-                      <HiMiniTrophy />
-                      <Card.Title>תורמים מובילים</Card.Title>
+                    <div className="not-hover mb-3 d-flex align-items-baseline justify-content-start">
+                    <img className="home-icons"  src={homeiconf} alt="logo" />
+                      <Card.Title>תורמים מובילים(7ד / דיונים ציבוריים)</Card.Title>
                     </div>
                     <Slider {...settings}>
                       {topContributors &&
@@ -274,7 +279,8 @@ function Featured(data) {
                                 </div>
                               ))}
                             </div>
-                          ))}
+                          ))
+                          }
                     </Slider>
                   </Card.Body>
                 </Card>
@@ -282,7 +288,7 @@ function Featured(data) {
                   <div className="d-flex w-100">
                     <div className="w-33">
                       <Card.Body>
-                        <div className="not-hover d-flex align-items-baseline justify-content-start">
+                        <div className="not-hover mb-3 d-flex align-items-baseline justify-content-start">
                           {/* <HiMiniTrophy /> */}
                           <Card.Title>תורמים</Card.Title>
                         </div>
