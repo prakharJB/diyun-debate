@@ -1633,6 +1633,11 @@ th {
     white-space:normal
 }
 
+/* All-atg-profile */
+.tag-card-profile {
+    border-radius:unset;
+}
+
 
 /* mobile screen */
 

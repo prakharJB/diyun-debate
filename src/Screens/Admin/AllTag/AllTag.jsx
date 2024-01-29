@@ -3,6 +3,8 @@ import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 
 
 function Alltag() {
@@ -35,9 +37,16 @@ function Alltag() {
                     <Button variant="success"><i class="fa fa-plus m-1" aria-hidden="true"></i>Add New</Button>{' '}
                 </div>
 
-                <div className="tag-card" >
-                    <div></div>
-                </div>
+                <Card style={{ width: '25rem' }}>
+                    <Card.Body>
+                        <div className="All-tag-card" >
+                            <Form.Group controlId="formFile" className="mb-3">
+                                <Form.Label>Profile Picture</Form.Label>
+                                <Form.Control type="file" />
+                            </Form.Group>
+                        </div>
+                    </Card.Body>
+                </Card>
 
                 <div class="table-cust container all-debat" >
                     <table class="table responsive">
