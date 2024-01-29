@@ -14,7 +14,7 @@ function New(data) {
 
   return (
     <>
-      <section className="bg-portal pb-4" dir="rtl">
+      <section className="bg-portal pb-4 home-sec-1" dir="rtl">
         <Container>
           <Row>
             <Col>

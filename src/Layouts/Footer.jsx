@@ -2,6 +2,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import footerLogo from "../Assets/Blue-logo.png";
 import { Link } from "react-router-dom";
 import footerImg from "../Assets/new-white-footer.png";
+import footerImgmob from "../Assets/new-white-footer-mob.png";
+import { FaTwitter, FaFacebook,FaLinkedin, FaLinkedinIn } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -36,7 +38,10 @@ function Footer() {
                           </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <Link to="/search" className="nav-link p-0 text-muted">
+                          <Link
+                            to="/search"
+                            className="nav-link p-0 text-muted"
+                          >
                             לחפש
                           </Link>
                         </li>
@@ -61,7 +66,10 @@ function Footer() {
                           </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <Link to="/privacy" className="nav-link p-0 text-muted">
+                          <Link
+                            to="/privacy"
+                            className="nav-link p-0 text-muted"
+                          >
                             מדיניות הפרטיות
                           </Link>
                         </li>
@@ -89,7 +97,10 @@ function Footer() {
                           </Link>
                         </li>
                         <li className="nav-item mb-2">
-                          <Link to="/status" className="nav-link p-0 text-muted">
+                          <Link
+                            to="/status"
+                            className="nav-link p-0 text-muted"
+                          >
                             סטָטוּס
                           </Link>
                         </li>
@@ -103,14 +114,42 @@ function Footer() {
           <hr />
         </Container>
         <Container className="m-4">
-          <div>
-
-          </div>
-
+          <Row>
+            <Col className=" d-flex justify-content-between   text-center flex-column  flex-md-row footer-row">
+              <a className="footer-1 p-4 text-dark">
+                <h3 className="m-0">עימות</h3>
+                <p>לשימוש פרטי וציבורי</p>
+              </a>
+              <a className="footer-1 p-4 text-dark">
+                <h3 className="m-0"> עימות</h3>
+                <p>לאנשי חינוך</p>
+              </a>
+            </Col>
+          </Row>
+          <hr />
         </Container>
+   
+     
+        <div className="container  ">
+        <div  className=" social-icon d-flex align-items-center mt-4 mb-5">
+          <a className="text-secondary ml" href="#">
+            <FaTwitter size={30} />
+          </a>
+          <a className="text-secondary" href="#">
+             <FaFacebook size={30} />
+          </a>
+          <a className="text-secondary" href="#">
+             <FaLinkedinIn size={30} />
+          </a>
+          <a>© Debate 2024</a>
+          </div>
+        </div>
       </section>
-      <section>
-        <img className="w-100" src={footerImg} alt="footer" />
+      <section  className="footer-sec-4 position-relative">
+        <img className="w-100 footer-dek d-none d-md-block" src={footerImg} alt="footer" />
+        <img className="w-100 footer-mob d-block d-md-none" src={footerImgmob} alt="footer" />
+        
+        <h3 className="text-secondary position-absolute top-50 start-50">סיבה מעצימה</h3>
       </section>
     </>
   );
