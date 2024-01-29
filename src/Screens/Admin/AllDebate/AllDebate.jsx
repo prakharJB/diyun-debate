@@ -1,12 +1,14 @@
 import { } from "react-bootstrap";
 import AdminDashboard from "../AdminDashboard/AdminDashboard";
-import { Container, Col, Row, Card } from "react-bootstrap";
-import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
-import { TbMessage2, TbUsersGroup } from "react-icons/tb";
+// import { Container, Col, Row, Card } from "react-bootstrap";
+// import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
+// import { TbMessage2, TbUsersGroup } from "react-icons/tb";
+import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 function AllDebate() {
@@ -30,44 +32,55 @@ function AllDebate() {
     useEffect(() => {
         fetchData();
     }, [category]);
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
     return (
         <>
-            <AdminDashboard />
-            <div className="all-debate" >
-                <section className="bg-portal pb-4" dir="rtl">
-                    <Container>
-                        <Row>
-                            <div className="mt-top">
-                                {apiData &&
-                                    apiData?.map((debate) => (
-                                        <Col key={debate?.id} >
-                                            <Card>
-                                                <a href={`/debate/${debate?.id}`}>
-                                                    <Card.Img variant="top" src={baseUrl + debate?.image} />
-                                                    <Card.Body>
-                                                        <Card.Title>{debate.title}</Card.Title>
-                                                    </Card.Body>
-                                                </a>
-                                                <hr />
-                                                <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
-                                                    <TbMessage2 />
-                                                    <Card.Text className="m-0">749</Card.Text>
-                                                    <FaPen />
-                                                    <Card.Text className="m-0">10.9ר</Card.Text>
-                                                    <FaVoteYea />
-                                                    <Card.Text className="m-0">6.2ר</Card.Text>
-                                                    <TbUsersGroup />
-                                                    <Card.Text className="m-0">1ר</Card.Text>
-                                                    <FaEye />
-                                                    <Card.Text className="m-0">62.6ר</Card.Text>
-                                                </div>
-                                            </Card>
-                                        </Col>
-                                    ))}
-                            </div>
-                        </Row>
-                    </Container>
-                </section>
+            <AdminDashboard />            
+            <div class="invoice-system">
+                <div class="customer_design d-flex justify-content-start mb-5 ">
+                    <h2 className="mx-3" ><i class="fa fa-user mx-3" aria-hidden="true"></i>Debate</h2>
+                    <Button variant="success"><i class="fa fa-plus m-1" aria-hidden="true"></i>Add New</Button>{' '}
+                </div>
+
+                <div class="table-cust container all-debat" >
+                    <table class="table responsive">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User_id</th>
+                                <th>Parent_id</th>
+                                <th>Side</th>
+                                <th>Title</th>
+                                <th>Tags</th>
+                                <th>Profile Picture</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>                               
+                                
+                                <th colspan="3" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {apiData &&
+                                    apiData?.map((debate , index) => (
+                            <tr key={debate?.id}>
+                                <td class="checkbox" data-label="S.No">{`${debate?.id}`}</td>
+                                <td data-label="User id">{`${debate?.user_id}`}</td>
+                                <td data-label="parent id">{`${debate?.parent_id}`}</td>
+                                <td data-label="side">{`${debate?.side}`}</td>
+                                <td data-label="title"className="title-debate">{`${debate?.title}`}</td>
+                                <td data-label="tags">{`${debate?.tags}`}</td>
+                                <td data-label="Profile Picture"className="profile-img"><img src={baseUrl + debate?.image} alt="Profile" /></td>
+                                <td data-label="Created at">{formatDate(debate?.created_at)}</td>
+                                <td data-label="updated at">{formatDate(debate?.updated_at)}</td>                               
+                                <td class="text-center" ><Link to={`/debate-detail/${debate.id}`}> <Button variant="primary" ><i class="fa fa-eye m-1" aria-hidden="true"></i>view</Button>{' '}</Link>
+                                    <Button variant="danger"><i class="fa fa-times m-1" aria-hidden="true"></i>Delete</Button>{' '}</td>                            </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </>
     );

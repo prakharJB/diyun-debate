@@ -20,6 +20,9 @@ import AllUser from "../Screens/Admin/AllUser/AllUser";
 import UserDetail from "../Screens/Admin/UserDetail/UserDetail";
 import SingleDebateDetail from "../Screens/Admin/SingleDebateDetail/SingleDebateDetail";
 import AllDebate from "../Screens/Admin/AllDebate/AllDebate";
+import SingleUserDetail from "../Screens/Admin/SingleUserDetail/SingleUserDetail";
+import AllTag from "../Screens/Admin/AllTag/AllTag";
+import AddNewTag from "../Screens/Admin/AddNewTag/AddNewTag";
 
 function AppRoutes() {
   return (
@@ -58,6 +61,9 @@ function AppRoutes() {
           <Route path="/user-detail/:id" element={<UserDetail />} ></Route>
           <Route path="all-debate" element={<AllDebate />} ></Route>
           <Route path="/single-debate" element={< SingleDebateDetail />} ></Route>
+          <Route path="/debate-detail/:id" element={<SingleUserDetail />} ></Route>
+          <Route path="/all-tag" element={<AllTag />} ></Route>
+          <Route path="/tag-detail" element={<AddNewTag />} ></Route>
         </Routes>
       </Router>
     </div>

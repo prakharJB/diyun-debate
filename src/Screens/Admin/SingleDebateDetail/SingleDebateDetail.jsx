@@ -1,5 +1,4 @@
 import { } from "react-bootstrap";
-import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -27,7 +26,7 @@ function SingleDebateDetail() {
     }, [id]);
     return (
         <>
-            {/* <AdminDashboard /> */}
+         
             <section className="user-inford" >
                 <Container>
                     <Row>

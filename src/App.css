@@ -1565,6 +1565,21 @@ th {
     font-size: 17px;
     font-family: "Poppins", sans-serif;
 }
+.all-debat th{
+    background:#F0F0F0 !important;    
+    border-bottom:2px solid #A9A9A9;
+}
+.all-debat .profile-img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;    
+  }
+  .all-debat td.profile-img {
+        text-align: center !important;
+  }
+  .all-debat td.title-debate {
+    white-space:normal
+}
 
 
 /* mobile screen */
