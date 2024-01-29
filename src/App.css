@@ -1,8 +1,39 @@
 * {
     font-family: sans-serif;
 }
-
+.container {
+    max-width: 1320px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+    margin: auto !IMPORTANT;
+}
+.container .col{
+    padding-left: 0px;
+    padding-right: 0px;
+}
 /*-------- header desktop css start------------ */
+
+/*-------- footer  desktop css start------------ */
+.footer-row{
+    max-width: 700px;
+    margin: auto;
+}
+.social-icon>a {
+    margin-left: 20px;
+}
+.footer-sec-4 h3 {
+    transform: translate(-50%, -50%);
+}
+footer .nav-link:hover {
+    text-decoration: none;
+    color: blue !important;
+}
+
+/*-------- footer  desktop css end------------ */
+
+
+
 body .create-new-btn,
 body.banner-header .scrolled .create-new-btn {
     border-color: #0069e0 !IMPORTANT;
@@ -68,14 +99,19 @@ nav i.fa-solid.fa-magnifying-glass {
 
 .home-sec-1 .color-text-icon {
     justify-content: normal !IMPORTANT;
+    padding: 13px 0 !IMPORTANT;
+    border-top: 1px solid #c7c8c9;
+    width: 100%;
+    margin-top: 60px !IMPORTANT;
+    transform: translateX(-10px);
 }
 
 .home-sec-1 .color-text-icon p {
-    margin-left: 10px !IMPORTANT;
+    margin-left: 2% !IMPORTANT;
 }
 
 .home-sec-1 .color-text-icon svg {
-    margin-right: 1rem;
+    margin-right: 1%;
     margin-left: 3px;
 }
 .home-sec-1 .slick-slide {
@@ -89,6 +125,9 @@ nav i.fa-solid.fa-magnifying-glass {
 .home-sec-1  ul.slick-dots li {
     margin: 0;
     transform: translate(7px, 6px);
+}
+.home-sec-1  ul.slick-dots {
+    position: unset;
 }
 
 .home-sec-1  .slick-dots li button:before {
@@ -116,7 +155,20 @@ nav i.fa-solid.fa-magnifying-glass {
 }
 .home-sec-1 .not-hover .card-title.h5 {
     font-size: 18px;
+    color: #000;
 }
+.home-sec-1 .slider-home  .slick-slide>div>div {
+    border-bottom: 1px solid #c7c8c9;
+    padding: 18px 0;
+   }
+   
+   .home-sec-1 .slider-home .slick-slide>div:first-child div {
+       padding-top: 0;
+   }
+   .home-sec-1  .card{
+    display: flex;
+    justify-content: space-between;
+   }
 /* ---------------home page csss dektop end------------- */
 
 .loaderStyle {
@@ -860,7 +912,7 @@ a {
 }
 
 .mt-top .card {
-    height: 330px;
+    /* height: 330px; */
     overflow: hidden;
     /* direction: ltr; */
 }
@@ -869,9 +921,9 @@ a {
     height: 135px;
 }
 
-.mt-top .card-body {
+/* .mt-top .card-body {
     height: 130px;
-}
+} */
 
 .single-card .color-text-icon,
 .single-card .card-title.h5 {
@@ -1652,7 +1704,7 @@ th {
     }
 
     .single-card {
-        display: none;
+        display: none !important;
     }
 
     .mobile-flex-wrap {

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { IoStatsChart } from "react-icons/io5";
 import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
-import { TbMessage2, TbUsersGroup } from "react-icons/tb";
+import { TbMessage2, TbRuler2Off, TbUsersGroup } from "react-icons/tb";
 import { TbMessageCirclePlus } from "react-icons/tb";
 import { HiMiniTrophy } from "react-icons/hi2";
 import { useContext } from "react";
@@ -78,6 +78,15 @@ function Featured(data) {
     autoplay: false,
     autoplaySpeed: 2000,
   };
+  const settings1 = {
+    rows: 4,
+		dots: true,
+		arrows: false,
+		infinite: true,
+		speed: 300,
+		slidesToShow: 1,
+		slidesToScroll: 1
+  };
   return (
     <>
       <section className="bg-portal pb-4 home-sec-1" dir="rtl">
@@ -94,10 +103,12 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title className="fw-bold">{data?.data[0]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">
+                        {data?.data[0]?.title}
+                      </Card.Title>
                     </Card.Body>
                   </Link>
-                  <hr />
+             
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -120,10 +131,12 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title className="fw-bold">{data?.data[1]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">
+                        {data?.data[1]?.title}
+                      </Card.Title>
                     </Card.Body>
                   </Link>
-                  <hr />
+            
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -138,14 +151,14 @@ function Featured(data) {
                   </div>
                 </Card>
 
-                <Card >
+                <Card>
                   <Card.Body className="p-4 kialo-number">
                     <div className="not-hover mb-3 d-flex align-items-baseline justify-content-start">
-                    <img className="home-icons"  src={homeicon} alt="logo" />
+                      <img className="home-icons" src={homeicon} alt="logo" />
                       <Card.Title> ויכוח במספרים(דיונים ציבוריים)</Card.Title>
                     </div>
                     <div className="d-flex align-items-baseline mt-2 justify-content-start">
-                    <img className="home-icons"  src={homeicona} alt="logo" />
+                      <img className="home-icons" src={homeicona} alt="logo" />
                       <div className="d-flex  flex-column">
                         <Card.Text className="m-0">תרומות</Card.Text>
                         <Card.Text className="highlight-number">
@@ -156,7 +169,7 @@ function Featured(data) {
 
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-start">
-                    <img className="home-icons"  src={homeicond} alt="logo" />
+                      <img className="home-icons" src={homeicond} alt="logo" />
                       <div className="d-flex  flex-column">
                         <Card.Text className="m-0">ויכוחים</Card.Text>
                         <Card.Text className="highlight-number">
@@ -166,7 +179,7 @@ function Featured(data) {
                     </div>
                     <hr />
                     <div className="d-flex align-items-baseline justify-content-start">
-                    <img className="home-icons"  src={homeicone} alt="logo" />
+                      <img className="home-icons" src={homeicone} alt="logo" />
                       <div className="d-flex  flex-column">
                         <Card.Text className="m-0">טוען</Card.Text>
                         <Card.Text className="highlight-number">
@@ -187,10 +200,12 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title className="fw-bold">{data?.data[2]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">
+                        {data?.data[2]?.title}
+                      </Card.Title>
                     </Card.Body>
                   </Link>
-                  <hr />
+       
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -213,10 +228,12 @@ function Featured(data) {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title className="fw-bold">{data?.data[3]?.title}</Card.Title>
+                      <Card.Title className="fw-bold">
+                        {data?.data[3]?.title}
+                      </Card.Title>
                     </Card.Body>
                   </Link>
-                  <hr />
+           
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -233,8 +250,10 @@ function Featured(data) {
                 <Card>
                   <Card.Body>
                     <div className="not-hover mb-3 d-flex align-items-baseline justify-content-start">
-                    <img className="home-icons"  src={homeiconf} alt="logo" />
-                      <Card.Title>תורמים מובילים(7ד / דיונים ציבוריים)</Card.Title>
+                      <img className="home-icons" src={homeiconf} alt="logo" />
+                      <Card.Title>
+                        תורמים מובילים(7ד / דיונים ציבוריים)
+                      </Card.Title>
                     </div>
                     <Slider {...settings}>
                       {topContributors &&
@@ -279,8 +298,7 @@ function Featured(data) {
                                 </div>
                               ))}
                             </div>
-                          ))
-                          }
+                          ))}
                     </Slider>
                   </Card.Body>
                 </Card>
@@ -289,57 +307,71 @@ function Featured(data) {
                     <div className="w-33">
                       <Card.Body>
                         <div className="not-hover mb-3 d-flex align-items-baseline justify-content-start">
-                          {/* <HiMiniTrophy /> */}
+                          {/* <HiMiniTrophy /> */}{" "}
+                          <img
+                            className="home-icons"
+                            src={homeicona}
+                            alt="logo"
+                          />
                           <Card.Title>תורמים</Card.Title>
                         </div>
-                        <div className="d-flex align-items-baseline mt-2 justify-content-start">
-                          {/* <FaUserPen /> */}
-                          <div className="d-flex align-items-end flex-column">
-                            <Card.Text>
-                              {topContributors && topContributors[0]?.username}
-                            </Card.Text>
-                            {/* <Card.Text>3,144,694</Card.Text> */}
+                        <div className="slider-home fw-bold">
+                        <Slider {...settings1}>
+                          <div className="d-flex align-items-baseline mt-2 justify-content-start">
+                            {/* <FaUserPen /> */}
+                            <div className="d-flex align-items-end flex-column">
+                              <Card.Text>
+                                {topContributors &&
+                                  topContributors[0]?.username}
+                              </Card.Text>
+                              {/* <Card.Text>3,144,694</Card.Text> */}
+                            </div>
                           </div>
-                        </div>
-                        <hr />
-                        <div className="d-flex align-items-baseline justify-content-start">
-                          {/* <FaUserPen /> */}
-                          <div className="d-flex align-items-end flex-column">
-                            <Card.Text>
-                              {topContributors && topContributors[1]?.username}
-                            </Card.Text>
-                            {/* <Card.Text>1,269,270</Card.Text> */}
+                    
+                          <div className="d-flex align-items-baseline justify-content-start">
+                            {/* <FaUserPen /> */}
+                            <div className="d-flex align-items-end flex-column">
+                              <Card.Text>
+                                {topContributors &&
+                                  topContributors[1]?.username}
+                              </Card.Text>
+                              {/* <Card.Text>1,269,270</Card.Text> */}
+                            </div>
                           </div>
-                        </div>
-                        <hr />
-                        <div className="d-flex align-items-baseline justify-content-start">
-                          {/* <FaUserPen /> */}
-                          <div className="d-flex align-items-end flex-column">
-                            <Card.Text>
-                              {topContributors && topContributors[2]?.username}
-                            </Card.Text>
-                            {/* <Card.Text>18,467</Card.Text> */}
+                        
+                          <div className="d-flex align-items-baseline justify-content-start">
+                            {/* <FaUserPen /> */}
+                            <div className="d-flex align-items-end flex-column">
+                              <Card.Text>
+                                {topContributors &&
+                                  topContributors[2]?.username}
+                              </Card.Text>
+                              {/* <Card.Text>18,467</Card.Text> */}
+                            </div>
                           </div>
-                        </div>
-                        <hr />
-                        <div className="d-flex align-items-baseline justify-content-start">
-                          {/* <FaUserPen /> */}
-                          <div className="d-flex align-items-end flex-column">
-                            <Card.Text>
-                              {topContributors && topContributors[3]?.username}
-                            </Card.Text>
-                            {/* <Card.Text>18,467</Card.Text> */}
+                         
+                          <div className="d-flex align-items-baseline justify-content-start">
+                            {/* <FaUserPen /> */}
+                            <div className="d-flex align-items-end flex-column">
+                              <Card.Text>
+                                {topContributors &&
+                                  topContributors[3]?.username}
+                              </Card.Text>
+                              {/* <Card.Text>18,467</Card.Text> */}
+                            </div>
                           </div>
-                        </div>
-                        <hr />
-                        <div className="d-flex align-items-baseline justify-content-start">
-                          {/* <FaUserPen /> */}
-                          <div className="d-flex align-items-end flex-column">
-                            <Card.Text>
-                              {topContributors && topContributors[4]?.username}
-                            </Card.Text>
-                            {/* <Card.Text>18,467</Card.Text> */}
+                     
+                          <div className="d-flex align-items-baseline justify-content-start">
+                            {/* <FaUserPen /> */}
+                            <div className="d-flex align-items-end flex-column">
+                              <Card.Text>
+                                {topContributors &&
+                                  topContributors[4]?.username}
+                              </Card.Text>
+                              {/* <Card.Text>18,467</Card.Text> */}
+                            </div>
                           </div>
+                          </Slider>
                         </div>
 
                         {/* <Button variant="primary">Go somewhere</Button> */}
@@ -360,7 +392,7 @@ function Featured(data) {
                           </Card.Body>
                         </Link>
                       </div>
-                      <hr className="position-absolute w-67" />
+                      {/* <hr className="position-absolute w-67" /> */}
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0 position-absolute bottom-0">
                         <div className="d-flex align-items-center m-2">
                           <TbMessage2 />
@@ -398,7 +430,7 @@ function Featured(data) {
                           <Card.Title>{val?.title}</Card.Title>
                         </Card.Body>
                       </Link>
-                      <hr />
+                    
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
                         <Card.Text className="m-0">749</Card.Text>
