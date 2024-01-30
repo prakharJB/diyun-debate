@@ -44,7 +44,7 @@ function Hot(data) {
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
                       </a>
-                      <hr />
+                 
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
                         <Card.Text className="m-0">749</Card.Text>
@@ -59,6 +59,11 @@ function Hot(data) {
                       </div>
                     </Card>
                   ))}
+              </div>
+              <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-outline-primary mt-5 fw-bold">
+                להראות יותר
+                </button>
               </div>
             </Col>
           </Row>

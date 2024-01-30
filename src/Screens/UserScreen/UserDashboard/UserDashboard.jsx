@@ -83,7 +83,7 @@ function UserDashboard() {
     <>
       <Header />
       <div className="py-5 pt-0 mt-0 dashboard-page-main" dir="rtl">
-        <section className="userprofile mt-0 my-5 pt-5">
+        <section className="userprofile mt-0  pt-5">
           <Container>
             <Row className="d-flex">
               <Col className="d-flex align-items-center">
@@ -95,7 +95,7 @@ function UserDashboard() {
                   />
                 </div>
                 <div className="my-page-header__left-items mx-2">
-                  <h1 className="m-0">ענן ה-DI שלי</h1>
+                  <h1 className="m-0 text-dark">ענן ה-DI שלי</h1>
                 </div>
               </Col>
             </Row>
@@ -104,12 +104,12 @@ function UserDashboard() {
 
         <section className="portal-tab-template__body">
           <Container className="portal-tab-template__content-header">
-            <Row className="tab-switch my-5 border-bottom">
+            <Row className="tab-switch my-5 m-0 border-bottom">
               <Col className="tab-switch__tabs my-4">
-                <Nav variant="underline" defaultActiveKey="link-1">
+                <Nav className="flex-wrap" variant="underline" defaultActiveKey="link-1">
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Overview")}
                       eventKey="link-1"
                     >
@@ -118,7 +118,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Respond")}
                       eventKey="link-2"
                     >
@@ -127,7 +127,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Following")}
                       eventKey="link-3"
                     >
@@ -136,7 +136,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("All")}
                       eventKey="link-4"
                     >
@@ -145,7 +145,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Own")}
                       eventKey="link-5"
                     >
@@ -154,7 +154,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Recent")}
                       eventKey="link-6"
                     >
@@ -163,7 +163,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Recommended")}
                       eventKey="link-7"
                     >
@@ -172,7 +172,7 @@ function UserDashboard() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link
-                      className="pb-0"
+                      className="pb-0 border-0"
                       onClick={() => handleTabSelect("Teams")}
                       eventKey="link-8"
                     >

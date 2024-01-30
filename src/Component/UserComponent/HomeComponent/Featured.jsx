@@ -80,12 +80,12 @@ function Featured(data) {
   };
   const settings1 = {
     rows: 4,
-		dots: true,
-		arrows: false,
-		infinite: true,
-		speed: 300,
-		slidesToShow: 1,
-		slidesToScroll: 1
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
   return (
     <>
@@ -108,7 +108,7 @@ function Featured(data) {
                       </Card.Title>
                     </Card.Body>
                   </Link>
-             
+
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -136,7 +136,7 @@ function Featured(data) {
                       </Card.Title>
                     </Card.Body>
                   </Link>
-            
+
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -205,7 +205,7 @@ function Featured(data) {
                       </Card.Title>
                     </Card.Body>
                   </Link>
-       
+
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -233,7 +233,7 @@ function Featured(data) {
                       </Card.Title>
                     </Card.Body>
                   </Link>
-           
+
                   <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                     <TbMessage2 />
                     <Card.Text className="m-0">749</Card.Text>
@@ -316,61 +316,61 @@ function Featured(data) {
                           <Card.Title>תורמים</Card.Title>
                         </div>
                         <div className="slider-home fw-bold">
-                        <Slider {...settings1}>
-                          <div className="d-flex align-items-baseline mt-2 justify-content-start">
-                            {/* <FaUserPen /> */}
-                            <div className="d-flex align-items-end flex-column">
-                              <Card.Text>
-                                {topContributors &&
-                                  topContributors[0]?.username}
-                              </Card.Text>
-                              {/* <Card.Text>3,144,694</Card.Text> */}
+                          <Slider {...settings1}>
+                            <div className="d-flex align-items-baseline mt-2 justify-content-start">
+                              {/* <FaUserPen /> */}
+                              <div className="d-flex align-items-end flex-column">
+                                <Card.Text>
+                                  {topContributors &&
+                                    topContributors[0]?.username}
+                                </Card.Text>
+                                {/* <Card.Text>3,144,694</Card.Text> */}
+                              </div>
                             </div>
-                          </div>
-                    
-                          <div className="d-flex align-items-baseline justify-content-start">
-                            {/* <FaUserPen /> */}
-                            <div className="d-flex align-items-end flex-column">
-                              <Card.Text>
-                                {topContributors &&
-                                  topContributors[1]?.username}
-                              </Card.Text>
-                              {/* <Card.Text>1,269,270</Card.Text> */}
+
+                            <div className="d-flex align-items-baseline justify-content-start">
+                              {/* <FaUserPen /> */}
+                              <div className="d-flex align-items-end flex-column">
+                                <Card.Text>
+                                  {topContributors &&
+                                    topContributors[1]?.username}
+                                </Card.Text>
+                                {/* <Card.Text>1,269,270</Card.Text> */}
+                              </div>
                             </div>
-                          </div>
-                        
-                          <div className="d-flex align-items-baseline justify-content-start">
-                            {/* <FaUserPen /> */}
-                            <div className="d-flex align-items-end flex-column">
-                              <Card.Text>
-                                {topContributors &&
-                                  topContributors[2]?.username}
-                              </Card.Text>
-                              {/* <Card.Text>18,467</Card.Text> */}
+
+                            <div className="d-flex align-items-baseline justify-content-start">
+                              {/* <FaUserPen /> */}
+                              <div className="d-flex align-items-end flex-column">
+                                <Card.Text>
+                                  {topContributors &&
+                                    topContributors[2]?.username}
+                                </Card.Text>
+                                {/* <Card.Text>18,467</Card.Text> */}
+                              </div>
                             </div>
-                          </div>
-                         
-                          <div className="d-flex align-items-baseline justify-content-start">
-                            {/* <FaUserPen /> */}
-                            <div className="d-flex align-items-end flex-column">
-                              <Card.Text>
-                                {topContributors &&
-                                  topContributors[3]?.username}
-                              </Card.Text>
-                              {/* <Card.Text>18,467</Card.Text> */}
+
+                            <div className="d-flex align-items-baseline justify-content-start">
+                              {/* <FaUserPen /> */}
+                              <div className="d-flex align-items-end flex-column">
+                                <Card.Text>
+                                  {topContributors &&
+                                    topContributors[3]?.username}
+                                </Card.Text>
+                                {/* <Card.Text>18,467</Card.Text> */}
+                              </div>
                             </div>
-                          </div>
-                     
-                          <div className="d-flex align-items-baseline justify-content-start">
-                            {/* <FaUserPen /> */}
-                            <div className="d-flex align-items-end flex-column">
-                              <Card.Text>
-                                {topContributors &&
-                                  topContributors[4]?.username}
-                              </Card.Text>
-                              {/* <Card.Text>18,467</Card.Text> */}
+
+                            <div className="d-flex align-items-baseline justify-content-start">
+                              {/* <FaUserPen /> */}
+                              <div className="d-flex align-items-end flex-column">
+                                <Card.Text>
+                                  {topContributors &&
+                                    topContributors[4]?.username}
+                                </Card.Text>
+                                {/* <Card.Text>18,467</Card.Text> */}
+                              </div>
                             </div>
-                          </div>
                           </Slider>
                         </div>
 
@@ -430,7 +430,7 @@ function Featured(data) {
                           <Card.Title>{val?.title}</Card.Title>
                         </Card.Body>
                       </Link>
-                    
+
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
                         <Card.Text className="m-0">749</Card.Text>
@@ -445,6 +445,12 @@ function Featured(data) {
                       </div>
                     </Card>
                   ))}
+              </div>
+
+              <div class="col-md-12 text-center">
+                <button type="button" class="btn debate-btn-load btn-outline-primary mt-5 fw-bold">
+                להראות יותר
+                </button>
               </div>
             </Col>
           </Row>
