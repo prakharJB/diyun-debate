@@ -19,7 +19,7 @@ function Tour() {
           <Container>
             <Row>
               <Col className="bg text-center" dir="rtl">
-                <h1>פלטפורמת דיונים המופעלת על ידי הגיון</h1>
+                <h1 className="text-white">פלטפורמת דיונים המופעלת על ידי הגיון</h1>
                 <p className="pt-4">
                   דיון דיון חותך את הרעש הקשור בדרך כלל למדיה חברתית ומקוונת, מה
                   שמקל על השתתפות בדיון ממוקד.

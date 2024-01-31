@@ -5,7 +5,12 @@ import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
+import useVisibleCards   from "../../../Assets/MyCustomJs/Custom";
 function New(data) {
+       // ---------------load more------------------------------------------------------------------
+       const { handleLoadMore, totalCards, visibleCards } = useVisibleCards('.active .card', 3);
+  
+       // ---------------load more------------------------------------------------------------------
   console.log("Original Data:", data?.data);
 
   const newOne = data?.data ? [...data.data].reverse() : [];
@@ -47,9 +52,11 @@ function New(data) {
                   ))}
               </div>
               <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-outline-primary mt-5 fw-bold">
-                להראות יותר
-                </button>
+              {totalCards > visibleCards && (
+        <button className="debate-btn-load btn btn-outline-primary mt-5 fw-bold" onClick={handleLoadMore}>
+        להראות יותר
+        </button>
+      )}
               </div>
             </Col>
           </Row>

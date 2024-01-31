@@ -18,8 +18,16 @@ import homeicona from "../../../Assets/home-icon-2.png";
 import homeicond from "../../../Assets/home-icon-4.png";
 import homeicone from "../../../Assets/home-icon-5.png";
 import homeiconf from "../../../Assets/home-icon-6.png";
+import useVisibleCards   from "../../../Assets/MyCustomJs/Custom";
+
 
 function Featured(data) {
+
+   // ---------------load more------------------------------------------------------------------
+   const { handleLoadMore, totalCards, visibleCards } = useVisibleCards('.active .card', 3);
+  
+  // ---------------load more------------------------------------------------------------------
+
   const { state } = useContext(MyContext);
   const [statics, setStatics] = useState();
   // const [text, setText] = useState([]);
@@ -448,9 +456,13 @@ function Featured(data) {
               </div>
 
               <div class="col-md-12 text-center">
-                <button type="button" class="btn debate-btn-load btn-outline-primary mt-5 fw-bold">
-                להראות יותר
-                </button>
+              {totalCards > visibleCards && (
+        <button className="debate-btn-load btn btn-outline-primary mt-5 fw-bold" onClick={handleLoadMore}>
+          Load More
+        </button>
+      )}
+      
+              {/* <button type="button" onClick={handleLoadMore} class="btn debate-btn-load btn-outline-primary mt-5 fw-bold">להראות יותר</button> */}
               </div>
             </Col>
           </Row>

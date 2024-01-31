@@ -84,7 +84,7 @@ const Login = (props) => {
         </Modal.Header>
         <Modal.Body>
           <div className="text-center">
-            <h1>{tHn.log_in}</h1>
+            <h1 className="test">{tHn.log_in}</h1>
           </div>
           <div className="text-center">
             <div>
