@@ -134,7 +134,7 @@ const isScrolled = scroll >= 60;
             </Nav>
             <Nav className="mx-2 d-flex align-items-center">
               <Nav.Link
-                className="login-btn text-decoration-none nav-link border border-primary rounded-1 p-3 pt-1 pb-1 create-new-btn"
+                className="login-btn-in text-decoration-none nav-link border border-primary rounded-1 p-3 pt-1 pb-1 create-new-btn"
                 onClick={() => setCreateDebateModal(true)}
               >
                + 	&nbsp;{tHn.new}
@@ -226,24 +226,25 @@ const isScrolled = scroll >= 60;
                 {tHn.tour}
               </Nav.Link>
 
-              <Nav.Link onClick={() => setLoginModalShow(true)}>
+              {/* <Nav.Link onClick={() => setLoginModalShow(true)}>
                 +{tHn.new}
-              </Nav.Link>
+              </Nav.Link> */}
 
               <Nav.Link as={Link} to="/search">
-              <FaMagnifyingGlass />
+ 
+              <i class="fa-solid fa-magnifying-glass"></i>
               </Nav.Link>
             </Nav>
-            <Nav className="mx-2">
+            <Nav className="mx-2 log-sign-in">
               <Nav.Link
-                className="login-btn"
+                className="login-btn "
                 onClick={() => setLoginModalShow(true)}
               >
                 {tHn.log_in}
               </Nav.Link>
 
               <Nav.Link
-                className="signup-btn"
+                className="signup-btn "
                 onClick={() => setModalShow(true)}
               >
                 {tHn.sign_up}

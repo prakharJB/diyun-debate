@@ -19,8 +19,8 @@ function Tour() {
           <Container>
             <Row>
               <Col className="bg text-center" dir="rtl">
-                <h1>פלטפורמת דיונים המופעלת על ידי הגיון</h1>
-                <p>
+                <h1 className="text-white">פלטפורמת דיונים המופעלת על ידי הגיון</h1>
+                <p className="pt-4">
                   דיון דיון חותך את הרעש הקשור בדרך כלל למדיה חברתית ומקוונת, מה
                   שמקל על השתתפות בדיון ממוקד.
                 </p>
@@ -29,7 +29,7 @@ function Tour() {
           </Container>
         </section>
 
-        <section className="video-section">
+        <section className="video-section space-class">
           <Container>
             <Row>
               <div className="container">
@@ -49,12 +49,12 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="how-works">
+        <section class="how-works space-class">
           <Container>
             <Row>
               <div className="container">
-                <h2>איך עובד דיון דיון?</h2>
-                <div className="row">
+                <h2 className="text-center">איך עובד דיון דיון?</h2>
+                <div className="row flex-md-row flex-column-reverse">
                   <div className="col-md-6">
                     <img
                       src={tourmapImage}
@@ -77,7 +77,7 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <div className="container">
@@ -103,11 +103,11 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <div className="container">
-                <div className="row">
+                <div className="row flex-md-row flex-column-reverse">
                   <div className="col-md-6">
                     <img src={inviteImage} alt="Invite" className="img-fluid" />
                   </div>
@@ -124,7 +124,7 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <div className="container">
@@ -146,12 +146,12 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <Col className="bg text-center" dir="rtl">
                 <h3>תראה איך הצד השני חושב</h3>
-                <p>
+                <p className="pb-4 mw-700">
                   על ידי החלפת פרספקטיבה, אתה יכול לראות את עץ הדיון כולו דרך
                   עיניהם של אנשים, מתנגדים או קבוצות שונות כדי להבין טוב יותר את
                   החשיבה שלהם.
@@ -166,11 +166,11 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <div className="container">
-                <div className="row">
+                <div className="row flex-md-row flex-column-reverse">
                   <div className="col-md-6">
                     <img src={linkImage} alt="Invite " className="img-fluid" />
                   </div>
@@ -188,7 +188,7 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <div className="container">
@@ -214,11 +214,11 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <div className="container">
-                <div className="row">
+                <div className="row flex-md-row flex-column-reverse">
                   <div className="col-md-6">
                     <img src={reviewImage} alt="Invite" className="img-fluid" />
                   </div>
@@ -236,7 +236,7 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="blue-head">
+        <section class="blue-head space-class">
           <Container>
             <Row>
               <Col className="bg text-center" dir="rtl">
@@ -251,14 +251,13 @@ function Tour() {
           </Container>
         </section>
 
-        <section class="textwithButton" dir="rtl">
+        <section class="textwithButton space-class" dir="rtl">
           <Container>
             <Row>
               <Col className="bg text-center">
-                <h1>הצטרף לדיון</h1>
+                <h3 className="text-white mb-4">הצטרף לדיון</h3>
                 <button class="explore-btn" href="#">
-                  {" "}
-                  לַחקוֹר{" "}
+                  לַחקוֹר
                 </button>
               </Col>
             </Row>

@@ -1,6 +1,21 @@
+/*-------- global css start------------ */
 * {
     font-family: sans-serif;
 }
+
+h1,
+h2 {
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h2 {
+    color: #000;
+    margin-bottom: 70px;
+
+}
+
 .container {
     max-width: 1320px !important;
     padding-left: 20px;
@@ -8,23 +23,54 @@
     overflow: hidden;
     margin: auto !IMPORTANT;
 }
-.container .col{
+
+.container .col {
     padding-left: 0px;
     padding-right: 0px;
 }
-/*-------- header desktop css start------------ */
 
-/*-------- footer  desktop css start------------ */
-.footer-row{
+.space-class {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+.mw-700 {
     max-width: 700px;
     margin: auto;
 }
+
+@media(max-width:767px) {
+    .space-class {
+        padding-top: 35px !important;
+        padding-bottom: 35px !important;
+    }
+
+    h1,
+    h2 {
+        font-size: 35px;
+    }
+
+    h2 {
+        margin-bottom: 35px;
+    }
+}
+
+/*-------- global css end------------ */
+
+/*-------- footer  desktop css start------------ */
+.footer-row {
+    max-width: 700px;
+    margin: auto;
+}
+
 .social-icon>a {
     margin-left: 20px;
 }
+
 .footer-sec-4 h3 {
     transform: translate(-50%, -50%);
 }
+
 footer .nav-link:hover {
     text-decoration: none;
     color: blue !important;
@@ -33,9 +79,61 @@ footer .nav-link:hover {
 /*-------- footer  desktop css end------------ */
 
 
+/*-------- header desktop css start------------ */
+nav a.signup-btn.nav-link,
+nav .login-btn:hover {
+    background: #0069e0;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 20px;
+    border: 1px solid transparent;
+}
+
+nav .login-btn {
+    color: #0069e0;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+.banner-header nav a.signup-btn.nav-link:not(.scrolled a) {
+    background: #fff;
+    color: #0069e0 !IMPORTANT;
+    border: 1px solid #fff;
+}
+
+.banner-header nav a.signup-btn.nav-link:not(.scrolled a):hover,
+.banner-header nav a.login-btn.nav-link:hover {
+    background: transparent !important;
+    color: #fff !important;
+    border: 1px solid #fff;
+}
+
+.banner-header nav a.login-btn.nav-link {
+    border: none !important;
+    border-radius: 5px;
+}
+
+.banner-header .scrolled a.login-btn.nav-link,
+.banner-header .scrolled a.login-btn.nav-link:hover {
+    color: #0069e0 !IMPORTANT;
+    border: none !important;
+}
+
+.banner-header .scrolled a.login-btn-in:not(.log-sign-in a):hover {
+    background: #0069e0 !IMPORTANT;
+    color: #fff !important;
+}
+
+nav .signup-btn:hover {
+    background: #2762a5 !IMPORTANT;
+}
+
 
 body .create-new-btn,
-body.banner-header .scrolled .create-new-btn {
+body.banner-header .scrolled .create-new-btn,.banner-header .scrolled a.login-btn-in:not(.log-sign-in a) {
     border-color: #0069e0 !IMPORTANT;
     color: #0069e0 !important;
 }
@@ -95,15 +193,18 @@ nav i.fa-solid.fa-magnifying-glass {
 
 .home-sec-1 .card-title.h5 {
     font-weight: bold;
+    font-size: 18px;
 }
 
 .home-sec-1 .color-text-icon {
     justify-content: normal !IMPORTANT;
-    padding: 13px 0 !IMPORTANT;
+    padding: 13px 0px !IMPORTANT;
     border-top: 1px solid #c7c8c9;
-    width: 100%;
     margin-top: 60px !IMPORTANT;
-    transform: translateX(-10px);
+    width: calc(100% - 20px);
+    margin-left: auto !important;
+    margin-right: auto !important;
+
 }
 
 .home-sec-1 .color-text-icon p {
@@ -114,6 +215,7 @@ nav i.fa-solid.fa-magnifying-glass {
     margin-right: 1%;
     margin-left: 3px;
 }
+
 .home-sec-1 .slick-slide {
     float: inline-start !important;
     text-align: right;
@@ -122,15 +224,17 @@ nav i.fa-solid.fa-magnifying-glass {
 .home-sec-1 .slick-slide .justify-content-start {
     justify-content: end !IMPORTANT;
 }
-.home-sec-1  ul.slick-dots li {
+
+.home-sec-1 ul.slick-dots li {
     margin: 0;
     transform: translate(7px, 6px);
 }
-.home-sec-1  ul.slick-dots {
+
+.home-sec-1 ul.slick-dots {
     position: unset;
 }
 
-.home-sec-1  .slick-dots li button:before {
+.home-sec-1 .slick-dots li button:before {
     border: 2px solid blue;
     width: 7px;
     height: 7px;
@@ -143,9 +247,11 @@ nav i.fa-solid.fa-magnifying-glass {
     opacity: 1;
 }
 
-.home-sec-1  .slick-dots li.slick-active button:before {
+.home-sec-1 .slick-dots li.slick-active button:before,
+.home-sec-1 .slick-dots li button:hover:before {
     background: blue;
 }
+
 .home-sec-1 .slick-slide p.m-0.card-text {
     font-weight: 700;
 }
@@ -153,22 +259,26 @@ nav i.fa-solid.fa-magnifying-glass {
 .home-sec-1 .slick-slide p.card-text:not(.m-0) {
     font-size: 14px;
 }
+
 .home-sec-1 .not-hover .card-title.h5 {
     font-size: 18px;
     color: #000;
 }
-.home-sec-1 .slider-home  .slick-slide>div>div {
+
+.home-sec-1 .slider-home .slick-slide>div>div {
     border-bottom: 1px solid #c7c8c9;
     padding: 18px 0;
-   }
-   
-   .home-sec-1 .slider-home .slick-slide>div:first-child div {
-       padding-top: 0;
-   }
-   .home-sec-1  .card{
+}
+
+.home-sec-1 .slider-home .slick-slide>div:first-child div {
+    padding-top: 0;
+}
+
+.home-sec-1 .card {
     display: flex;
     justify-content: space-between;
-   }
+}
+
 /* ---------------home page csss dektop end------------- */
 
 .loaderStyle {
@@ -467,27 +577,8 @@ section.searchbar-section h1 {
 /* search page css end */
 
 /* tour page css start */
-
-section.tour-banner h1 {
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    font-size: 45px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-top: 56px;
-    margin-bottom: 15px;
-    text-align: center;
-    color: #fff;
-}
-
-.textwithButton h1 {
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    font-size: 45px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #fff;
+.tour-main {
+    background: #fafcfd;
 }
 
 .explore-btn {
@@ -511,37 +602,20 @@ section.tour-banner p {
 }
 
 .textwithButton {
-    padding: 64px 0;
-    background-color: #0662AB;
+    background-image: radial-gradient(circle at 0 0, #00bceb, #09207a);
 }
 
 .tour-banner {
-    padding: 64px 0;
+    padding: 100px 0;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #0662AB;
     background-image: url('./Assets/explore_desktop.jpeg');
+    background-position: center;
 }
 
 
-section.video-section {
-    padding: 65px 0px;
-}
 
-section.how-works,
-.blue-head {
-    padding: 65px 0px;
-}
-
-.how-works h2 {
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 60px;
-    text-align: center;
-    color: #000;
-}
 
 .how-works .container .row h3,
 .blue-head .container .row h3 {
@@ -698,7 +772,7 @@ a.navbar-brand img {
     background: #fff !important;
 }
 
-.banner-header .scrolled a {
+.banner-header .scrolled a:not(.log-sign-in a) {
     color: #000 !important;
 }
 
@@ -850,9 +924,12 @@ img.logoimgdark:not(.banner-header img.logoimgdark) {
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
-
     width: 100%;
 }
+.portal-tab-template__body .nav-underline{
+    column-gap: 40px;
+}
+
 
 .tag-overview-page__tags {
     flex: 0 1 1200px;
@@ -1617,25 +1694,29 @@ th {
     font-size: 17px;
     font-family: "Poppins", sans-serif;
 }
-.all-debat th{
-    background:#F0F0F0 !important;    
-    border-bottom:2px solid #A9A9A9;
+
+.all-debat th {
+    background: #F0F0F0 !important;
+    border-bottom: 2px solid #A9A9A9;
 }
+
 .all-debat .profile-img img {
     width: 50px;
     height: 50px;
-    border-radius: 50%;    
-  }
-  .all-debat td.profile-img {
-        text-align: center !important;
-  }
-  .all-debat td.title-debate {
-    white-space:normal
+    border-radius: 50%;
+}
+
+.all-debat td.profile-img {
+    text-align: center !important;
+}
+
+.all-debat td.title-debate {
+    white-space: normal
 }
 
 /* All-atg-profile */
 .tag-card-profile {
-    border-radius:unset;
+    border-radius: unset;
 }
 i.contri-user {
     border-radius:50%;
@@ -1809,7 +1890,8 @@ font-weight: 600;
 
 .activeNav {
     text-decoration: underline;
-    text-underline-offset: 0.3em
+    text-underline-offset: 0.3em;
+    font-weight: bold;
 }
 
 

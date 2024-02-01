@@ -26,8 +26,13 @@ import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 import New from "./New";
 import Hot from "./Hot";
+import useVisibleCards   from "../../../Assets/MyCustomJs/Custom";
 
 function Popular(data) {
+       // ---------------load more------------------------------------------------------------------
+       const { handleLoadMore, totalCards, visibleCards } = useVisibleCards('.active .card', 3);
+  
+       // ---------------load more------------------------------------------------------------------
   // const { text, setText } = useContext(MyContext);
   // const fetchData = async () => {
   //     try {
@@ -65,7 +70,7 @@ function Popular(data) {
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
                       </a>
-                      <hr />
+                   
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
                         <Card.Text className="m-0">749</Card.Text>
@@ -80,6 +85,13 @@ function Popular(data) {
                       </div>
                     </Card>
                   ))}
+              </div>
+              <div class="col-md-12 text-center">
+              {totalCards > visibleCards && (
+        <button className="debate-btn-load btn btn-outline-primary mt-5 fw-bold" onClick={handleLoadMore}>
+        להראות יותר
+        </button>
+      )}
               </div>
             </Col>
           </Row>

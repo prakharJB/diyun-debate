@@ -54,7 +54,7 @@ const PasswordForget = (props) => {
           <Row>
             <Col md={6} className="mt-4 mx-auto">
               <div className="text-center">
-                <h1>{tHn.sign_up}</h1>
+                <h1 className="testq">{tHn.sign_up}</h1>
               </div>
 
               <Form onSubmit={(e) => handleSignup(e)}>
