@@ -51,8 +51,8 @@ function AllUser() {
                         <a href="Create-Invoice.html">Create New</a>
                     </div>
                 </div>
-
-                <div class="table-cust container" >
+                {/* container */}
+                <div class="table-cust" >
                     <table class="table responsive">
                         <thead>
                             <tr>

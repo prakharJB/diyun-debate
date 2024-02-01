@@ -44,8 +44,8 @@ function AllDebate() {
                     <h2 className="mx-3" ><i class="fa fa-user mx-3" aria-hidden="true"></i>Debate</h2>
                     <Button variant="success"><i class="fa fa-plus m-1" aria-hidden="true"></i>Add New</Button>{' '}
                 </div>
-
-                <div class="table-cust container all-debat" >
+                {/* container */}
+                <div class="table-cust all-debat" >
                     <table class="table responsive">
                         <thead>
                             <tr>
@@ -57,7 +57,7 @@ function AllDebate() {
                                 <th>Tags</th>
                                 <th>Profile Picture</th>
                                 <th>Created_at</th>
-                                <th>Updated_at</th>                               
+                                <th>Updated_at</th>                             
                                 
                                 <th colspan="3" class="text-center">Actions</th>
                             </tr>

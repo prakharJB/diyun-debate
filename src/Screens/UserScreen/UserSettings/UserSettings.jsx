@@ -7,13 +7,15 @@ import Header from "../../../Layouts/Header";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ForgetPassword from "../../../Component/UserComponent/ForgetPasswordComponent/ForgetPasswordComponent";
-
+import axios from 'axios';
 function UserSettings() {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
   const [biography, setBiography] = useState("");
-
+  // Password Change 
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const userDetails = useSelector((state) => state?.auth?.userData);
@@ -65,6 +67,36 @@ function UserSettings() {
     setForgetPasswordModal(true);
     handleClose();
   };
+
+  // ----------Password Change -------------
+  const handlePasswordChange = async () => {
+    try {
+      console.log("Attempting to change password...");
+      console.log("Old Password:", oldPassword);
+    console.log("New Password:", newPassword);
+      const response = await axios.post(
+        "https://laradebate.jmbliss.com/api/changepassword",
+        {
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        }
+      );
+      console.log("Response:", response);
+      debugger;
+      
+      if (response.status === 200) {
+        alert("Password changed successfully!");
+        handleClose(); // Close the modal or perform any other actions
+      } else {
+        alert(`Error: ${response?.data?.message}`);
+      }
+    } catch (error) {
+      console.error("Error in API request::", error);
+      // alert("An error occurred while making the API request.");
+    }
+  };
+  // ------------Password Change -------------
+  
 
   return (
     <>
@@ -217,7 +249,7 @@ function UserSettings() {
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <label for="confirmPassword">Old Password:</label>
+                  <label for="oldPassword">Old Password:</label>
                   <input
                     type="password"
                     id="oldPassword"
@@ -225,6 +257,8 @@ function UserSettings() {
                     name="oldPassword"
                     title="Old password"
                     placeholder="Please enter your old password"
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
                   />
                   <div className="frgt-pwd">
                     <div onClick={() => handleForgetPasswordOpen(true)}>
@@ -239,13 +273,15 @@ function UserSettings() {
                     name="newPassword"
                     title="New password"
                     placeholder="Please enter your new password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
                   />
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}>
                     Cancel
                   </Button>
-                  <Button variant="primary" onClick={handleClose}>
+                  <Button variant="primary" onClick={handlePasswordChange}>
                     Save
                   </Button>
                 </Modal.Footer>
