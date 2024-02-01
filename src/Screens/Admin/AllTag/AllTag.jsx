@@ -54,7 +54,7 @@ function Alltag() {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log("Add tag response:", response);                       
+            console.log("Add tag response:", response);
 
             // After successful post, you may want to refetch the tags or update the state accordingly.
             console.log("Tag added successfully!");

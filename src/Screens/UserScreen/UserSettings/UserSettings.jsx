@@ -2,20 +2,26 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../../Layouts/Header";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ForgetPassword from "../../../Component/UserComponent/ForgetPasswordComponent/ForgetPasswordComponent";
 import axios from 'axios';
+
 function UserSettings() {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
+  //ProfilePic update
   const [profilePic, setProfilePic] = useState(null);
   const [biography, setBiography] = useState("");
   // Password Change 
-  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState({
+    password: '',
+    confirmPassword: ''
+  })
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const userDetails = useSelector((state) => state?.auth?.userData);
@@ -28,39 +34,74 @@ function UserSettings() {
 
   const handleBiographyChange = (e) => {
     setBiography(e.target.value);
+    
   };
 
-  const handleUpload = async () => {
-    if (!file) {
-      alert("Please select a file.");
-      return;
-    }
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
-    const formData = new FormData();
-    formData.append("file", file);
+  // useEffect to handle profilePic update
+  // useEffect(() => {
+  //   if (file) {
+  //     handleUpload(); // You might want to call handleUpload here directly
+  //   }
+  // }, [file]);
+  //Profile picture updload
+  // const handleUpload = async () => {
+  //   if (!file) {
+  //     alert("Please select a file.");
+  //     return;
+  //   }
 
-    try {
-      const response = await fetch("YOUR_API_ENDPOINT", {
-        method: "POST",
-        body: formData,
-        // Include any headers or authorization tokens as needed
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+
+  //   try {
+  //     const response = await fetch("https://laradebate.jmbliss.com/api/update-profile", {
+  //       method: "POST",
+  //       body: formData,
+  //       headers: {          
+  //         Authorization: `Bearer ${userDetails?.token}`, // Replace yourAuthToken with the actual authentication token
+  //       },
+  //     });
+
+  //     if (response.ok) {
+  //       const responseData = await response.json();
+
+  //       setProfilePic(responseData.profilePic);
+  //       alert("Profile picture changed successfully!");        
+  //       handleClose();
+  //     } else {
+  //       const errorData = await response.json();
+  //       alert(`Error: ${errorData.message}`);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     alert("An error occurred while uploading the profile picture.");
+  //   }
+  // };   
+  
+  //Profile picture updload
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setProfilePic(file);
+  }
+  
+  const handleApi = async (e) => {
+    e.preventDefault();
+    const formData = new FormData()
+    formData.append('profilePic', profilePic)
+    const response = await axios.post('https://laradebate.jmbliss.com/api/update-profile', formData)
+    console.log(response)
+
+      .catch((error) => {
+        console.error("Error in API request:", error);
       });
+  }
 
-      if (response.ok) {
-        const responseData = await response.json();
-
-        setProfilePic(responseData.profilePic);
-        alert("Profile picture changed successfully!");
-        handleClose();
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred while uploading the profile picture.");
-    }
-  };
+  //-------------ForgotPaswword---------
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
 
   const handleForgetPasswordOpen = () => {
@@ -68,35 +109,38 @@ function UserSettings() {
     handleClose();
   };
 
+
   // ----------Password Change -------------
   const handlePasswordChange = async () => {
     try {
-      console.log("Attempting to change password...");
-      console.log("Old Password:", oldPassword);
-    console.log("New Password:", newPassword);
+      console.log("newPassword:", newPassword);
+      console.log("confirmPassword:", confirmPassword);
+      // if new password and confirm password match
+      if (newPassword !== confirmPassword) {
+        alert("New password and confirm password do not match.");
+        return;
+      }
+
       const response = await axios.post(
         "https://laradebate.jmbliss.com/api/changepassword",
         {
-          oldPassword: oldPassword,
-          newPassword: newPassword,
+          password: newPassword,
+          password_confirmation: confirmPassword,
         }
       );
       console.log("Response:", response);
-      debugger;
-      
       if (response.status === 200) {
         alert("Password changed successfully!");
-        handleClose(); // Close the modal or perform any other actions
+        handleClose();
       } else {
         alert(`Error: ${response?.data?.message}`);
       }
     } catch (error) {
-      console.error("Error in API request::", error);
-      // alert("An error occurred while making the API request.");
+      console.error("Error in API request:", error);
     }
   };
   // ------------Password Change -------------
-  
+
 
   return (
     <>
@@ -112,7 +156,7 @@ function UserSettings() {
                   <p class="name-usr">Profile Picture</p>
                   <label htmlFor="fileToUpload">
                     <div className="profile-pic">
-                      <img src={profilePic} />
+                      {profilePic ? <img class="profile-pic" src={URL.createObjectURL(profilePic)} alt="" onClick={handleApi} /> : <img src="" alt="" />}
                     </div>
                   </label>
                   <input
@@ -120,19 +164,19 @@ function UserSettings() {
                     name="fileToUpload"
                     id="fileToUpload"
                     className="profile-chang"
-                    onChange={handleFileChange}
+                    onChange={handleImageChange}
                   />
 
                   <label for="files">JPEG, PNG. Max. 16 MB</label>
                   <button
                     id="remove-button"
-                    // onclick={removeProfilePicture()}
+                  // onclick={removeProfilePicture()}
                   >
                     Remove
                   </button>
                   <button
                     id="change-button"
-                    // onclick={document.getElementById('fileInput').click()}
+                  // onclick={document.getElementById('fileInput').click()}
                   >
                     Replace
                   </button>
@@ -229,13 +273,13 @@ function UserSettings() {
                 <div className="data-btn">
                   <button
                     className="close-button"
-                    // onclick={removeProfilePicture()}
+                  // onclick={removeProfilePicture()}
                   >
                     Close
                   </button>
                   <button
                     className="save-button"
-                    // onclick={document.getElementById('fileInput').click()}
+                  // onclick={document.getElementById('fileInput').click()}
                   >
                     Save
                   </button>
@@ -249,22 +293,6 @@ function UserSettings() {
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <label for="oldPassword">Old Password:</label>
-                  <input
-                    type="password"
-                    id="oldPassword"
-                    className="user-pswrd"
-                    name="oldPassword"
-                    title="Old password"
-                    placeholder="Please enter your old password"
-                    value={oldPassword}
-                    onChange={(e) => setOldPassword(e.target.value)}
-                  />
-                  <div className="frgt-pwd">
-                    <div onClick={() => handleForgetPasswordOpen(true)}>
-                      Forgot password
-                    </div>
-                  </div>
                   <label for="newPassword">New Password:</label>
                   <input
                     type="password"
@@ -274,7 +302,25 @@ function UserSettings() {
                     title="New password"
                     placeholder="Please enter your new password"
                     value={newPassword}
+                    // onChange={(e) => setNewPassword(e.target.value)}
                     onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  <div className="frgt-pwd">
+                    <div onClick={() => handleForgetPasswordOpen(true)}>
+                      Forgot password
+                    </div>
+                  </div>
+                  <label for="confirmPassword">Confirm Password:</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    className="user-pswrd"
+                    name="confirmPassword"
+                    title="Confirm password"
+                    placeholder="Please enter your new password"
+                    value={confirmPassword}
+                    // onChange={(e) => setNewPassword(e.target.value)}
+                    onChange={handleConfirmPasswordChange}
                   />
                 </Modal.Body>
                 <Modal.Footer>

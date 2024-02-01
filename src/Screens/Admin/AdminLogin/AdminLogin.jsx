@@ -15,16 +15,16 @@ function AdminLogin() {
 
         const newEntry = { email: email, password: password };
 
-        setAllEntry([...allEntry, newEntry]);        
+        setAllEntry([...allEntry, newEntry]);
         // Empty After Submit form
         setEmail("");
         setPassword("");
-        
+
     };
     useEffect(() => {
         console.log(allEntry);
-      }, [allEntry]);
-    
+    }, [allEntry]);
+
 
     return (
         <>
