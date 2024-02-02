@@ -26,13 +26,37 @@ import { useContext } from "react";
 import { MyContext } from "../../SunBurst";
 import New from "./New";
 import Hot from "./Hot";
-import useVisibleCards   from "../../../Assets/MyCustomJs/Custom";
+
 
 function Popular(data) {
-       // ---------------load more------------------------------------------------------------------
-       const { handleLoadMore, totalCards, visibleCards } = useVisibleCards('.active .card', 3);
-  
-       // ---------------load more------------------------------------------------------------------
+  // ---------------load more------------------------------------------------------------------
+  const [visibleCards, setVisibleCards] = useState(9);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".popular .card");
+
+    // Hide all cards initially
+    cards.forEach((card, index) => {
+      card.style.display = index < visibleCards ? "flex" : "none";
+    });
+  }, [visibleCards]);
+
+  const handleLoadMore = () => {
+    const cards = document.querySelectorAll(" .popular  .card");
+
+    // Update the number of visible cards
+    const newVisibleCards = visibleCards + 9;
+    setVisibleCards(newVisibleCards);
+
+    // Show additional cards
+    cards.forEach((card, index) => {
+      if (index >= visibleCards && index < newVisibleCards) {
+        card.style.display = "flex";
+      }
+    });
+  };
+  // ---------------load more------------------------------------------------------------------
+
   // const { text, setText } = useContext(MyContext);
   // const fetchData = async () => {
   //     try {
@@ -54,7 +78,7 @@ function Popular(data) {
 
   return (
     <>
-      <section className="bg-portal pb-4 home-sec-1" dir="rtl">
+      <section className="bg-portal pb-4 home-sec-1 popular" dir="rtl">
         <Container>
           <Row>
             <Col>
@@ -70,7 +94,7 @@ function Popular(data) {
                           <Card.Title>{val.title}</Card.Title>
                         </Card.Body>
                       </a>
-                   
+
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
                         <Card.Text className="m-0">749</Card.Text>
@@ -87,11 +111,15 @@ function Popular(data) {
                   ))}
               </div>
               <div class="col-md-12 text-center">
-              {totalCards > visibleCards && (
-        <button className="debate-btn-load btn btn-outline-primary mt-5 fw-bold" onClick={handleLoadMore}>
-        להראות יותר
-        </button>
-      )}
+                {visibleCards <
+                  document.querySelectorAll(".popular .card").length && (
+                  <button
+                    className="btn debate-btn-load btn-outline-primary mt-5 fw-bold"
+                    onClick={handleLoadMore}
+                  >
+                      להראות יותר
+                  </button>
+                )}
               </div>
             </Col>
           </Row>

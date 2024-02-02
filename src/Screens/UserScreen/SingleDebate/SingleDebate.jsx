@@ -256,7 +256,7 @@ function SingleDebate() {
           </Card.Body>
 
           <hr />
-          <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
+          <div className="color-text-icon test d-flex align-items-center justify-content-evenly m-0">
             <TbMessage2 />
             <Card.Text className="m-0">749</Card.Text>
             <FaPen />
@@ -311,7 +311,7 @@ function SingleDebate() {
                   <div className="w-50">
                     <div
                       style={{ background: "#ffff" }}
-                      className="text-success p-2 border rounded"
+                      className="text-success  p-2 border rounded"
                     >
                       Pros
                       <Button onClick={toggleProsForm} className="btn-success">

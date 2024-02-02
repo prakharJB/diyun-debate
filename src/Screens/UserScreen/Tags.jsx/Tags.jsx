@@ -9,9 +9,20 @@ import politics from "../../../Assets/politics.jpeg";
 import Header from "../../../Layouts/Header";
 import Footer from "../../../Layouts/Footer";
 import axios from "axios";
+import defaultImage from "./../../../Assets/demo-portal-cover.jpeg";
+
+
 
 function Tags() {
-  const [items, setItems] = useState();
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
+// ---------------load more------------------------------------------------------------------
+const [items, setItems] = useState([]);
+const [visibleItems, setVisibleItems] = useState(9);
+const handleLoadMore = () => {
+  // Update the number of visible items
+  setVisibleItems(visibleItems + 9);
+};
+// ---------------load more------------------------------------------------------------------
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,94 +56,42 @@ function Tags() {
         <Container>
           <Row>
             <Col className="">
-              {/* <div className="">
-                <div className="mt-top">
-                  {items?.map((val, index) => (
-                    <div key={index}>
-                      <Link
-                        to={`/explore/tags/${val?.category?.name}`}
-                        key={index}
-                      >
-                        <div className="box-service" key={index}>
-                          <img src={coverImg} alt="cover" />
-                          <div className="box-padding">
-                            <h2>{val?.category?.name}</h2>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
+             
               <div className="tag-overview-page__content">
                 <div className="tag-overview-page__tags">
-                  <ul className="tag-card-grid mt-4">
-                    {items?.map((val, index) => (
-                      <li className="mt-4">
+                  <ul className="tag-card-grid mt-5 p-0  responsive-grid ">
+                  {items.slice(0, visibleItems).map((val, index) => (
+                      <li className="card-glob">
                         <Link
                           to={`/explore/tags/${val?.name}`}
                           key={index}
-                          className="tag-card"
+                          className="tag-card d-block h-100"
                         >
-                          <img
-                            src={politics}
-                            className="image tag-card__image"
-                            alt="cover"
-                          />
+                           <img
+                              src={val?.image ? baseUrl + val?.image : defaultImage}
+                              className="image tag-card__image rounded"
+                              alt="cover"
+                            />
                           <div className="tag-card__overlay"></div>
-                          <div className="tag-card__name">{val?.name}</div>
+                          <div className="tag-card__name p-5 rounded text-center h-100 d-flex align-items-center justify-content-center">
+                            <h4 className="fw-bold">{val?.name}</h4>
+                            </div>
                         </Link>
                       </li>
                     ))}
-                    {/* <li className="mt-4">
-                      <Link to={`/explore/tags/Ethics`} className="tag-card">
-                        <img
-                          src={ethics}
-                          className="image tag-card__image"
-                          alt="cover"
-                        />
-                        <div className="tag-card__overlay"></div>
-                        <div className="tag-card__name">Ethics</div>
-                      </Link>
-                    </li>
-                    <li className="mt-4">
-                      <Link to={`/explore/tags/Politics`} className="tag-card">
-                        <img
-                          src={politics}
-                          className="image tag-card__image"
-                          alt="cover"
-                        />
-                        <div className="tag-card__overlay"></div>
-                        <div className="tag-card__name">Politics</div>
-                      </Link>
-                    </li>
-                    <li className="mt-4">
-                      <Link to={`/explore/tags/Science`} className="tag-card">
-                        <img
-                          src={science}
-                          className="image tag-card__image"
-                          alt="cover"
-                        />
-                        <div className="tag-card__overlay"></div>
-                        <div className="tag-card__name">Science</div>
-                      </Link>
-                    </li>
-                    <li className="mt-4">
-                      <Link
-                        to={`/explore/tags/Philosophy`}
-                        className="tag-card"
-                      >
-                        <img
-                          src={philo}
-                          className="image tag-card__image"
-                          alt="cover"
-                        />
-                        <div className="tag-card__overlay"></div>
-                        <div className="tag-card__name">Philosophy</div>
-                      </Link>
-                    </li> */}
+                    
                   </ul>
                 </div>
+              </div>
+              <div class="col-md-12 text-center mb-5">
+                {visibleItems < items.length && (
+                  <button
+                    className="btn debate-btn-load btn-outline-primary mt-5 fw-bold"
+                    onClick={handleLoadMore}
+                  >
+                    להראות יותר
+                  </button>
+                )}
               </div>
             </Col>
           </Row>

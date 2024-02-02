@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Header from "../../../Layouts/Header";
 import Footer from "../../../Layouts/Footer";
+import defaultImage from "./../../../Assets/demo-portal-cover.jpeg";
 
 function ExploreBg(data) {
   const navigate = useNavigate();
@@ -39,7 +40,21 @@ function ExploreBg(data) {
   return (
     <>
       <Header />
-      <section className="bg-portal pb-4" dir="rtl">
+      <section class="bg-portal position-relative pt-5 pb-5 home-sec-1  text-center feature" dir="rtl">
+        <div class="container position-relative z-1 text-white pt-5 pb-5">
+          <div class="row">
+            <div class="col">
+              <h1>דיון ודיון #{category}</h1>
+            </div>
+          </div>
+        </div>
+        <img
+          src={defaultImage}
+          className="position-absolute object-fit-cover  w-100 h-100 top-0  start-0 d-block"
+          alt="cover"
+        />
+      </section>
+      <section className=" home-sec-1 mt-4 mb-5" dir="rtl">
         <Container>
           <Row>
             <div className="mt-top">
@@ -53,7 +68,7 @@ function ExploreBg(data) {
                           <Card.Title>{debate.title}</Card.Title>
                         </Card.Body>
                       </a>
-                      <hr />
+
                       <div className="color-text-icon d-flex align-items-center justify-content-evenly m-0">
                         <TbMessage2 />
                         <Card.Text className="m-0">749</Card.Text>

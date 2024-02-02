@@ -18,14 +18,36 @@ import homeicona from "../../../Assets/home-icon-2.png";
 import homeicond from "../../../Assets/home-icon-4.png";
 import homeicone from "../../../Assets/home-icon-5.png";
 import homeiconf from "../../../Assets/home-icon-6.png";
-import useVisibleCards   from "../../../Assets/MyCustomJs/Custom";
+
 
 
 function Featured(data) {
-
    // ---------------load more------------------------------------------------------------------
-   const { handleLoadMore, totalCards, visibleCards } = useVisibleCards('.active .card', 3);
-  
+   const [visibleCards, setVisibleCards] = useState(10);
+
+   useEffect(() => {
+     const cards = document.querySelectorAll('.feature .card');
+ 
+     // Hide all cards initially
+     cards.forEach((card, index) => {
+       card.style.display = index < visibleCards ? 'flex' : 'none';
+     });
+   }, [visibleCards]);
+ 
+   const handleLoadMore = () => {
+     const cards = document.querySelectorAll('.feature  .card');
+ 
+     // Update the number of visible cards
+     const newVisibleCards = visibleCards + 10;
+     setVisibleCards(newVisibleCards);
+ 
+     // Show additional cards
+     cards.forEach((card, index) => {
+       if (index >= visibleCards && index < newVisibleCards) {
+         card.style.display = 'flex';
+       }
+     });
+   };
   // ---------------load more------------------------------------------------------------------
 
   const { state } = useContext(MyContext);
@@ -97,7 +119,7 @@ function Featured(data) {
   };
   return (
     <>
-      <section className="bg-portal pb-4 home-sec-1" dir="rtl">
+      <section className="bg-portal pb-4 home-sec-1  feature" dir="rtl">
         <Container>
           <Row>
             <Col>
@@ -456,13 +478,15 @@ function Featured(data) {
               </div>
 
               <div class="col-md-12 text-center">
-              {totalCards > visibleCards && (
-        <button className="debate-btn-load btn btn-outline-primary mt-5 fw-bold" onClick={handleLoadMore}>
-          Load More
-        </button>
-      )}
-      
-              {/* <button type="button" onClick={handleLoadMore} class="btn debate-btn-load btn-outline-primary mt-5 fw-bold">להראות יותר</button> */}
+                {visibleCards <
+                  document.querySelectorAll(".feature .card").length && (
+                  <button
+                    className="btn debate-btn-load btn-outline-primary mt-5 fw-bold"
+                    onClick={handleLoadMore}
+                  >
+                      להראות יותר
+                  </button>
+                )}
               </div>
             </Col>
           </Row>
