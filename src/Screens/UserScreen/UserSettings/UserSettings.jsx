@@ -102,12 +102,12 @@ function UserSettings() {
       }
 
       const formData = new FormData();
-      formData.append('profilePic', profilePic);
+      formData.append('profile_picture', profilePic);
       formData.append('biography', biography);
       formData.append('inviteCheckbox', hideTimelineCheckbox ? 1 : 0);
       formData.append('hideTimelineCheckbox', hideTimelineCheckbox ? 1 : 0);
       formData.append('verification_token', userDetails && userDetails.verification_token);
-      
+
       console.log("User Details:", userDetails);
       console.log("Biography to be sent:", biography);
       console.log("Checkbox status (Hide Timeline):", hideTimelineCheckbox);
@@ -117,13 +117,13 @@ function UserSettings() {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userDetails?.token}`,
         },
-        withCredentials: true, 
+        withCredentials: true,
       });
       console.log(response);
       if (response.status === 200) {
-        console.log("Profile Picture from API:", response?.data?.profilePic);
+        console.log("Profile Picture from API:", response?.data);
         setProfilePic(response?.data?.profilePic);
-  setBiography(response?.data?.biography);
+        setBiography(response?.data?.biography);
         alert("Profile picture changed successfully!");
         handleClose();
       } else {
@@ -316,8 +316,8 @@ function UserSettings() {
                   </button>
                   <button
                     className="save-button"
-                  // onclick={document.getElementById('fileInput').click()}
-                  onClick={handleApi}
+                    // onclick={document.getElementById('fileInput').click()}
+                    onClick={handleApi}
                   >
                     Save
                   </button>
