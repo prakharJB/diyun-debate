@@ -14,6 +14,7 @@ function UserSettings() {
   const [file, setFile] = useState(null);
   //ProfilePic update
   const [profilePic, setProfilePic] = useState(null);
+  const [resImage, setResImage] = useState(''); //create useState
   const [biography, setBiography] = useState("");
   // Password Change 
   const [newPassword, setNewPassword] = useState("");
@@ -34,7 +35,7 @@ function UserSettings() {
 
   const handleBiographyChange = (e) => {
     setBiography(e.target.value);
-    
+
   };
 
   const handleConfirmPasswordChange = (e) => {
@@ -81,20 +82,21 @@ function UserSettings() {
   //     alert("An error occurred while uploading the profile picture.");
   //   }
   // };   
-  
+
   //Profile picture updload
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     console.log(file);
     setProfilePic(file);
   }
-  
+
   const handleApi = async (e) => {
     e.preventDefault();
     const formData = new FormData()
     formData.append('profilePic', profilePic)
     const response = await axios.post('https://laradebate.jmbliss.com/api/update-profile', formData)
-    console.log(response)
+    setProfilePic(response?.name);
+    console.log(response?.profilePic)
 
       .catch((error) => {
         console.error("Error in API request:", error);
