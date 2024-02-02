@@ -35,7 +35,7 @@ function Explore() {
                 <Link key={index} to={`/explore/tags/${val}`} className="mx-2 tags-btn" >{val}</Link>
                 ))} */}
                 <div className="mobile-flex-wrap d-flex justify-content-center flex-wrap">
-                  <Link to={`/explore/tags/מימון`} className="mx-2 tags-btn" >מימון</Link>
+                  <Link to={`/explore/tags/מימון`} className="mx-2 tags-btn test" >מימון</Link>
                   <Link to={`/explore/tags/הנדסה גנטית`} className="mx-2 tags-btn" >הנדסה גנטית</Link>
                   <Link to={`/explore/tags/בקרת נשק`} className="mx-2 tags-btn" >בקרת נשק</Link>
                   <Link to={`/explore/tags/בינה מלאכותית`} className="mx-2 tags-btn" >בינה מלאכותית</Link>
