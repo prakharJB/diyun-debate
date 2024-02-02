@@ -22,7 +22,9 @@ import SingleDebateDetail from "../Screens/Admin/SingleDebateDetail/SingleDebate
 import AllDebate from "../Screens/Admin/AllDebate/AllDebate";
 import SingleUserDetail from "../Screens/Admin/SingleUserDetail/SingleUserDetail";
 import AllTag from "../Screens/Admin/AllTag/AllTag";
-import AddNewTag from "../Screens/Admin/AddNewTag/AddNewTag";
+import TotalContribution from "../Screens/Admin/TotalContribution/TotalContribution";
+import AdminLogin from "../Screens/Admin/AdminLogin/AdminLogin";
+
 
 function AppRoutes() {
   return (
@@ -57,13 +59,14 @@ function AppRoutes() {
           <Route path="/user-profile" element={<></>}></Route>
           <Route path="/user-setting" element={<UserSettings />}></Route>
           {/* <Route path="/user-new" element={<UserProfilenew />}></Route> */}
-          <Route path="/admin-dashboard" element={< AllUser />} ></Route>
+          <Route path="/admin-dashboard/all-user" element={< AllUser />} ></Route>
           <Route path="/user-detail/:id" element={<UserDetail />} ></Route>
-          <Route path="all-debate" element={<AllDebate />} ></Route>
+          <Route path="/admin-dashboard/all-debate" element={<AllDebate />} ></Route>
           <Route path="/single-debate" element={< SingleDebateDetail />} ></Route>
           <Route path="/debate-detail/:id" element={<SingleUserDetail />} ></Route>
-          <Route path="/all-tag" element={<AllTag />} ></Route>
-          <Route path="/tag-detail" element={<AddNewTag />} ></Route>
+          <Route path="/admin-dashboard/all-tag" element={<AllTag />} ></Route>
+          <Route path="/admin-dashboard" element= {<TotalContribution />}></Route>
+          <Route path="/admin-login" element={<AdminLogin />} ></Route>
         </Routes>
       </Router>
     </div>
