@@ -46,7 +46,7 @@ function AllUser() {
             <AdminDashboard />
             <div class="invoice-system">
                 <div class="customer_design">
-                    <h2>User Profile - Dashboard</h2>
+                    <h3>User Profile - Dashboard</h3>
                     <div class="custo-new-btn">
                         <a href="Create-Invoice.html">Create New</a>
                     </div>

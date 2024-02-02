@@ -41,7 +41,7 @@ function AllDebate() {
             <AdminDashboard />            
             <div class="invoice-system">
                 <div class="customer_design d-flex justify-content-start mb-5 ">
-                    <h2 className="mx-3" ><i class="fa fa-user mx-3" aria-hidden="true"></i>Debate</h2>
+                    <h3 className="mx-3 mb-0" ><i class="fa fa-user mx-3" aria-hidden="true"></i>Debate</h3>
                     <Button variant="success"><i class="fa fa-plus m-1" aria-hidden="true"></i>Add New</Button>{' '}
                 </div>
                 {/* container */}

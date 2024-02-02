@@ -14,9 +14,9 @@ function UserSettings() {
   const [file, setFile] = useState(null);
   //ProfilePic update
   const [profilePic, setProfilePic] = useState(null);
-  const [resImage, setResImage] = useState(''); //create useState
   const [biography, setBiography] = useState("");
   // Password Change 
+  const [hideTimelineCheckbox, setHideTimelineCheckbox] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState({
     password: '',
@@ -35,7 +35,10 @@ function UserSettings() {
 
   const handleBiographyChange = (e) => {
     setBiography(e.target.value);
+  };
 
+  const handleHideTimelineChange = (e) => {
+    setHideTimelineCheckbox(e.target.checked);
   };
 
   const handleConfirmPasswordChange = (e) => {
@@ -92,16 +95,45 @@ function UserSettings() {
 
   const handleApi = async (e) => {
     e.preventDefault();
-    const formData = new FormData()
-    formData.append('profilePic', profilePic)
-    const response = await axios.post('https://laradebate.jmbliss.com/api/update-profile', formData)
-    setProfilePic(response?.name);
-    console.log(response?.profilePic)
+    try {
+      if (!profilePic) {
+        alert("Please select a file.");
+        return;
+      }
 
-      .catch((error) => {
-        console.error("Error in API request:", error);
+      const formData = new FormData();
+      formData.append('profilePic', profilePic);
+      formData.append('biography', biography);
+      formData.append('inviteCheckbox', hideTimelineCheckbox ? 1 : 0);
+      formData.append('hideTimelineCheckbox', hideTimelineCheckbox ? 1 : 0);
+      formData.append('verification_token', userDetails && userDetails.verification_token);
+      
+      console.log("User Details:", userDetails);
+      console.log("Biography to be sent:", biography);
+      console.log("Checkbox status (Hide Timeline):", hideTimelineCheckbox);
+
+      const response = await axios.post('https://laradebate.jmbliss.com/api/update-profile', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${userDetails?.token}`,
+        },
+        withCredentials: true, 
       });
-  }
+      console.log(response);
+      if (response.status === 200) {
+        console.log("Profile Picture from API:", response?.data?.profilePic);
+        setProfilePic(response?.data?.profilePic);
+  setBiography(response?.data?.biography);
+        alert("Profile picture changed successfully!");
+        handleClose();
+      } else {
+        alert(`Error: ${response?.data?.message}`);
+      }
+    } catch (error) {
+      console.error("Error in API request:", error);
+      alert("An error occurred while uploading the profile picture.");
+    }
+  };
 
   //-------------ForgotPaswword---------
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
@@ -162,8 +194,8 @@ function UserSettings() {
                     </div>
                   </label>
                   <input
-                    type="File"
-                    name="fileToUpload"
+                    type="file"
+                    name="profilePic"
                     id="fileToUpload"
                     className="profile-chang"
                     onChange={handleImageChange}
@@ -254,13 +286,16 @@ function UserSettings() {
                     <p>4096</p>
                   </form>
                   <div class="user-check-box user-setting-frm">
-                    <input
+                    <input className="mx-2"
                       type="checkbox"
-                      id="check-bx"
-                      name="email-id"
+                      id="hide-timeline"
+                      // id="check-bx" 
+                      name="hide-timeline"
+                      checked={hideTimelineCheckbox}
+                      onChange={handleHideTimelineChange}
                       value=""
                     />
-                    <label for="vehicle1">
+                    <label for="hide-timeline">
                       {" "}
                       Hide account timeline and statistics
                     </label>
@@ -282,6 +317,7 @@ function UserSettings() {
                   <button
                     className="save-button"
                   // onclick={document.getElementById('fileInput').click()}
+                  onClick={handleApi}
                   >
                     Save
                   </button>
