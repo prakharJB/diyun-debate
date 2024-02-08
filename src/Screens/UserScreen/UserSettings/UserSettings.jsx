@@ -8,12 +8,17 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ForgetPassword from "../../../Component/UserComponent/ForgetPasswordComponent/ForgetPasswordComponent";
 import axios from 'axios';
+import defaultImage from "./../../../Assets/demo-portal-cover.jpeg";
+
 
 function UserSettings() {
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
   //ProfilePic update
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState({
+    profile_picture: defaultImage, // Set the default image URL
+  });
   const [biography, setBiography] = useState("");
   // Password Change 
   const [hideTimelineCheckbox, setHideTimelineCheckbox] = useState(false);
@@ -122,8 +127,10 @@ function UserSettings() {
       console.log(response);
       if (response.status === 200) {
         console.log("Profile Picture from API:", response?.data);
-        setProfilePic(response?.data?.profilePic);
+        // Update the profile picture URL
+        setProfilePic(response?.data?.profile_picture);
         setBiography(response?.data?.biography);
+        // Display success message
         alert("Profile picture changed successfully!");
         handleClose();
       } else {
@@ -137,7 +144,6 @@ function UserSettings() {
 
   //-------------ForgotPaswword---------
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
-
   const handleForgetPasswordOpen = () => {
     setForgetPasswordModal(true);
     handleClose();
@@ -190,7 +196,14 @@ function UserSettings() {
                   <p class="name-usr">Profile Picture</p>
                   <label htmlFor="fileToUpload">
                     <div className="profile-pic">
-                      {profilePic ? <img class="profile-pic" src={URL.createObjectURL(profilePic)} alt="" onClick={handleApi} /> : <img src="" alt="" />}
+                    <img
+                className="profile-pic"
+                src={profilePic?.profile_picture ? baseUrl + profilePic?.profile_picture : defaultImage}
+                
+                alt="Profile"
+                onClick={handleApi}
+              />
+                      {/* {profilePic ? <img className="profile-pic" src={URL.createObjectURL(profilePic)} alt="" onClick={handleApi} /> : <img src="" alt="" />} */}
                     </div>
                   </label>
                   <input

@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import tHn from "../../../locales/he.json";
 import DebateTree from "../../../Component/UserComponent/DebateTree";
 
+
 function SingleDebate() {
   const [textProsCount, setTextProsCount] = useState(0);
   const [textConsCount, setTextConsCount] = useState(0);
@@ -28,6 +29,97 @@ function SingleDebate() {
   const { id } = useParams();
   const [debateDetails, setDebateDetails] = useState();
 
+  //Add comment
+  const [commentText, setCommentText] = useState("");
+  const [totalComments, setTotalComments] = useState(0);
+  const [comments, setComments] = useState([]);
+  const [commentListVisible, setCommentListVisible] = useState(true); //visible comment
+  const [toggleSubmit, setToggleSubmit] = useState(true); //edit comment toggle
+  const [isEditItem, setIsEditItem] = useState(null); //edit comment
+
+  const handleToggleCommentList = () => {
+    setCommentListVisible(!commentListVisible);
+  };
+
+  const handleCommentChange = (e) => {
+    setCommentText(e.target.value);
+  };
+
+  //edit comment
+  const editItem = async (id) => {
+    let newEditItem = comments.find((comment) => {
+      return comment.id ===id
+    });
+    console.log(newEditItem);
+    setToggleSubmit(false); //change submit button
+    setCommentText(newEditItem.comment); //new update value
+    setIsEditItem(id); //pass current element id
+      }
+
+  //handle the "Add Comment" 
+  const handleAddComment = async () => {
+    
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addComments`,
+        { comment: commentText },
+        {
+          headers: {            
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      if (result?.data?.debate) {
+        setDebateDetails(result.data.debate);
+        fetchCommentsList();
+      } //--------------------------------------------
+      // if (commentText && !toggleSubmit ){
+      //   setComments(
+      //     comments.map((comment) =>{
+      //       if(comment.id === isEditItem){
+      //       return{...comment, comment: commentText};
+      //       } return comment;
+      //     })
+      //   )
+      // }--------------------------------------------
+      console.log(result);
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+    }
+    // Clear the comment input after submission
+    setCommentText("");
+  };
+
+
+
+  const fetchCommentsList = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/commentsList`
+      );
+      console.log("Comments API Response:", response);
+      if (response?.data?.comments) {
+        setComments(response.data.comments);
+        setTotalComments(response.data.comments.length);
+        console.log("Updated Comments State:", response.data.comments);
+      }
+    } catch (error) {
+      console.error("Error fetching comments list:", error.message);
+    }
+  };
+  console.log("Comments State:", comments);
+
+  //delete comment
+  const deleteItem =(id) =>{
+    console.log(id);
+    const updatedItems = commentText.filter((comment, ind) =>{
+return ind 
+    }
+    )
+  }
+
+  
+
   // display single debate
 
   const fetchData = async () => {
@@ -36,6 +128,13 @@ function SingleDebate() {
       const responseData = await axios.get(url);
       console.log("API Response:", responseData?.data?.debate);
       setDebateDetails(responseData?.data?.debate);
+      setTotalComments(responseData?.data?.debate?.comments?.length || 0);
+      // Update comments state with user information
+      const updatedComments = responseData?.data?.debate?.comments?.map((comment) => ({
+        ...comment,
+        user: comment?.user || {},  // Replace with actual timestamp logic
+      }));
+      setComments(updatedComments || []);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -63,6 +162,17 @@ function SingleDebate() {
   useEffect(() => {
     modalShow();
   }, []);
+
+  // ------Comment----- 
+  useEffect(() => {
+    fetchDataById(id);
+  }, [id]);
+  useEffect(() => {
+    if (debateDetails) {
+      fetchCommentsList(); // Fetch comments when debateDetails is available
+    }
+  }, [debateDetails]); // ------Comment ---- 
+
   const handleClose = () => setDetailDebateModal(false);
   const modalShow = () => {
     setDetailDebateModal(true);
@@ -120,7 +230,8 @@ function SingleDebate() {
         }
       );
       console.log(result);
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Error submitting the form:", error);
       if (error?.response?.data?.status == 401) {
         toast.error("please login for debate");
@@ -282,7 +393,7 @@ function SingleDebate() {
         />
       </div>*/}
 
-      <DebateTree  />
+      <DebateTree />
 
       <section
         style={{ background: "#F2F4F5", paddingBottom: "calc(100vh - 250px)" }}
@@ -295,12 +406,63 @@ function SingleDebate() {
               <div className="p-4 my-4  ">
                 <div
                   style={{ background: "#ffff" }}
-                  className="p-4 rounded w-50 m-auto"
+                  className="p-4 rounded w-100 m-auto d-flex justify-content-between"
                   onClick={() => revertToOldTitle()}
                 >
                   {oldTitle}
+                  {/* --------------comment box------------ */}
+                  <div className="comments-container">
+                    <div className="comments" onClick={handleToggleCommentList} ><i class="fa-solid fa-message ms-2"></i><span>{totalComments}</span></div>
+                  </div>
                 </div>
+                <div className="detail-comment" style={{ display: commentListVisible ? 'block' : 'none' }} >
+                  <div className="comment-panel position-relative" >
+                    <div className="comment-list w-50 mx-auto">
+                      <Container>
+                        {comments.map((comment) => (
+                          <Card key={comment.id} style={{ width: '23rem' }}>
+                            <Card.Body>
+                              <Card.Title>{comment.user.name}</Card.Title>
+                              <Card.Subtitle className="mb-2 text-muted">{comment.timestamp}</Card.Subtitle>
+                              <Card.Text>
+  {comments.map((comment, ind) => (
+    <div className="eachItem" key={ind}>
+      <Card.Link href="#" className="text-secondary" onClick={() => deleteItem(comment.id)}>
+        Hide<i className="fa fa-eye-slash text-secondary px-1" aria-hidden="true"></i>
+      </Card.Link>
+    </div>
+  ))}
+</Card.Text>
+                              {/* <Card.Link href="#" className="text-secondary" onClick={()=> deleteItem(comment.id)}>Hide<i class="fa fa-eye-slash text-secondary px-1" aria-hidden="true"></i></Card.Link> */}
+                              <p className="text-secondary d-inline-block px-2"onClick={()=> editItem(comment.id)}>Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></p>
+                              {/* <Card.Link href="#" className="text-secondary d-inline-block px-2" onClick={()=> editItem(comment.id)} >Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></Card.Link> */}
 
+                            </Card.Body>
+                          </Card>
+                        ))}
+                      </Container>
+                    </div>
+                    <div>
+                      <div className="message-card" >
+                        <input
+                          className="form-control"
+                          id="textAreaExample"
+                          placeholder="Suggest improvement"
+                          rows="4"
+                          value={commentText}
+                          onChange={handleCommentChange}
+                        />
+                      </div>
+                      <div className="btn-add-cment position-absolute start-10" >
+                        {
+                          toggleSubmit ? <i class="fa fa-plus add-btn" aria-hidden="true"onClick={handleAddComment}></i> : <i class="fa fa-pencil add-btn" aria-hidden="true"onClick={handleAddComment}></i>
+                        }
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* --------------comment box------------ */}
                 <div
                   style={{ background: "#ffff" }}
                   className="p-4 mt-1 rounded"
@@ -422,7 +584,7 @@ function SingleDebate() {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section >
     </>
   );
 }
