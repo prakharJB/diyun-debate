@@ -23,6 +23,35 @@ function SingleDebate() {
   const { id } = useParams();
   const [debateDetails, setDebateDetails] = useState();
 
+  //Add comment
+  const [comments, setComments] = useState([]);
+  const [inputData, setInputData] = useState('');
+  const [items, setItems] = useState([]);
+
+  const addItem = async () => {
+    try {
+      if (!inputData) {
+        // Handle the case where inputData is empty
+      } else {
+        const result = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addComments`,
+          { comment: inputData }, // Pass the comment data here
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setItems([...items, inputData]);
+        setInputData('');
+        console.log(result);
+      }
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+  };
+
+
   const fetchData = async () => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
@@ -122,7 +151,7 @@ function SingleDebate() {
     setShowConsForm(false);
     setCons({ title: "" });
   };
-  
+
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   const [oldTitle, setOldTitle] = useState("");
   const [oldDebateId, setOldDebateId] = useState("");
@@ -202,7 +231,7 @@ function SingleDebate() {
         <Button onClick={handleClose}>Enter</Button>
       </Modal>
       <Header />
-      
+
       <section
         style={{ background: "#F2F4F5", paddingBottom: "calc(100vh - 250px)" }}
         className="h-100"
@@ -212,15 +241,57 @@ function SingleDebate() {
           <Row>
             <Col md={10} className="m-auto mt-4 test">
               <div className="p-4 my-4  ">
-                
+
                 <div
                   style={{ background: "#ffff" }}
-                  className="p-4 rounded w-50 m-auto"
+                  className="p-4 rounded w-50 m-auto d-flex justify-content-between"
                   onClick={() => revertToOldTitle()}
                 >
                   <p>{oldTitle}</p>
+                  {/* --------------comment box------------ */}
+                  <div className="comments-container">
+                    <div className="comments" ><i class="fa-solid fa-message ms-2"></i><span></span></div>
+                  </div>
                 </div>
+                <div className="detail-comment" >
+                  <div className="comment-panel position-relative" >
+                    <div className="comment-list w-50 mx-auto">
+                      <Container>
+                        {comments.map((comment, index) => (
+                          <Card key={index} style={{ width: '23rem' }}>
+                            <Card.Body>
+                              <Card.Title>{comment}</Card.Title>
+                              <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+                              <Card.Text>
+                                {comment.comment}
+                              </Card.Text>
+                              <Card.Link href="#" className="text-secondary" >Hide<i class="fa fa-eye-slash text-secondary px-1" aria-hidden="true"></i></Card.Link>
+                              <p className="text-secondary d-inline-block px-2">Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></p>
+                              {/* <Card.Link href="#" className="text-secondary d-inline-block px-2" onClick={()=> editItem(comment.id)} >Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></Card.Link> */}
 
+                            </Card.Body>
+                          </Card>
+                        ))}
+                      </Container>
+                    </div>
+
+                    <div className="message-card" >
+                      <input
+                        className="form-control"
+                        id="textAreaExample"
+                        placeholder="Suggest improvement"
+                        rows="4"
+                        value={inputData}
+                        onChange={(e) => setInputData(e.target.value)}
+                      />
+                    </div>
+                    <div className="btn-add-cment position-absolute start-10" >
+                      <i class="fa fa-plus add-btn" aria-hidden="true" onClick={addItem}></i>
+                      {/* <i class="fa fa-pencil add-btn" aria-hidden="true" ></i> */}
+                    </div>
+                  </div>
+                </div>
+                {/* --------------comment box------------ */}
                 <div
                   style={{ background: "#ffff" }}
                   className="p-4 mt-1 rounded"

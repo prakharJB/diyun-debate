@@ -33,7 +33,7 @@ function SingleDebateDetail() {
                         <div className="" >
                             <h2>User Profile Dashboard</h2>
                             <div className="user-detail-prof" >
-                                <Card.Img variant="top" className="user-detail-img" src="/static/media/test-robot.7e03e1ea3d0cfce364c2.jpeg" />
+                                <Card.Img variant="top" className="user-detail-img" src="/static/media/demo-portal-cover.jpeg" />
                                 <div className="column-profile d-flex " >
                                     <Col className="column1-profile">
                                         <ListGroup variant="flush">

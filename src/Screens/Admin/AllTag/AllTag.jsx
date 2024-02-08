@@ -15,6 +15,7 @@ function Alltag() {
         tag: "",
         image: null,
     });
+    const [showAddCard, setShowAddCard] = useState(false);
     const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
 
     useEffect(() => {
@@ -64,7 +65,9 @@ function Alltag() {
             console.error("Error adding tag:", error);
         }
     };
-
+    const toggleAddCard = () => {
+        setShowAddCard(!showAddCard);
+    };
 
     return (
         <>
@@ -72,11 +75,11 @@ function Alltag() {
             <div class="invoice-system">
                 <div class="customer_design d-flex justify-content-start mb-5 ">
                     <h3 className="mx-3 mb-0" ><i class="fa fa-user mx-3 " aria-hidden="true"></i>Tag</h3>
-                    <Button variant="success"><i class="fa fa-plus " aria-hidden="true"></i>Add New</Button>{' '}
+                    <Button variant="success" onClick={toggleAddCard}><i class="fa fa-plus " aria-hidden="true"></i>Add New</Button>{' '}
                     
                 </div>
-
-                <Card style={{ width: '25rem' }}>
+                {showAddCard && (
+                <Card className="mb-5" style={{ width: '25rem' }}>
                     <Form.Group className="mt-4 px-3">
                         <Form.Label>Tag</Form.Label>
                         <Form.Control type="text" value={newTag.name} onChange={handleInputChange}
@@ -92,7 +95,7 @@ function Alltag() {
                     </Card.Body>
                     <div className="tag-save-btn text-end mx-3 mb-4 " ><Button variant="secondary px-4 pt-2" onClick={handleAddTag}>Save</Button>{' '}</div>
                 </Card>
-
+)}
                 <div class="table-cust container all-debat" >
                     <table class="table responsive">
                         <thead>
@@ -106,7 +109,7 @@ function Alltag() {
                                 tag?.map((debate, index) => (
                                     <tr key={index}>
                                         <td data-label="name">{`${debate?.name}`}</td>
-                                        <td data-label="Profile Picture" className="profile-img"><img src={baseUrl + debate?.image} alt="Profile" /></td>
+                                        <td data-label="Profile Picture" className="profile-img-tag"><img src={baseUrl + debate?.image} alt="---" /></td>
                                     </tr>
                                 ))}
                         </tbody>

@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 import ForgetPassword from "../../../Component/UserComponent/ForgetPasswordComponent/ForgetPasswordComponent";
 import axios from 'axios';
 import defaultImage from "./../../../Assets/demo-portal-cover.jpeg";
-function UserSettings() {
-const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pictures/`;
 
+
+function UserSettings() {
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
   //ProfilePic update
@@ -96,6 +97,7 @@ const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pi
     console.log(file);
     setProfilePic(file);
   }
+
   const handleApi = async (e) => {
     e.preventDefault();
     try {
@@ -103,13 +105,18 @@ const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pi
         alert("Please select a file.");
         return;
       }
-  
+
       const formData = new FormData();
       formData.append('profile_picture', profilePic);
       formData.append('biography', biography);
+      formData.append('inviteCheckbox', hideTimelineCheckbox ? 1 : 0);
       formData.append('hideTimelineCheckbox', hideTimelineCheckbox ? 1 : 0);
       formData.append('verification_token', userDetails && userDetails.verification_token);
-  
+
+      console.log("User Details:", userDetails);
+      console.log("Biography to be sent:", biography);
+      console.log("Checkbox status (Hide Timeline):", hideTimelineCheckbox);
+
       const response = await axios.post('https://laradebate.jmbliss.com/api/update-profile', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -117,15 +124,13 @@ const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pi
         },
         withCredentials: true,
       });
-  
+      console.log(response);
       if (response.status === 200) {
-        const responseData = response.data;
-        const newProfilePicUrl = baseUrl + responseData?.profile_picture?.name;
-  
-        // Update the profile picture state with the new image URL
-        setProfilePic(newProfilePicUrl);
-      
-        setBiography(responseData?.biography);
+        console.log("Profile Picture from API:", response?.data);
+        // Update the profile picture URL
+        setProfilePic(response?.data?.profile_picture);
+        setBiography(response?.data?.biography);
+        // Display success message
         alert("Profile picture changed successfully!");
         handleClose();
       } else {
@@ -136,9 +141,6 @@ const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pi
       alert("An error occurred while uploading the profile picture.");
     }
   };
-  
-  
-  
 
   //-------------ForgotPaswword---------
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
@@ -195,12 +197,12 @@ const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pi
                   <label htmlFor="fileToUpload">
                     <div className="profile-pic">
                     <img
-  src={`${baseUrl}${profilePic ? profilePic : userDetails?.profile_picture}`}
-  className="w-100 h-75"
-  alt="cover"
-/>
-
-
+                className="profile-pic"
+                src={profilePic?.profile_picture ? baseUrl + profilePic?.profile_picture : defaultImage}
+                
+                alt="Profile"
+                onClick={handleApi}
+              />
                     </div>
                   </label>
                   <input

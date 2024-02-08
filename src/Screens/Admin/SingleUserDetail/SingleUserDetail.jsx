@@ -8,6 +8,8 @@ import axios from "axios";
 //All User - SubPage
 function SingleUserDetail() {
     const [usersDetails, setUsersDetails] = useState([]);
+    //image
+    const [userImage, setUserImage] = useState(""); // State to store the user's image URL
     const { id } = useParams();
 
     useEffect(() => {
@@ -16,6 +18,8 @@ function SingleUserDetail() {
                 const response = await axios.get(`https://laradebate.jmbliss.com/api/getdebatebyid/${id}/displaydebate`);
                 setUsersDetails(response?.data?.debate);
                 console.log(response?.data);
+                const imageResponse = await axios.get(`https://laradebate.jmbliss.com/api/getuserimage/${id}`);
+                setUserImage(imageResponse?.data?.imageUrl);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -29,9 +33,9 @@ function SingleUserDetail() {
                 <Container>
                     <Row>
                         <div className="" >
-                            <h2>User Profile Dashboard</h2>
+                            <h3>Debate Details</h3>
                             <div className="user-detail-prof" >
-                                <Card.Img variant="top" className="user-detail-img" src="/static/media/test-robot.7e03e1ea3d0cfce364c2.jpeg" />
+                                <Card.Img variant="top" className="user-detail-img" src={userImage}alt="---" />
                                 <div className="column-profile d-flex " >
                                     <Col className="column1-profile">
                                         <ListGroup variant="flush">

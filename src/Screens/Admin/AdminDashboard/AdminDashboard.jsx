@@ -24,10 +24,10 @@ function AdminDashboard() {
                 </div>
 
                 <ul class="menu-item">
-                <li><a href="/admin-dashboard"><i class="bx bx-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
-                    <li><Link to="/admin-dashboard/all-user"><i class="bx bx-user" aria-hidden="true"></i><span>All User</span></Link></li>
-                    <li><a href="/admin-dashboard/all-debate"><i class="bx bx-conversation" aria-hidden="true"></i><span>All Debate</span></a></li>
-                    <li><a href="/admin-dashboard/all-tag"><i class="bx bx-tag" aria-hidden="true"></i><span>All Tag</span></a></li>
+                <Link to="/admin-dashboard"><li><i class="bx bx-home" aria-hidden="true"></i><span>Dashboard</span></li></Link>
+                <Link to="/admin-dashboard/all-user"> <li><i class="bx bx-user" aria-hidden="true"></i><span>All Users</span></li></Link>
+                <Link to="/admin-dashboard/all-debate"><li><i class="bx bx-conversation" aria-hidden="true"></i><span>All Debates</span></li></Link>
+                <Link to="/admin-dashboard/all-tag"> <li><i class="bx bx-tag" aria-hidden="true"></i><span>All Tags</span></li></Link>
                 </ul>
             </div>           
         </>

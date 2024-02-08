@@ -36,13 +36,29 @@ function AllDebate() {
         const options = { year: "numeric", month: "long", day: "numeric" };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
+
+// DELETE USER BY ID
+const [usersDetailsDelete, setUsersDetailsDelete] = useState([]);
+const handleDelete = async (id) => {
+    debugger
+    try {
+        const response = await axios.delete(`https://laradebate.jmbliss.com/api/getdebatebyid/${id}/deletedebate`);
+        setUsersDetailsDelete(response?.data);
+        console.log(`deleted successfully.`, response);
+        fetchData();
+    } catch (error) {
+        console.error("Error Delete User:", error);
+    }
+};
+
+
     return (
         <>
             <AdminDashboard />            
             <div class="invoice-system">
                 <div class="customer_design d-flex justify-content-start mb-5 ">
                     <h3 className="mx-3 mb-0" ><i class="fa fa-user mx-3" aria-hidden="true"></i>Debate</h3>
-                    <Button variant="success"><i class="fa fa-plus m-1" aria-hidden="true"></i>Add New</Button>{' '}
+                    {/* <Button variant="success"><i class="fa fa-plus m-1" aria-hidden="true"></i>Add New</Button>{' '} */}
                 </div>
                 {/* container */}
                 <div class="table-cust all-debat" >
@@ -55,7 +71,7 @@ function AllDebate() {
                                 <th>Side</th>
                                 <th>Title</th>
                                 <th>Tags</th>
-                                <th>Profile Picture</th>
+                                <th>Image</th>
                                 <th>Created_at</th>
                                 <th>Updated_at</th>                             
                                 
@@ -72,11 +88,11 @@ function AllDebate() {
                                 <td data-label="side">{`${debate?.side}`}</td>
                                 <td data-label="title"className="title-debate">{`${debate?.title}`}</td>
                                 <td data-label="tags">{`${debate?.tags}`}</td>
-                                <td data-label="Profile Picture"className="profile-img"><img src={baseUrl + debate?.image} alt="Profile" /></td>
+                                <td data-label="Profile Picture"className="profile-img"><img src={baseUrl + debate?.image} alt="---" /></td>
                                 <td data-label="Created at">{formatDate(debate?.created_at)}</td>
                                 <td data-label="updated at">{formatDate(debate?.updated_at)}</td>                               
                                 <td class="text-center" ><Link to={`/debate-detail/${debate.id}`}> <Button variant="primary" ><i class="fa fa-eye m-1" aria-hidden="true"></i>view</Button>{' '}</Link>
-                                    <Button variant="danger"><i class="fa fa-times m-1" aria-hidden="true"></i>Delete</Button>{' '}</td>                            </tr>
+                                    <Button variant="danger" onClick={() => handleDelete(debate.id)}><i class="fa fa-times m-1" aria-hidden="true"></i>Delete</Button>{' '}</td>                            </tr>
                             ))}
                         </tbody>
                     </table>

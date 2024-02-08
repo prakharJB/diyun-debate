@@ -4,6 +4,7 @@ import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import userImg from "./../../../Assets/user-profile.png"
 
 
 //All User - SubPage
@@ -31,9 +32,9 @@ function UserDetail() {
                 <Container>
                     <Row>
                         <div className="" >
-                            <h2>User Profile Dashboard</h2>
+                            <h3>User Details</h3>
                             <div className="user-detail-prof" >
-                                <Card.Img variant="top" className="user-detail-img" src="/static/media/test-robot.7e03e1ea3d0cfce364c2.jpeg" />
+                                <Card.Img variant="top" className="user-detail-img" src="" alt="---"/>
                                 <div className="column-profile d-flex " >
                                     <Col className="column1-profile">
                                         <ListGroup variant="flush">
