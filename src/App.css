@@ -1760,7 +1760,7 @@ font-weight: 600;
 }
 
 /* single debate comments add*/
-.comments i.fa-solid.fa-message{
+/* .comments i.fa-solid.fa-message{
     color: #818b98;
     cursor: pointer;
 }
@@ -1774,7 +1774,7 @@ font-weight: 600;
 }
 .comment-list .card{
     background-color: #f2f4f5;margin-bottom: 15px;
-}
+} */
 
 
 /* mobile screen */
