@@ -24,6 +24,7 @@ import SingleUserDetail from "../Screens/Admin/SingleUserDetail/SingleUserDetail
 import AllTag from "../Screens/Admin/AllTag/AllTag";
 import TotalContribution from "../Screens/Admin/TotalContribution/TotalContribution";
 import AdminLogin from "../Screens/Admin/AdminLogin/AdminLogin";
+import GraphTest from "./../Screens/UserScreen/GraphTest";
 
 
 function AppRoutes() {
@@ -67,6 +68,7 @@ function AppRoutes() {
           <Route path="/admin-dashboard/all-tag" element={<AllTag />} ></Route>
           <Route path="/admin-dashboard" element= {<TotalContribution />}></Route>
           <Route path="/admin-login" element={<AdminLogin />} ></Route>
+          <Route path="/GraphTest" element={<GraphTest />}></Route>
         </Routes>
       </Router>
     </div>

@@ -9,7 +9,7 @@ export default function UserProfilenew() {
   const [profileDataA, setprofileDataA] = useState();
 
   // api two data
-  const [profileDataB, setprofileDataB] = useState();
+  const [profileDataB, setprofileDataB] = useState(); 
 
   // api three data
   const [profileDataC, setprofileDataC] = useState();

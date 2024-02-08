@@ -190,7 +190,7 @@ const CreateDebate = (props) => {
           {/* <Modal.Title>{tHn.log_in}</Modal.Title> */}
         </Modal.Header>
         <Form onSubmit={handleSubmit}>
-          <Modal.Body className="mb-4">
+          <Modal.Body className="mb-4 test">
             {step === 1 && (
               <div>
                 <h1 className="mb-4">{tHn.Private_or_public}</h1>

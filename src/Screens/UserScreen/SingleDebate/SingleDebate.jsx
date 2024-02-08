@@ -1,19 +1,14 @@
 import Header from "../../../Layouts/Header";
-import { Container, Row, Col, Accordion, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-// import Sunburst from "sunburst-chart";
 import Modal from "react-bootstrap/Modal";
 import { TbMessage2, TbUsersGroup } from "react-icons/tb";
 import { FaEye, FaPen, FaVoteYea } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
-
-// import Sunburst from 'react-sunburst';
-import { Sunburst } from "react-vis";
 import toast from "react-hot-toast";
 import tHn from "../../../locales/he.json";
-import DebateTree from "../../../Component/UserComponent/DebateTree";
 
 function SingleDebate() {
   const [textProsCount, setTextProsCount] = useState(0);
@@ -28,25 +23,20 @@ function SingleDebate() {
   const { id } = useParams();
   const [debateDetails, setDebateDetails] = useState();
 
-  // display single debate
-
   const fetchData = async () => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
       const responseData = await axios.get(url);
-      console.log("API Response:", responseData?.data?.debate);
       setDebateDetails(responseData?.data?.debate);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  // display single debate
   const fetchDataById = async (newId) => {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${newId}/displaydebate`;
       const responseData = await axios.get(url);
-      console.log("API Response:", responseData?.data?.debate);
       setDebateDetails(responseData?.data?.debate);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -54,32 +44,35 @@ function SingleDebate() {
   };
 
   useEffect(() => {
-    fetchDataById(id); // Initial fetch using ID
+    fetchDataById(id);
   }, [id]);
 
   useEffect(() => {
     fetchData();
   }, []);
+
   useEffect(() => {
     modalShow();
   }, []);
+
   const handleClose = () => setDetailDebateModal(false);
+
   const modalShow = () => {
     setDetailDebateModal(true);
   };
+
   const handleProsChange = (e) => {
     setPros({ ...pros, [e.target.name]: e.target.value });
     setTextProsCount(e.target.value.length);
   };
+
   const handleConsChange = (e) => {
     setCons({ ...cons, [e.target.name]: e.target.value });
     setTextConsCount(e.target.value.length);
   };
 
-  // Submit Pros
   const handleSubmitPros = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", pros);
     try {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addProsChildDebate`,
@@ -104,18 +97,15 @@ function SingleDebate() {
     setPros({ title: "" });
   };
 
-  // Submit Cons
-
   const handleSubmitCons = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", cons);
     try {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addConsChildDebate`,
         cons,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Adjust the content type for file uploads
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -132,12 +122,12 @@ function SingleDebate() {
     setShowConsForm(false);
     setCons({ title: "" });
   };
+  
   const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   const [oldTitle, setOldTitle] = useState("");
   const [oldDebateId, setOldDebateId] = useState("");
-  // const [oldDebate, setOldDebate] = useState(null);
+
   const handleDivClick = async (id, isPro) => {
-    // Find the clicked div in the state
     const clickedDiv = isPro
       ? debateDetails.pros.find((pro) => pro.id === id)
       : debateDetails.cons.find((con) => con.id === id);
@@ -146,89 +136,30 @@ function SingleDebate() {
     setOldDebateId(debateDetails.id);
     const updatedTitle = clickedDiv.title;
     debateDetails.title = updatedTitle;
-    // setOldDebate({ ...debateDetails });
 
     fetchDataById(id);
     setDebateDetails({ ...debateDetails });
   };
+
   const revertToOldTitle = async () => {
     debateDetails.title = oldTitle;
     setOldTitle("");
     await fetchDataById(oldDebateId);
-    // setDebateDetails({ ...debateDetails });
-    // if (oldDebate) {
-    //   setDebateDetails({ ...oldDebate });
-    //   setOldDebate(null);
-    // }
   };
+
   const [showProsForm, setShowProsForm] = useState(false);
   const [showConsForm, setShowConsForm] = useState(false);
+
   const toggleProsForm = () => {
     setShowProsForm(!showProsForm);
-    setShowConsForm(false); // Hide Cons form when showing Pros form
+    setShowConsForm(false);
   };
 
   const toggleConsForm = () => {
     setShowConsForm(!showConsForm);
-    setShowProsForm(false); // Hide Pros form when showing Cons form
+    setShowProsForm(false);
   };
 
-  // sunburst
-
-  // const [sunburstDebateData, setSunburstDebateData] = useState()
-  // const [sunburstData, setSunburstData] = useState({
-  //   name: "Root",
-  //   children: [],
-  // });
-
-  // const fetchSunData = async (id) => {
-  //   try {
-  //     const url = `${process.env.REACT_APP_BASE_URL}/api/getdebatebyid/${id}/displaydebate`;
-  //     const responseData = await axios.get(url);
-  //     const sunburstDebateData = responseData?.data?.debate;
-
-  //     const sunburstItem = {
-  //       name: sunburstDebateData.title,
-  //       children: [],
-  //     };
-
-  //     if (sunburstDebateData.pros && sunburstDebateData.pros.length > 0) {
-  //       debateDetails.pros.forEach((pro) => {
-  //         sunburstItem.children.push({
-  //           name: pro.title,
-  //           children: fetchSunData(pro.id),
-  //         });
-  //       });
-  //     }
-
-  //     if (debateDetails.cons && debateDetails.cons.length > 0) {
-  //       debateDetails.cons.forEach((con) => {
-  //         sunburstItem.children.push({
-  //           name: con.title,
-  //           children: fetchSunData(con.id),
-  //         });
-  //       });
-  //     }
-
-  //     return [sunburstItem];
-  //   } catch (error) {
-  //     console.error("Error fetching sunburst data:", error);
-  //     return [];
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const parentId = 25; // Replace with the actual parent_id
-  //   fetchSunData(parentId).then((sunburstData) => {
-  //     setSunburstData({ name: "Root", children: sunburstData });
-  //   });
-  // }, []);
-  // useEffect(() => {
-  //   const parentId = id; // Replace with the actual parent_id
-  //   fetchSunData(parentId).then((sunburstData) => {
-  //     setSunburstData({ name: "Root", children: sunburstData });
-  //   });
-  // }, []);
 
   return (
     <>
@@ -239,8 +170,7 @@ function SingleDebate() {
         centered
         dir="rtl"
       >
-        {/* <Modal.Header closeButton></Modal.Header> */}
-        {/* <Modal.Body> */}
+
         <Card closeButton>
           <Card.Img
             variant="top"
@@ -269,21 +199,10 @@ function SingleDebate() {
             <Card.Text className="m-0">62.6ר</Card.Text>
           </div>
         </Card>
-        {/* </Modal.Body> */}
         <Button onClick={handleClose}>Enter</Button>
       </Modal>
       <Header />
-      {/* <div style={{ width: "100%", height: "500px" }}>
-        <Sunburst
-          data={sunburstData}
-          width={500}
-          height={500}
-          // tooltipContent={(node) => `${node.name}: ${node.size || 0}`}
-        />
-      </div>*/}
-
-      <DebateTree  />
-
+      
       <section
         style={{ background: "#F2F4F5", paddingBottom: "calc(100vh - 250px)" }}
         className="h-100"
@@ -291,14 +210,15 @@ function SingleDebate() {
       >
         <Container>
           <Row>
-            <Col md={10} className="m-auto mt-4">
+            <Col md={10} className="m-auto mt-4 test">
               <div className="p-4 my-4  ">
+                
                 <div
                   style={{ background: "#ffff" }}
                   className="p-4 rounded w-50 m-auto"
                   onClick={() => revertToOldTitle()}
                 >
-                  {oldTitle}
+                  <p>{oldTitle}</p>
                 </div>
 
                 <div
