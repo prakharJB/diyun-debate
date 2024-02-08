@@ -1759,6 +1759,23 @@ font-size: 25px;
 font-weight: 600;
 }
 
+/* single debate comments add*/
+.comments i.fa-solid.fa-message{
+    color: #818b98;
+    cursor: pointer;
+}
+.detail-comment i.fa.fa-plus{
+    border-radius: 50px;
+    background: #f2f4f5;
+    padding: 5px;
+}
+.btn-add-cment{
+    left: 10px;bottom: 6px!important;cursor: pointer;
+}
+.comment-list .card{
+    background-color: #f2f4f5;margin-bottom: 15px;
+}
+
 
 /* mobile screen */
 

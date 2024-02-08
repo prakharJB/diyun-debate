@@ -8,14 +8,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ForgetPassword from "../../../Component/UserComponent/ForgetPasswordComponent/ForgetPasswordComponent";
 import axios from 'axios';
-// import defaultImage from "./../../../Assets/demo-portal-cover.jpeg";
+import defaultImage from "./../../../Assets/demo-portal-cover.jpeg";
 function UserSettings() {
 const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pictures/`;
 
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
   //ProfilePic update
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState({
+    profile_picture: defaultImage, // Set the default image URL
+  });
   const [biography, setBiography] = useState("");
   // Password Change 
   const [hideTimelineCheckbox, setHideTimelineCheckbox] = useState(false);
@@ -140,7 +142,6 @@ const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pi
 
   //-------------ForgotPaswword---------
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
-
   const handleForgetPasswordOpen = () => {
     setForgetPasswordModal(true);
     handleClose();
