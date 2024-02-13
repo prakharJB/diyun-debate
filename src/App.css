@@ -734,6 +734,11 @@ div#responsive-navbar-nav {
     border-radius: 5px;
 
 }
+/* password icon */
+.password-toggle-icon{
+    bottom: 7px;
+    left: 13px;
+}
 
 /* .bg-body-tertiary .nav-link {
     color: #fff;
@@ -1180,6 +1185,7 @@ img.card-img-top {
     object-fit: cover;
     max-width: 80px;
     margin: auto;
+    border-radius: 50%;
 }
 
 .accordion-button::after {
@@ -1505,8 +1511,7 @@ input#check-bx {
     background-size: cover;
     background-position: center;
     transition: all .3s ease;
-    cursor: pointer;
-    border: 1px solid grey;
+    cursor: pointer;   
 }
 
 .profile-chang {

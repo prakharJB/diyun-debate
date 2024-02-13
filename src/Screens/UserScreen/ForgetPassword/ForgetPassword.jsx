@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import Header from "../../../Layouts/Header";
 import Footer from "../../../Layouts/Footer";
 import { Container, Row, Col } from "react-bootstrap";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const PasswordForget = (props) => {
   const { token } = useParams();
@@ -17,6 +18,15 @@ const PasswordForget = (props) => {
     password_confirmation: "",
   });
   const navigate = useNavigate();
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+  const [confirmationVisible, setConfirmationVisible] = useState(false);
+  const toggleConfirmationVisibility = () => {
+    setConfirmationVisible(!confirmationVisible);
+  };
 
   const [passwordError, setPasswordError] = useState();
   const handleChange = (e) => {
@@ -58,26 +68,40 @@ const PasswordForget = (props) => {
               </div>
 
               <Form onSubmit={(e) => handleSignup(e)}>
-                <Form.Group className="mt-4" controlId="formPassword">
+                <Form.Group className="mt-4 position-relative" controlId="formPassword">
                   <Form.Control
-                    type="password"
+                    // type="password"
+                    type={passwordVisible ? 'text' : 'password'}
                     placeholder="סיסמה"
                     name="password"
                     onChange={handleChange}
                     required
                   />
+                  <span
+                    className="password-toggle-icon position-absolute"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
                 </Form.Group>
                 <Form.Group
-                  className="mt-4"
+                  className="mt-4 position-relative"
                   controlId="formConfirmationPassword"
                 >
                   <Form.Control
-                    type="password"
+                    // type="password"
+                    type={confirmationVisible ? 'text' : 'password'}
                     placeholder="אימות סיסמה"
                     name="password_confirmation"
                     onChange={handleChange}
                     required
                   />
+                  <span
+                    className="password-toggle-icon position-absolute"
+                    onClick={toggleConfirmationVisibility}
+                  >
+                    {confirmationVisible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
                 </Form.Group>
                 {passwordError === true ? (
                   <p className="text-danger">Password did not match!</p>

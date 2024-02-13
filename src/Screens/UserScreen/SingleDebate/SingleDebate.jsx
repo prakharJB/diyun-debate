@@ -10,6 +10,8 @@ import Card from "react-bootstrap/Card";
 import toast from "react-hot-toast";
 import tHn from "../../../locales/he.json";
 
+
+
 function SingleDebate() {
   const [textProsCount, setTextProsCount] = useState(0);
   const [textConsCount, setTextConsCount] = useState(0);
@@ -24,33 +26,101 @@ function SingleDebate() {
   const [debateDetails, setDebateDetails] = useState();
 
   //Add comment
+  const [commentText, setCommentText] = useState("");
+  const [totalComments, setTotalComments] = useState(0);
   const [comments, setComments] = useState([]);
-  const [inputData, setInputData] = useState('');
-  const [items, setItems] = useState([]);
+  const [commentListVisible, setCommentListVisible] = useState(true); //visible comment
+  const [toggleSubmit, setToggleSubmit] = useState(true); //edit comment toggle
+  const [isEditItem, setIsEditItem] = useState(null); //edit comment
 
-  const addItem = async () => {
-    try {
-      if (!inputData) {
-        // Handle the case where inputData is empty
-      } else {
-        const result = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addComments`,
-          { comment: inputData }, // Pass the comment data here
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        setItems([...items, inputData]);
-        setInputData('');
-        console.log(result);
-      }
-    } catch (error) {
-      console.error("Error adding comment:", error);
-    }
+  const handleToggleCommentList = () => {
+    setCommentListVisible(!commentListVisible);
   };
 
+  const handleCommentChange = (e) => {
+    setCommentText(e.target.value);
+  };
+
+  //edit comment
+  const editItem = async (id) => {
+    let newEditItem = comments.find((comment) => {
+      return comment.id ===id
+    });
+    console.log(newEditItem);
+    setToggleSubmit(false); //change submit button
+    setCommentText(newEditItem.comment); //new update value
+    setIsEditItem(id); //pass current element id
+      }
+      //----------edit comment
+
+      //Delete comment
+      const deleteItem = (id) => {
+        console.log(id);
+      }
+
+
+  //handle the "Add Comment" 
+  const handleAddComment = async () => {
+    
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addComments`,
+        { comment: commentText },
+        {
+          headers: {            
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      if (result?.data?.debate) {
+        setDebateDetails(result.data.debate);
+        fetchCommentsList();
+      } 
+      console.log(result);
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+    }
+    // Clear the comment input after submission
+    setCommentText("");
+  };
+  const fetchCommentsList = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/commentsList`
+      );
+      console.log("Comments API Response:", response);
+      if (response?.data?.comments) {
+        setComments(response.data.comments);
+        setTotalComments(response.data.comments.length);
+        console.log("Updated Comments State:", response.data.comments);
+      }
+    } catch (error) {
+      console.error("Error fetching comments list:", error.message);
+    }
+  };
+  console.log("Comments State:", comments);
+
+  //Hide Comment
+  const hideComment = async (commentId) => {
+    try {
+      const result = await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/api/comments/${commentId}/hideComment`
+      );
+      console.log(result);
+      if (result?.data?.success) {      
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment.id !== commentId)
+        );  
+        toast.success("Comment hidden successfully");
+      } else {
+        toast.error("Failed to hide comment");
+      }
+    } catch (error) {
+      console.error("Error hiding comment:", error);
+      toast.error("Network error. Please try again later");
+    }
+  };
+  
 
   const fetchData = async () => {
     try {
@@ -83,6 +153,16 @@ function SingleDebate() {
   useEffect(() => {
     modalShow();
   }, []);
+
+  // ------Comment----- 
+  useEffect(() => {
+    fetchDataById(id);
+  }, [id]);
+  useEffect(() => {
+    if (debateDetails) {
+      fetchCommentsList(); // Fetch comments when debateDetails is available
+    }
+  }, [debateDetails]); // ------Comment ---- 
 
   const handleClose = () => setDetailDebateModal(false);
 
@@ -244,29 +324,25 @@ function SingleDebate() {
 
                 <div
                   style={{ background: "#ffff" }}
-                  className="p-4 rounded w-50 m-auto d-flex justify-content-between"
+                  className="p-4 rounded w-50 m-auto"
                   onClick={() => revertToOldTitle()}
                 >
                   <p>{oldTitle}</p>
-                  {/* --------------comment box------------ */}
-                  <div className="comments-container">
-                    <div className="comments" ><i class="fa-solid fa-message ms-2"></i><span></span></div>
-                  </div>
                 </div>
-                <div className="detail-comment" >
+                <div className="detail-comment" style={{ display: commentListVisible ? 'block' : 'none' }} >
                   <div className="comment-panel position-relative" >
                     <div className="comment-list w-50 mx-auto">
                       <Container>
-                        {comments.map((comment, index) => (
-                          <Card key={index} style={{ width: '23rem' }}>
+                        {comments.map((comment) => (
+                          <Card key={comment.id} style={{ width: '23rem' }}>
                             <Card.Body>
-                              <Card.Title>{comment}</Card.Title>
-                              <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+                              <Card.Title>{comment.user.name}</Card.Title>
+                              <Card.Subtitle className="mb-2 text-muted">{comment.timestamp}</Card.Subtitle>
                               <Card.Text>
                                 {comment.comment}
                               </Card.Text>
-                              <Card.Link href="#" className="text-secondary" >Hide<i class="fa fa-eye-slash text-secondary px-1" aria-hidden="true"></i></Card.Link>
-                              <p className="text-secondary d-inline-block px-2">Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></p>
+                              <Card.Link href="#" className="text-secondary"onClick={() => hideComment(comment.id)} >Hide<i class="fa fa-eye-slash text-secondary px-1" aria-hidden="true"></i></Card.Link>
+                              <p className="text-secondary d-inline-block px-2"onClick={()=> editItem(comment.id)}>Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></p>
                               {/* <Card.Link href="#" className="text-secondary d-inline-block px-2" onClick={()=> editItem(comment.id)} >Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></Card.Link> */}
 
                             </Card.Body>
@@ -274,20 +350,23 @@ function SingleDebate() {
                         ))}
                       </Container>
                     </div>
-
-                    <div className="message-card" >
-                      <input
-                        className="form-control"
-                        id="textAreaExample"
-                        placeholder="Suggest improvement"
-                        rows="4"
-                        value={inputData}
-                        onChange={(e) => setInputData(e.target.value)}
-                      />
-                    </div>
-                    <div className="btn-add-cment position-absolute start-10" >
-                      <i class="fa fa-plus add-btn" aria-hidden="true" onClick={addItem}></i>
-                      {/* <i class="fa fa-pencil add-btn" aria-hidden="true" ></i> */}
+                    <div>
+                      <div className="message-card" >
+                        <input
+                          className="form-control"
+                          id="textAreaExample"
+                          placeholder="Suggest improvement"
+                          rows="4"
+                          value={commentText}
+                          onChange={handleCommentChange}
+                        />
+                      </div>
+                      <div className="btn-add-cment position-absolute start-10" >
+                        {
+                          toggleSubmit ? <i class="fa fa-plus add-btn" aria-hidden="true"onClick={handleAddComment}></i> : <i class="fa fa-pencil add-btn" aria-hidden="true"onClick={handleAddComment}></i>
+                        }
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -303,11 +382,11 @@ function SingleDebate() {
                     <div
                       style={{ background: "#ffff" }}
                       className="text-success  p-2 border rounded"
-                    >
-                      Pros
+                    >                      
                       <Button onClick={toggleProsForm} className="btn-success">
                         +
                       </Button>
+                      Pros
                     </div>
                     {showProsForm && (
                       <div
@@ -344,11 +423,11 @@ function SingleDebate() {
                     <div
                       style={{ background: "#ffff" }}
                       className="text-danger p-2 border rounded"
-                    >
-                      Cons
+                    >                      
                       <Button onClick={toggleConsForm} className="btn-danger">
                         +
                       </Button>
+                      Cons
                     </div>
                     {showConsForm && (
                       <div

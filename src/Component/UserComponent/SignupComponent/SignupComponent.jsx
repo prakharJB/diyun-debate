@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { SignupAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -20,6 +21,16 @@ const Signup = (props) => {
   });
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const [confirmationVisible, setConfirmationVisible] = useState(false);
+  const toggleConfirmationVisibility = () => {
+    setConfirmationVisible(!confirmationVisible);
+  };
 
   const handleClose = () => {
     setFormData({
@@ -152,23 +163,35 @@ const Signup = (props) => {
               />
             </Form.Group>
 
-            <Form.Group className="mt-4" controlId="formPassword">
+            <Form.Group className="mt-4 position-relative" controlId="formPassword">
               <Form.Control
-                type="password"
+                type={passwordVisible ? 'text' : 'password'}
                 placeholder="סיסמה"
                 name="password"
                 onChange={handleChange}
                 required
               />
+              <span
+                className="password-toggle-icon position-absolute"
+                onClick={togglePasswordVisibility}
+              >
+                {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </Form.Group>
-            <Form.Group className="mt-4" controlId="formConfirmationPassword">
+            <Form.Group className="mt-4 position-relative" controlId="formConfirmationPassword">
               <Form.Control
-                type="password"
+               type={passwordVisible ? 'text' : 'password'}
                 placeholder="אימות סיסמה"
                 name="password_confirmation"
                 onChange={handleChange}
                 required
               />
+              <span
+            className="password-toggle-icon position-absolute"
+            onClick={toggleConfirmationVisibility}
+          >
+            {confirmationVisible ? <FaEyeSlash /> : <FaEye />}
+          </span>
             </Form.Group>
             {passwordError === true ? (
               <p className="text-danger">Password did not match!</p>

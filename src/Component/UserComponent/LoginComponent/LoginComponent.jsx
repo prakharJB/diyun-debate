@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { LoginAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
 import { useDispatch } from "react-redux";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -18,6 +19,11 @@ const Login = (props) => {
   const handleForgetPasswordOpen = () => {
     setForgetPasswordModal(true);
     handleClose();
+  };
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   const handleSignupModalOpen = () => {
@@ -109,15 +115,21 @@ const Login = (props) => {
               />
             </Form.Group>
 
-            <Form.Group className="mt-4" controlId="formPassword">
+            <Form.Group className="mt-4 position-relative" controlId="formPassword">
               {/* <Form.Label>Password</Form.Label> */}
               <Form.Control
-                type="password"
+                type={passwordVisible ? 'text' : 'password'}
                 placeholder="סיסמה"
                 name="password"
                 required
                 onChange={handleChange}
               />
+               <span
+                className="password-toggle-icon position-absolute"
+                onClick={togglePasswordVisibility}
+              >
+                {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </Form.Group>
             <div
               onClick={() => handleForgetPasswordOpen(true)}
