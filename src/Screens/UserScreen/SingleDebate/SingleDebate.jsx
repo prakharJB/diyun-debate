@@ -41,33 +41,28 @@ function SingleDebate() {
     setCommentText(e.target.value);
   };
 
-  //edit comment
+  //------edit comment------
   const editItem = async (id) => {
     let newEditItem = comments.find((comment) => {
-      return comment.id ===id
+      return comment.id === id
     });
     console.log(newEditItem);
     setToggleSubmit(false); //change submit button
     setCommentText(newEditItem.comment); //new update value
     setIsEditItem(id); //pass current element id
-      }
-      //----------edit comment
-
-      //Delete comment
-      const deleteItem = (id) => {
-        console.log(id);
-      }
+  }
+  //------edit comment-------
 
 
   //handle the "Add Comment" 
   const handleAddComment = async () => {
-    
+
     try {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/debates/${debateDetails.id}/addComments`,
         { comment: commentText },
         {
-          headers: {            
+          headers: {
             "Content-Type": "application/json",
           },
         }
@@ -75,7 +70,7 @@ function SingleDebate() {
       if (result?.data?.debate) {
         setDebateDetails(result.data.debate);
         fetchCommentsList();
-      } 
+      }
       console.log(result);
     } catch (error) {
       console.error("Error submitting comment:", error);
@@ -100,27 +95,38 @@ function SingleDebate() {
   };
   console.log("Comments State:", comments);
 
-  //Hide Comment
-  const hideComment = async (commentId) => {
+
+  //------------ Hide Comment-------
+  const [commentHide, setCommentHide] = useState([]);
+  const hideComment = async (commentId, userId) => {
     try {
-      const result = await axios.delete(
-        `${process.env.REACT_APP_BASE_URL}/api/comments/${commentId}/hideComment`
-      );
-      console.log(result);
-      if (result?.data?.success) {      
-        setComments((prevComments) =>
-          prevComments.filter((comment) => comment.id !== commentId)
-        );  
-        toast.success("Comment hidden successfully");
-      } else {
-        toast.error("Failed to hide comment");
-      }
+      const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/comments/${commentId}/hideComment`, {
+        data: { userId },
+      });
+      setCommentHide(response?.data);
+      console.log("Comment hidden successfully.", response);
+      fetchCommentsList();
+      toast.success("Comment hidden successfully");
     } catch (error) {
       console.error("Error hiding comment:", error);
-      toast.error("Network error. Please try again later");
+      toast.error("Failed to hide comment");
     }
   };
-  
+
+  //toggle three dot
+  const [ellipsisMenuOpen, setEllipsisMenuOpen] = useState(null);
+  const handleEllipsisClick = (commentId) => {
+    if (ellipsisMenuOpen === commentId) {
+      setEllipsisMenuOpen(null); // Close the menu if it's already open
+    } else {
+      setEllipsisMenuOpen(commentId); // Open the menu for the clicked comment
+    }
+  };
+
+  const closeEllipsisMenu = () => {
+    setEllipsisMenuOpen(null);
+  };
+
 
   const fetchData = async () => {
     try {
@@ -324,7 +330,7 @@ function SingleDebate() {
 
                 <div
                   style={{ background: "#ffff" }}
-                  className="p-4 rounded w-50 m-auto"
+                  className="p-4 rounded w-100 m-auto"
                   onClick={() => revertToOldTitle()}
                 >
                   <p>{oldTitle}</p>
@@ -334,18 +340,26 @@ function SingleDebate() {
                     <div className="comment-list w-50 mx-auto">
                       <Container>
                         {comments.map((comment) => (
-                          <Card key={comment.id} style={{ width: '23rem' }}>
+                          <Card key={comment.id} style={{ width: '23rem mb-5' }}>
                             <Card.Body>
                               <Card.Title>{comment.user.name}</Card.Title>
                               <Card.Subtitle className="mb-2 text-muted">{comment.timestamp}</Card.Subtitle>
                               <Card.Text>
                                 {comment.comment}
                               </Card.Text>
-                              <Card.Link href="#" className="text-secondary"onClick={() => hideComment(comment.id)} >Hide<i class="fa fa-eye-slash text-secondary px-1" aria-hidden="true"></i></Card.Link>
-                              <p className="text-secondary d-inline-block px-2"onClick={()=> editItem(comment.id)}>Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></p>
-                              {/* <Card.Link href="#" className="text-secondary d-inline-block px-2" onClick={()=> editItem(comment.id)} >Edit<i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></Card.Link> */}
-
+                              <div className="ellipsis-menu d-flex align-items-baseline position-absolute mt-4">
+                                <i className="fa fa-ellipsis-v text-secondary px-2 " onClick={() => handleEllipsisClick(comment.id)} />
+                                {ellipsisMenuOpen === comment.id && (
+                                  <div className="ellipsis-dropdown d-flex">
+                                    <p className="px-3" onClick={() => hideComment(comment.id, comment.user.id)}><i class="fa fa-trash-o text-secondary px-1" aria-hidden="true"></i></p>
+                                    <p onClick={()=> editItem(comment.id)} ><i class="fa fa-pencil text-secondary px-1" aria-hidden="true"></i></p>
+                                    
+                                    {/* Add your delete functionality here */}
+                                  </div>
+                                )}
+                              </div>
                             </Card.Body>
+                            {/* <p className="text-secondary d-inline-block px-2"><i class="fa fa-ellipsis-v text-secondary px-1" aria-hidden="true"></i></p> */}
                           </Card>
                         ))}
                       </Container>
@@ -363,9 +377,8 @@ function SingleDebate() {
                       </div>
                       <div className="btn-add-cment position-absolute start-10" >
                         {
-                          toggleSubmit ? <i class="fa fa-plus add-btn" aria-hidden="true"onClick={handleAddComment}></i> : <i class="fa fa-pencil add-btn" aria-hidden="true"onClick={handleAddComment}></i>
+                          toggleSubmit ? <i class="fa fa-plus add-btn" aria-hidden="true" onClick={handleAddComment}></i> : <i class="fa fa-pencil add-btn" aria-hidden="true" onClick={handleAddComment}></i>
                         }
-                        
                       </div>
                     </div>
                   </div>
@@ -382,7 +395,7 @@ function SingleDebate() {
                     <div
                       style={{ background: "#ffff" }}
                       className="text-success  p-2 border rounded"
-                    >                      
+                    >
                       <Button onClick={toggleProsForm} className="btn-success">
                         +
                       </Button>
@@ -423,7 +436,7 @@ function SingleDebate() {
                     <div
                       style={{ background: "#ffff" }}
                       className="text-danger p-2 border rounded"
-                    >                      
+                    >
                       <Button onClick={toggleConsForm} className="btn-danger">
                         +
                       </Button>
