@@ -12,8 +12,35 @@ import defaultImage from "./../../../Assets/user-default-icon.png";
 import { useNavigate } from "react-router-dom";
 
 function UserSettings() {
+   // profile pic show
+   const [profileDataA, setprofileDataA] = useState();
+   const [loading, setLoading] = useState(true);
+   const fetchData = async () => {
+     try {
+       // api one
+       const url = `https://laradebate.jmbliss.com/api/my-profile-details`;
+       const responseData = await axios.get(url);
+       console.log("API Response:", responseData?.data);
+ 
+ 
+       // api one data
+       setprofileDataA(responseData?.data);
+       
+       
+     } catch (error) {
+       console.error("Error fetching data:", error);
+     } 
+     finally {
+       setLoading(false);
+     }
+   };
+ 
+   useEffect(() => {
+     fetchData();
+   }, []);
+   // profile pic show
   
-  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/profile_pictures/`;
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
   const navigate = useNavigate(); 
 
   const [show, setShow] = useState(false);
@@ -165,10 +192,15 @@ function UserSettings() {
                   <label htmlFor="fileToUpload">
                     <div className="profile-pic">
                       <img
-                        src={`${profilePic.selectedFile ? URL.createObjectURL(profilePic.selectedFile) : profilePic?.profile_picture}`}
-                        className="w-100 "
+                        src={`${profilePic.selectedFile ? URL.createObjectURL(profilePic.selectedFile) :baseUrl + profileDataA?.profile_picture}`}
+                        className="w-100 h-100 object-fit-cover"
                         alt="cover"
                       />
+                      {/* <img
+                  className="card-img-top"
+                  src={baseUrl + profileDataA?.profile_picture}
+                  alt=""
+                /> */}
                     </div>
                   </label>
                   <input

@@ -13,6 +13,7 @@ export default function UserProfilenew() {
 
   // api three data
   const [profileDataC, setprofileDataC] = useState();
+  
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
@@ -66,7 +67,7 @@ export default function UserProfilenew() {
             <div className=" col-md-6  col-12  pt-5 pb-5">
               <div className="card-body card pb-5">
                 <img
-                  className="card-img-top"
+                  className="card-img-top a"
                   src={baseUrl + profileDataA?.profile_picture}
                   alt=""
                 />

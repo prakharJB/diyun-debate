@@ -18,7 +18,7 @@ import homeicona from "../../../Assets/home-icon-2.png";
 import homeicond from "../../../Assets/home-icon-4.png";
 import homeicone from "../../../Assets/home-icon-5.png";
 import homeiconf from "../../../Assets/home-icon-6.png";
-
+import defaultImage from "./../../../Assets/user-profile.png";
 
 
 function Featured(data) {
@@ -307,21 +307,28 @@ function Featured(data) {
                                 <div>
                                   <div
                                     key={contributorIndex}
-                                    className="d-flex justify-content-start"
+                                    className="d-flex justify-content-start" 
                                   >
-                                    <div>
+                                    <div className="conti-main d-flex align-items-center">
+                                      <div>
                                       <Card.Text className="m-0">
                                         {contributor.username}
                                       </Card.Text>
                                       <Card.Text>
                                         תרומות {contributor.total_contributions}
                                       </Card.Text>
+                                      </div>
+                                      <img
+                                          className="card-img-top a"
+                                          src={contributor?.profile_picture ? baseUrl + contributor?.profile_picture : defaultImage}
+                                          alt="profile"
+                                        />
                                     </div>
-                                    <div>
+                                    {/* <div>
                                       <Card.Text>
                                         {contributorIndex + 1}
                                       </Card.Text>
-                                    </div>
+                                    </div> */}
                                   </div>
 
                                   <hr className="mt-1 mb-0" />

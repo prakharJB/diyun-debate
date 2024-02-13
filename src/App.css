@@ -786,7 +786,7 @@ a.navbar-brand img {
     background: #fff !important;
 }
 
-.banner-header .scrolled a:not(.log-sign-in a) {
+.banner-header .scrolled a:not(.log-sign-in a,.dropdown-item) {
     color: #000 !important;
 }
 
@@ -1183,9 +1183,11 @@ img.card-img-top {
 }
 .profile-section img.card-img-top {
     object-fit: cover;
-    max-width: 80px;
+    max-width: 100px;
     margin: auto;
     border-radius: 50%;
+    height: 100px;
+    object-position: top;
 }
 
 .accordion-button::after {
@@ -1253,6 +1255,15 @@ img.card-img-top {
 /* ---Tab-Home---- */
 .tab-home-ex .nav-tabs {
     border: none;
+}
+.conti-main.d-flex img ,.profile-nav img  {
+    width: 40px;
+    max-height: 40px;
+    margin-left: 15px;
+    border-radius: 100%;
+    object-position: top;
+    height: 40px;
+
 }
 
 .tab-home-ex .nav-link.active,
@@ -1511,9 +1522,12 @@ input#check-bx {
     background-size: cover;
     background-position: center;
     transition: all .3s ease;
-    cursor: pointer;   
+    cursor: pointer;
+    overflow: hidden;   
 }
-
+.profile-pic img{
+    object-position:top;
+}
 .profile-chang {
     display: none;
     cursor: pointer;

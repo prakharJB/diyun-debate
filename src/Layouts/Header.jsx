@@ -24,9 +24,39 @@ import { useDispatch, useSelector } from "react-redux";
 import logoimgdark from "../Assets/White-logo.png";
 import logoimg from "../Assets/Blue-logo.png";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-
-
+// import defaultImage from "./../../../Assets/user-profile.png";
+// import Loader from "../Loader";
+import axios from "axios";
 function Header() {
+  // profile pic show
+  const [profileDataA, setprofileDataA] = useState();
+  const baseUrl = `${process.env.REACT_APP_BASE_URL}/storage/app/public/`;
+  const [loading, setLoading] = useState(true);
+  const fetchData = async () => {
+    try {
+      // api one
+      const url = `https://laradebate.jmbliss.com/api/my-profile-details`;
+      const responseData = await axios.get(url);
+      console.log("API Response:", responseData?.data);
+
+
+      // api one data
+      setprofileDataA(responseData?.data);
+      
+      
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } 
+    finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  // profile pic show
+
 
   const [modalShow, setModalShow] = useState(false);
   const [LoginmodalShow, setLoginModalShow] = useState(false);
@@ -144,10 +174,10 @@ const isScrolled = scroll >= 60;
                 className="profile-nav"
                 title={
                   <img
-                    src={userProfile}
-                    alt="profile"
-                    className="rounded-circle profile-img-style"
-                  />
+                  className="card-img-top a"
+                  src={baseUrl + profileDataA?.profile_picture}
+                  alt=""
+                />
                 }
                 id="basic-nav-dropdown"
               >
